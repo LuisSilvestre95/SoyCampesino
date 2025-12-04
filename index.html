@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="description" content="Diego Guerrero - La Voz del Campo - Soy Campesino - Voto 23 - Seguridad Alimentaria para Bogotá" />
+  <meta name="theme-color" content="#009440" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Diego Guerrero | La Voz del Campo - Soy Campesino - Voto 23</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥔</text></svg>" />
+
+  <!-- FONTS OPTIMIZADAS PARA MÓVIL -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- ICONOS OPTIMIZADOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- TAILWIND CSS MOBILE-FIRST -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- ANIMACIONES OPTIMIZADAS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- ALERTAS MODERNAS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- CONFIGURACIÓN TAILWIND MOBILE-FIRST -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            verde: "#009440",
+            tierra: "#5D4037",
+            girasol: "#FFD100",
+            arena: "#f4f1ea",
+            negro: "#1a1a1a",
+            verdeOscuro: "#007a35",
+            verdeClaro: "#00c853",
+          },
+          fontFamily: {
+            titulo: ["Montserrat", "sans-serif"],
+            cuerpo: ["Open Sans", "sans-serif"],
+          },
+          screens: {
+            'xs': '320px',
+            'sm': '375px',
+            'md': '768px',
+            'lg': '1024px',
+            'xl': '1280px',
+            '2xl': '1536px',
+            '3xl': '1920px',
+          },
+          fontSize: {
+            'xxs': '0.625rem', // 10px
+            'mobile-lg': '1.125rem', // 18px para móviles
+            'mobile-xl': '1.25rem', // 20px para móviles
+          },
+          spacing: {
+            'safe-top': 'env(safe-area-inset-top)',
+            'safe-bottom': 'env(safe-area-inset-bottom)',
+            'safe-left': 'env(safe-area-inset-left)',
+            'safe-right': 'env(safe-area-inset-right)',
+          }
+        },
+      },
+      corePlugins: {
+        container: false, // Desactivamos container por defecto
+      }
+    };
+  </script>
+
+  <!-- FIREBASE SDK OPTIMIZADO -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC0hXc8Goumy9cDht82fXGMewi1wggfC5E",
+      authDomain: "soycampesino2025.firebaseapp.com",
+      projectId: "soycampesino2025",
+      storageBucket: "soycampesino2025.firebasestorage.app",
+      messagingSenderId: "9297095496",
+      appId: "1:9297095496:web:8cb47e48ae54512b8ca17d",
+      measurementId: "G-339YNTB0WW"
+    };
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      window.firebaseDB = db;
+      window.firebaseAddDoc = addDoc;
+      window.firebaseCollection = collection;
+      
+      console.log("✅ Firebase inicializado correctamente");
+    } catch (error) {
+      console.error("❌ Error Firebase:", error);
+    }
+  </script>
+
+  <!-- ESTILOS SUPER MEGA RESPONSIVOS -->
+  <style>
+    /* ===== RESET MOBILE-FIRST ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background-color: #f4f1ea;
+      overflow-x: hidden;
+      width: 100vw;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+
+    /* ===== TIPOGRAFÍA RESPONSIVA EXTREMA ===== */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+
+    /* Tamaños específicos para móviles */
+    @media (max-width: 767px) {
+      html {
+        font-size: 14px;
+      }
+      
+      h1 {
+        font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+      }
+      
+      h2 {
+        font-size: clamp(1.5rem, 6vw, 2rem) !important;
+      }
+      
+      p, li, span, a {
+        font-size: clamp(0.875rem, 4vw, 1rem) !important;
+      }
+    }
+
+    /* ===== PRELOADER SUPER OPTIMIZADO ===== */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: -webkit-fill-available;
+      background: linear-gradient(135deg, #009440 0%, #007a35 50%, #FFD100 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    #preloader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .campesino-3d {
+      font-size: clamp(3rem, 15vw, 6rem);
+      margin-bottom: 1.5rem;
+      animation: flotar 3s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .progress-container {
+      width: min(80vw, 300px);
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FFD100, #FFFFFF);
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.3s ease-out;
+    }
+
+    /* ===== NÚMERO 23 FLOTANTE RESPONSIVO ===== */
+    .floating-23 {
+      position: fixed;
+      z-index: 9990;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: latir 2s ease-in-out infinite;
+    }
+
+    @media (max-width: 767px) {
+      .floating-23 {
+        top: env(safe-area-inset-top, 10px);
+        left: 10px;
+        transform: scale(0.8);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .floating-23 {
+        top: 20px;
+        left: 20px;
+      }
+    }
+
+    .numero-23 {
+      width: clamp(3rem, 10vw, 4rem);
+      height: clamp(3rem, 10vw, 4rem);
+      background: #009440;
+      border: 3px solid #FFD100;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 900;
+      color: white;
+      box-shadow: 0 0 20px rgba(0, 148, 64, 0.6);
+    }
+
+    .label-23 {
+      font-size: clamp(0.5rem, 2vw, 0.75rem);
+      color: #009440;
+      font-weight: 900;
+      text-align: center;
+      margin-top: 0.25rem;
+      background: white;
+      padding: 0.125rem 0.5rem;
+      border-radius: 10px;
+    }
+
+    @keyframes latir {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* ===== WHATSAPP BUTTON SUPER TÁCTIL ===== */
+    .whatsapp-float {
+      position: fixed;
+      z-index: 9990;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6);
+      transition: all 0.3s ease;
+      animation: botonFlotante 2s ease-in-out infinite;
+    }
+
+    @media (max-width: 767px) {
+      .whatsapp-float {
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        right: 15px;
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .whatsapp-float {
+        bottom: 30px;
+        right: 30px;
+        width: 64px;
+        height: 64px;
+        font-size: 1.75rem;
+      }
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.8);
+    }
+
+    @keyframes botonFlotante {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== NAVEGACIÓN MOBILE-FIRST ===== */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: -webkit-fill-available;
+      background: rgba(0, 148, 64, 0.98);
+      backdrop-filter: blur(10px);
+      z-index: 9998;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: env(safe-area-inset-top, 20px) 20px env(safe-area-inset-bottom, 20px);
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin: 1rem 0;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      width: 80%;
+      text-align: center;
+    }
+
+    .mobile-nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(10px);
+    }
+
+    /* ===== HERO SECTION MOBILE-OPTIMIZED ===== */
+    .hero-mobile {
+      position: relative;
+      width: 100vw;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: calc(20px + env(safe-area-inset-top, 0px)) 20px calc(20px + env(safe-area-inset-bottom, 0px));
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,148,64,0.4) 100%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .voto23-badge {
+      background: linear-gradient(135deg, #009440, #FFD100);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 1.5rem 0;
+      box-shadow: 0 10px 30px rgba(0, 148, 64, 0.4);
+      border: 3px solid white;
+    }
+
+    /* ===== BOTONES TÁCTILES PARA MÓVIL ===== */
+    .btn-tactil {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      min-height: 44px; /* Tamaño mínimo para touch */
+      min-width: 44px;
+      touch-action: manipulation;
+    }
+
+    .btn-tactil:active {
+      transform: scale(0.95);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #009440, #007a35);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 148, 64, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #007a35, #009440);
+      box-shadow: 0 6px 20px rgba(0, 148, 64, 0.6);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #FFD100, #FFC107);
+      color: #1a1a1a;
+      box-shadow: 0 4px 15px rgba(255, 209, 0, 0.4);
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #FFC107, #FFD100);
+      box-shadow: 0 6px 20px rgba(255, 209, 0, 0.6);
+    }
+
+    /* ===== FORMULARIO MOBILE-FIRST ===== */
+    .form-mobile {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 2px solid #009440;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      transition: all 0.3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #FFD100;
+      box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.2);
+    }
+
+    select.form-input {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23009440' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1rem;
+      padding-right: 3rem;
+    }
+
+    /* Opciones del select visibles en todos los dispositivos */
+    select option {
+      background: white !important;
+      color: #333 !important;
+      padding: 12px !important;
+      font-size: 16px !important; /* Previene zoom en iOS */
+    }
+
+    select option:checked {
+      background: #009440 !important;
+      color: white !important;
+    }
+
+    /* ===== SECCIONES RESPONSIVAS ===== */
+    .section-mobile {
+      width: 100vw;
+      padding: 3rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .section-mobile {
+        padding: 4rem 2rem;
+      }
+    }
+
+    /* ===== GRID SUPER RESPONSIVO ===== */
+    .grid-mobile {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .grid-mobile {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+    }
+
+    /* ===== CARD PARA MÓVILES ===== */
+    .card-mobile {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-mobile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 148, 64, 0.2);
+    }
+
+    /* ===== TESTIMONIOS SLIDER MOBILE ===== */
+    .testimonios-slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 20px;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .slider-container {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slider-slide {
+      min-width: 100%;
+      padding: 1rem;
+    }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .slider-dot.active {
+      background: #009440;
+      transform: scale(1.2);
+    }
+
+    /* ===== FOOTER MOBILE-FIRST ===== */
+    .footer-mobile {
+      background: #1a1a1a;
+      color: white;
+      padding: 3rem 1.5rem calc(2rem + env(safe-area-inset-bottom, 0px));
+      text-align: center;
+      width: 100vw;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .social-links a:hover {
+      background: #009440;
+      transform: translateY(-3px);
+    }
+
+    /* ===== UTILIDADES RESPONSIVAS ===== */
+    .container-responsive {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .container-responsive {
+        padding: 0 2rem;
+      }
+    }
+
+    .text-responsive {
+      font-size: clamp(0.875rem, 4vw, 1rem);
+      line-height: 1.6;
+    }
+
+    .heading-responsive {
+      font-size: clamp(1.5rem, 8vw, 2.5rem);
+      line-height: 1.2;
+    }
+
+    .subheading-responsive {
+      font-size: clamp(1rem, 5vw, 1.5rem);
+      line-height: 1.3;
+    }
+
+    /* ===== ANIMACIONES PARA MÓVIL OPTIMIZADAS ===== */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ===== SOPORTE PARA NOTCH Y SAFE AREAS ===== */
+    @supports (padding: max(0px)) {
+      body, .hero-mobile, .footer-mobile {
+        padding-left: min(1.5rem, env(safe-area-inset-left));
+        padding-right: min(1.5rem, env(safe-area-inset-right));
+      }
+    }
+
+    /* ===== LOADING LAZY PARA IMÁGENES ===== */
+    img[loading="lazy"] {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    img[loading="lazy"].loaded {
+      opacity: 1;
+    }
+
+    /* ===== MEJORAS PARA TECLADOS VIRTUALES ===== */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero-mobile {
+        min-height: auto;
+        padding-top: 4rem;
+      }
+      
+      .form-mobile {
+        padding: 1rem;
+      }
+    }
+
+    /* ===== SOPORTE PARA DARK MODE ===== */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #121212;
+        color: #f0f0f0;
+      }
+      
+      .card-mobile {
+        background: #1e1e1e;
+        color: #f0f0f0;
+      }
+      
+      .form-input {
+        background: #2d2d2d;
+        color: #f0f0f0;
+        border-color: #009440;
+      }
+    }
+
+    /* ===== CORRECCIÓN PARA iOS ZOOM EN INPUTS ===== */
+    @media screen and (max-width: 767px) {
+      input, select, textarea {
+        font-size: 16px !important; /* Previene zoom automático en iOS */
+      }
+    }
+
+    /* ===== MEJOR RENDIMIENTO EN DISPOSITIVOS LENTOS ===== */
+    .will-change {
+      will-change: transform, opacity;
+    }
+
+    /* ===== SCROLLBAR PERSONALIZADA ===== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #009440;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #007a35;
+    }
+  </style>
+</head>
+<body class="font-cuerpo bg-arena text-negro">
+  
+  <!-- === PRELOADER SUPER OPTIMIZADO === -->
+  <div id="preloader">
+    <div class="campesino-3d">👨‍🌾</div>
+    <h1 class="font-titulo font-black text-white text-2xl md:text-4xl text-center mb-4">SOY CAMPESINO</h1>
+    <p class="text-white text-center mb-6">Sembrando el cambio para Bogotá...</p>
+    <div class="progress-container">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- === NÚMERO 23 FLOTANTE === -->
+  <div class="floating-23">
+    <div class="numero-23">23</div>
+    <div class="label-23">VOTO</div>
+  </div>
+
+  <!-- === BOTÓN WHATSAPP FLOTANTE === -->
+  <a href="https://wa.me/573001234567?text=¡Hola!%20Quiero%20unirme%20al%20movimiento%20Soy%20Campesino%20-%20Voto%2023" 
+     target="_blank" 
+     class="whatsapp-float"
+     aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- === NAVEGACIÓN MÓVIL === -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b-2 border-verde shadow-lg">
+    <div class="container-responsive flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🥔</span>
+        <div>
+          <div class="font-titulo font-black text-verde text-sm leading-none">DIEGO GUERRERO</div>
+          <div class="text-xxs font-bold text-tierra uppercase tracking-wider">Soy Campesino</div>
+        </div>
+      </div>
+
+      <!-- Menú Hamburguesa -->
+      <button id="menuToggle" class="w-10 h-10 flex flex-col justify-center items-center gap-1.5 touch-target" aria-label="Abrir menú">
+        <span class="w-6 h-1 bg-verde rounded-full transition-all"></span>
+        <span class="w-6 h-1 bg-verde rounded-full transition-all"></span>
+        <span class="w-6 h-1 bg-verde rounded-full transition-all"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menú Móvil Overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <button id="closeMenu" class="absolute top-6 right-6 text-white text-2xl touch-target" aria-label="Cerrar menú">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <a href="#inicio" class="nav-link">INICIO</a>
+    <a href="#historia" class="nav-link">MI HISTORIA</a>
+    <a href="#propuestas" class="nav-link">PROPUESTAS</a>
+    <a href="#logros" class="nav-link">LOGROS</a>
+    <a href="#testimonios" class="nav-link">TESTIMONIOS</a>
+    <a href="#contacto" class="nav-link bg-girasol text-negro font-black">¡SUMARME!</a>
+    
+    <div class="mt-8 text-center text-white/70">
+      <p class="text-sm">Voto 23 - Luchamos por el campo</p>
+    </div>
+  </div>
+
+  <!-- === HERO SECTION MOBILE-FIRST === -->
+  <section id="inicio" class="hero-mobile">
+    <img src="img/portada.jpg" alt="Campo colombiano" class="hero-bg" loading="eager" />
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content container-responsive">
+      <div class="inline-block bg-girasol text-negro font-black px-4 py-2 rounded-full text-sm uppercase tracking-widest mb-4">
+        MOVIMIENTO SOY CAMPESINO
+      </div>
+      
+      <h1 class="font-titulo font-black text-white mb-4 heading-responsive">
+        SEGURIDAD<br>
+        <span class="text-girasol">ALIMENTARIA</span><br>
+        PARA BOGOTÁ
+      </h1>
+      
+      <p class="text-white text-lg mb-6 text-responsive">
+        Del Campo a la Política. La voz de los campesinos en el Congreso.
+        Eliminamos intermediarios, garantizamos precios justos.
+      </p>
+      
+      <!-- Badge Voto 23 -->
+      <div class="voto23-badge">
+        <p class="font-black text-xl">VOTO 23</p>
+        <p class="text-sm">Luchamos por el campo</p>
+      </div>
+      
+      <!-- Botones Táctiles -->
+      <div class="flex flex-col sm:flex-row gap-4 mt-8">
+        <a href="#contacto" class="btn-tactil btn-primary">
+          <i class="fas fa-hands-helping mr-2"></i> UNIRME AL MOVIMIENTO
+        </a>
+        <a href="#propuestas" class="btn-tactil btn-secondary">
+          <i class="fas fa-bullhorn mr-2"></i> VER PROPUESTAS
+        </a>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <i class="fas fa-chevron-down text-white text-2xl"></i>
+    </div>
+  </section>
+
+  <!-- === SECCIÓN HISTORIA === -->
+  <section id="historia" class="section-mobile bg-white">
+    <div class="container-responsive">
+      <div class="text-center mb-8">
+        <h2 class="font-titulo font-black text-verde mb-4 heading-responsive">
+          DE LA TIERRA<br>
+          <span class="text-tierra">A LA POLÍTICA</span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-responsive">
+          Conozca la historia real del campesino que quiere cambiar Bogotá desde el Congreso.
+        </p>
+      </div>
+      
+      <div class="grid-mobile">
+        <div class="card-mobile">
+          <div class="w-20 h-20 bg-verde rounded-full flex items-center justify-center mb-4 mx-auto">
+            <i class="fas fa-seedling text-white text-3xl"></i>
+          </div>
+          <h3 class="font-titulo font-black text-center mb-3 text-lg">Origen Campesino</h3>
+          <p class="text-gray-600 flex-grow">
+            Nací y crecí en el campo. Sé lo que es trabajar la tierra desde el amanecer 
+            y ver cómo los intermediarios se llevan las ganancias.
+          </p>
+        </div>
+        
+        <div class="card-mobile">
+          <div class="w-20 h-20 bg-girasol rounded-full flex items-center justify-center mb-4 mx-auto">
+            <i class="fas fa-graduation-cap text-negro text-3xl"></i>
+          </div>
+          <h3 class="font-titulo font-black text-center mb-3 text-lg">Formación Académica</h3>
+          <p class="text-gray-600 flex-grow">
+            Ingeniero Agrónomo, especializado en desarrollo rural. 
+            Combinó el conocimiento técnico con la experiencia real del campo.
+          </p>
+        </div>
+        
+        <div class="card-mobile">
+          <div class="w-20 h-20 bg-tierra rounded-full flex items-center justify-center mb-4 mx-auto">
+            <i class="fas fa-fist-raised text-white text-3xl"></i>
+          </div>
+          <h3 class="font-titulo font-black text-center mb-3 text-lg">Lucha Social</h3>
+          <p class="text-gray-600 flex-grow">
+            8 años liderando el movimiento Soy Campesino. 
+            Más de 50 mil campesinos organizados y empoderados.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Imagen Diego -->
+      <div class="mt-12 text-center">
+        <img src="img/diego-hero.png" 
+             alt="Diego Guerrero - Soy Campesino" 
+             class="rounded-2xl shadow-2xl mx-auto max-w-full h-auto max-h-96 object-contain"
+             loading="lazy" />
+        <p class="mt-4 text-sm text-gray-500">Diego Guerrero - La Voz del Campo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECCIÓN PROPUESTAS === -->
+  <section id="propuestas" class="section-mobile bg-gradient-to-b from-verde to-verdeOscuro text-white">
+    <div class="container-responsive">
+      <div class="text-center mb-8">
+        <h2 class="font-titulo font-black mb-4 heading-responsive">
+          PROPUESTAS <span class="text-girasol">CONCRETAS</span>
+        </h2>
+        <p class="text-white/80 max-w-2xl mx-auto text-responsive">
+          No son promesas vacías. Son acciones específicas que implementaremos desde el día 1.
+        </p>
+      </div>
+      
+      <div class="grid-mobile">
+        <div class="card-mobile bg-white/10 backdrop-blur border border-white/20">
+          <i class="fas fa-handshake text-girasol text-4xl mb-4"></i>
+          <h3 class="font-titulo font-black text-xl mb-3">Precios Justos</h3>
+          <p class="text-white/90">
+            Ley para eliminar intermediarios. El campesino recibirá mínimo el 70% del precio final.
+          </p>
+        </div>
+        
+        <div class="card-mobile bg-white/10 backdrop-blur border border-white/20">
+          <i class="fas fa-tractor text-girasol text-4xl mb-4"></i>
+          <h3 class="font-titulo font-black text-xl mb-3">Tecnología Rural</h3>
+          <p class="text-white/90">
+            Créditos blandos para modernización agrícola y acceso a tecnología de punta.
+          </p>
+        </div>
+        
+        <div class="card-mobile bg-white/10 backdrop-blur border border-white/20">
+          <i class="fas fa-graduation-cap text-girasol text-4xl mb-4"></i>
+          <h3 class="font-titulo font-black text-xl mb-3">Educación Campesina</h3>
+          <p class="text-white/90">
+            Becas universitarias para hijos de campesinos y capacitación permanente.
+          </p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="#contacto" class="btn-tactil bg-girasol text-negro font-black inline-flex items-center">
+          <i class="fas fa-file-signature mr-2"></i> APOYAR ESTAS PROPUESTAS
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECCIÓN LOGROS === -->
+  <section id="logros" class="section-mobile bg-white">
+    <div class="container-responsive">
+      <div class="text-center mb-8">
+        <h2 class="font-titulo font-black text-verde mb-4 heading-responsive">
+          LOGROS <span class="text-tierra">COMPROBADOS</span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-responsive">
+          Estos números no son promesas. Son realidades que hemos construido juntos.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center p-4 bg-verde rounded-2xl text-white">
+          <div class="text-3xl md:text-4xl font-black mb-2 counter" data-target="50">0</div>
+          <p class="text-sm font-bold">MIL CAMPESINOS<br>ORGANIZADOS</p>
+        </div>
+        
+        <div class="text-center p-4 bg-girasol rounded-2xl text-negro">
+          <div class="text-3xl md:text-4xl font-black mb-2 counter" data-target="120">0</div>
+          <p class="text-sm font-bold">PROYECTOS<br>ACTIVOS</p>
+        </div>
+        
+        <div class="text-center p-4 bg-tierra rounded-2xl text-white">
+          <div class="text-3xl md:text-4xl font-black mb-2 counter" data-target="8">0</div>
+          <p class="text-sm font-bold">AÑOS DE<br>LUCHA</p>
+        </div>
+        
+        <div class="text-center p-4 bg-negro rounded-2xl text-white">
+          <div class="text-3xl md:text-4xl font-black mb-2 counter" data-target="300">0</div>
+          <p class="text-sm font-bold">ALIANZAS<br>ESTRATÉGICAS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECCIÓN TESTIMONIOS === -->
+  <section id="testimonios" class="section-mobile bg-arena">
+    <div class="container-responsive">
+      <div class="text-center mb-8">
+        <h2 class="font-titulo font-black text-verde mb-4 heading-responsive">
+          LA VOZ DEL <span class="text-tierra">CAMPO</span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-responsive">
+          Escuche directamente a los campesinos que han transformado sus vidas con nuestro movimiento.
+        </p>
+      </div>
+      
+      <div class="testimonios-slider">
+        <div class="slider-container" id="sliderContainer">
+          <!-- Testimonio 1 -->
+          <div class="slider-slide">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-verde rounded-full flex items-center justify-center text-white font-black text-xl">
+                JM
+              </div>
+              <div class="ml-4">
+                <h4 class="font-black text-lg">Juan Martínez</h4>
+                <p class="text-sm text-gray-600">Productor de papa, Suba</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic">
+              "Diego no solo habla del campo, vive el campo. Sus propuestas son reales porque las conoce desde adentro."
+            </p>
+            <div class="flex mt-3">
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+            </div>
+          </div>
+          
+          <!-- Testimonio 2 -->
+          <div class="slider-slide">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-girasol rounded-full flex items-center justify-center text-negro font-black text-xl">
+                MR
+              </div>
+              <div class="ml-4">
+                <h4 class="font-black text-lg">María Rodríguez</h4>
+                <p class="text-sm text-gray-600">Productora de hortalizas, Kennedy</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic">
+              "Con Diego hemos logrado vender sin intermediarios. Nuestras ganancias aumentaron un 40%."
+            </p>
+            <div class="flex mt-3">
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+            </div>
+          </div>
+          
+          <!-- Testimonio 3 -->
+          <div class="slider-slide">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-tierra rounded-full flex items-center justify-center text-white font-black text-xl">
+                CL
+              </div>
+              <div class="ml-4">
+                <h4 class="font-black text-lg">Carlos López</h4>
+                <p class="text-sm text-gray-600">Productor de maíz, Bosa</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic">
+              "Diego nos enseñó a organizarnos como gremio. Ahora tenemos voz en las decisiones que nos afectan."
+            </p>
+            <div class="flex mt-3">
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+              <i class="fas fa-star text-girasol"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Dots del slider -->
+        <div class="slider-dots" id="sliderDots">
+          <span class="slider-dot active" data-slide="0"></span>
+          <span class="slider-dot" data-slide="1"></span>
+          <span class="slider-dot" data-slide="2"></span>
+        </div>
+        
+        <!-- Botones de navegación -->
+        <div class="flex justify-between mt-4">
+          <button class="btn-tactil bg-verde text-white" id="prevSlide">
+            <i class="fas fa-chevron-left"></i> Anterior
+          </button>
+          <button class="btn-tactil bg-verde text-white" id="nextSlide">
+            Siguiente <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECCIÓN CONTACTO/FORMULARIO === -->
+  <section id="contacto" class="section-mobile bg-gradient-to-b from-tierra to-negro text-white">
+    <div class="container-responsive">
+      <div class="text-center mb-8">
+        <h2 class="font-titulo font-black mb-4 heading-responsive">
+          ¡TE <span class="text-girasol">NECESITAMOS</span>!
+        </h2>
+        <p class="text-white/80 max-w-2xl mx-auto text-responsive">
+          Únete a nuestro movimiento. Registra tu apoyo y sé parte del cambio real para Bogotá.
+        </p>
+      </div>
+      
+      <form id="contactForm" class="form-mobile bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="form-group">
+            <label class="form-label text-white">Nombre *</label>
+            <input type="text" id="nombre" class="form-input" placeholder="Tu nombre" required />
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label text-white">Apellido *</label>
+            <input type="text" id="apellido" class="form-input" placeholder="Tu apellido" required />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label text-white">Teléfono *</label>
+          <input type="tel" id="telefono" class="form-input" placeholder="Ej: 300 123 4567" required />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label text-white">Localidad *</label>
+          <select id="localidad" class="form-input" required>
+            <option value="">Selecciona tu localidad</option>
+            <option value="Usaquén">Usaquén</option>
+            <option value="Chapinero">Chapinero</option>
+            <option value="Santa Fe">Santa Fe</option>
+            <option value="San Cristóbal">San Cristóbal</option>
+            <option value="Usme">Usme</option>
+            <option value="Tunjuelito">Tunjuelito</option>
+            <option value="Bosa">Bosa</option>
+            <option value="Kennedy">Kennedy</option>
+            <option value="Fontibón">Fontibón</option>
+            <option value="Engativá">Engativá</option>
+            <option value="Suba">Suba</option>
+            <option value="Barrios Unidos">Barrios Unidos</option>
+            <option value="Teusaquillo">Teusaquillo</option>
+            <option value="Los Mártires">Los Mártires</option>
+            <option value="Antonio Nariño">Antonio Nariño</option>
+            <option value="Puente Aranda">Puente Aranda</option>
+            <option value="La Candelaria">La Candelaria</option>
+            <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
+            <option value="Ciudad Bolívar">Ciudad Bolívar</option>
+            <option value="Sumapaz">Sumapaz</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label text-white">¿Cómo te gustaría ayudar? *</label>
+          <select id="ayuda" class="form-input" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Voluntario en terreno">Voluntario en terreno</option>
+            <option value="Redes Sociales">Redes Sociales</option>
+            <option value="Organizar eventos">Organizar eventos</option>
+            <option value="Hacer donaciones">Hacer donaciones</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        
+        <!-- Mensaje de privacidad -->
+        <div class="bg-white/5 p-4 rounded-lg mb-6 border-l-4 border-girasol">
+          <div class="flex items-start">
+            <i class="fas fa-lock text-girasol mt-1 mr-3"></i>
+            <p class="text-sm text-white/70">
+              Tus datos están protegidos y solo serán usados para coordinar actividades del movimiento. 
+              Nunca compartiremos tu información con terceros.
+            </p>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn-tactil w-full bg-gradient-to-r from-verde to-girasol text-negro font-black text-lg">
+          <i class="fas fa-user-plus mr-2"></i> REGISTRARME AHORA
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- === FOOTER MOBILE-FIRST === -->
+  <footer class="footer-mobile">
+    <div class="container-responsive">
+      <!-- Logo Footer -->
+      <div class="flex flex-col items-center mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-3xl">🥔</span>
+          <div>
+            <div class="font-titulo font-black text-white text-lg">DIEGO GUERRERO</div>
+            <div class="text-xs text-gray-300 uppercase tracking-wider">Movimiento Soy Campesino</div>
+          </div>
+        </div>
+        <div class="bg-verde text-white font-black px-4 py-1 rounded-full text-sm">
+          VOTO 23 - LUCHAMOS POR EL CAMPO
+        </div>
+      </div>
+      
+      <!-- Redes Sociales -->
+      <div class="social-links">
+        <a href="https://www.instagram.com/soycampesinocol/" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@soycampesinocol" target="_blank" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://www.facebook.com/soycampesinocol/" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.youtube.com/c/SoyCampesinooficial" target="_blank" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+      
+      <!-- Contacto -->
+      <div class="mt-6 text-center">
+        <p class="text-white mb-2">
+          <i class="fas fa-phone-alt text-girasol mr-2"></i>
+          <a href="https://wa.me/573001234567" class="hover:text-girasol transition">+57 300 123 4567</a>
+        </p>
+        <p class="text-gray-400 text-sm">Disponible 24/7 para el campo</p>
+      </div>
+      
+      <!-- Copyright -->
+      <div class="mt-8 pt-6 border-t border-gray-800">
+        <p class="text-gray-400 text-sm">
+          &copy; 2025 Movimiento Soy Campesino - Diego Guerrero. Todos los derechos reservados.<br>
+          Voto 23 - La voz del campo en el Congreso.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- === SCRIPT SUPER MEGA COMPLETO === -->
+  <script>
+    // ===== PRELOADER OPTIMIZADO =====
+    document.addEventListener('DOMContentLoaded', () => {
+      const preloader = document.getElementById('preloader');
+      const progressFill = document.getElementById('progressFill');
+      
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 25;
+        if (progress > 95) progress = 95;
+        progressFill.style.width = progress + '%';
+      }, 100);
+      
+      // Ocultar preloader después de 2.5 segundos
+      setTimeout(() => {
+        clearInterval(interval);
+        progressFill.style.width = '100%';
+        setTimeout(() => {
+          preloader.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+          
+          // Iniciar animaciones después del preloader
+          initAnimations();
+        }, 300);
+      }, 2500);
+    });
+
+    // ===== NAVEGACIÓN MÓVIL =====
+    const menuToggle = document.getElementById('menuToggle');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Abrir menú
+    menuToggle.addEventListener('click', () => {
+      mobileNav.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Cerrar menú
+    closeMenu.addEventListener('click', closeMobileMenu);
+    
+    // Cerrar al hacer clic en un enlace
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Cerrar al hacer clic fuera
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) {
+        closeMobileMenu();
+      }
+    });
+    
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // ===== TESTIMONIOS SLIDER =====
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slider-slide');
+    const totalSlides = slides.length;
+    const sliderContainer = document.getElementById('sliderContainer');
+    const sliderDots = document.querySelectorAll('.slider-dot');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    
+    function updateSlider() {
+      sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      // Actualizar dots
+      sliderDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+    
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentSlide = index;
+        updateSlider();
+      }
+    }
+    
+    // Event Listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Dots
+    sliderDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // Auto-slide en desktop
+    if (window.innerWidth >= 768) {
+      setInterval(nextSlide, 5000);
+    }
+
+    // ===== CONTADORES ANIMADOS =====
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const increment = target / speed;
+        
+        const updateCount = () => {
+          const count = +counter.innerText.replace(/,/g, '');
+          
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment).toLocaleString();
+            setTimeout(updateCount, 10);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        
+        updateCount();
+      });
+    }
+    
+    // Observador para animar contadores cuando son visibles
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(animateCounters, 300);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    // Observar la sección de logros
+    const logrosSection = document.getElementById('logros');
+    if (logrosSection) {
+      observer.observe(logrosSection);
+    }
+
+    // ===== FORMULARIO FIREBASE =====
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Capturar valores
+      const nombre = document.getElementById('nombre').value.trim();
+      const apellido = document.getElementById('apellido').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const localidad = document.getElementById('localidad').value;
+      const ayuda = document.getElementById('ayuda').value;
+      
+      // Validación
+      if (!nombre || !apellido || !telefono || !localidad || !ayuda) {
+        Swal.fire({
+          title: '¡Completa todos los campos!',
+          text: 'Por favor llena todos los campos obligatorios marcados con *.',
+          icon: 'warning',
+          confirmButtonColor: '#009440',
+          confirmButtonText: 'Entendido'
+        });
+        return;
+      }
+      
+      // Validar teléfono
+      const phoneRegex = /^[0-9]{10,15}$/;
+      if (!phoneRegex.test(telefono.replace(/\s/g, ''))) {
+        Swal.fire({
+          title: 'Teléfono inválido',
+          text: 'Por favor ingresa un número de teléfono válido (10-15 dígitos).',
+          icon: 'warning',
+          confirmButtonColor: '#009440'
+        });
+        return;
+      }
+      
+      try {
+        // Mostrar loading
+        Swal.fire({
+          title: 'Registrando...',
+          text: 'Por favor espera un momento',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+        
+        // Crear objeto de datos
+        const volunteerData = {
+          nombre: nombre,
+          apellido: apellido,
+          telefono: telefono,
+          localidad: localidad,
+          ayuda: ayuda,
+          fecha: new Date().toISOString(),
+          timestamp: Date.now(),
+          estado: 'pendiente',
+          fuente: 'landing_page'
+        };
+        
+        // Guardar en Firebase
+        const docRef = await window.firebaseAddDoc(
+          window.firebaseCollection(window.firebaseDB, 'voluntarios'),
+          volunteerData
+        );
+        
+        console.log('✅ Documento guardado con ID:', docRef.id);
+        
+        // Mostrar éxito
+        Swal.fire({
+          title: '¡Registro Exitoso! 🎉',
+          html: `
+            <div class="text-left">
+              <p><strong>Nombre:</strong> ${nombre} ${apellido}</p>
+              <p><strong>Teléfono:</strong> ${telefono}</p>
+              <p><strong>Localidad:</strong> ${localidad}</p>
+              <p><strong>Ayuda:</strong> ${ayuda}</p>
+            </div>
+            <p class="mt-4 text-green-600 font-bold">¡Gracias por unirte al movimiento! Pronto nos pondremos en contacto contigo.</p>
+          `,
+          icon: 'success',
+          confirmButtonColor: '#009440',
+          confirmButtonText: '¡Excelente!',
+          width: window.innerWidth < 768 ? '90%' : '500px'
+        });
+        
+        // Resetear formulario
+        document.getElementById('contactForm').reset();
+        
+        // Enviar evento a Google Analytics (si existe)
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_submit', {
+            'event_category': 'contacto',
+            'event_label': 'voluntario_registro'
+          });
+        }
+        
+      } catch (error) {
+        console.error('❌ Error en registro:', error);
+        
+        Swal.fire({
+          title: 'Error en el registro',
+          html: `
+            <p>Hubo un problema al registrar tu información.</p>
+            <p class="mt-3 text-sm text-gray-600">Por favor intenta de nuevo o contacta al soporte.</p>
+            <p class="mt-2 text-xs text-gray-500">Código: ${error.code || 'DESCONOCIDO'}</p>
+          `,
+          icon: 'error',
+          confirmButtonColor: '#009440',
+          confirmButtonText: 'Reintentar'
+        });
+      }
+    });
+
+    // ===== ANIMACIONES GSAP OPTIMIZADAS =====
+    function initAnimations() {
+      // Solo ejecutar en dispositivos con suficiente poder
+      if (window.innerWidth < 768 && !('ontouchstart' in window)) {
+        return;
+      }
+      
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Animación para secciones
+      gsap.utils.toArray('.section-mobile').forEach((section, i) => {
+        gsap.from(section, {
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%',
+            end: 'top 30%',
+            toggleActions: 'play none none reverse',
+            once: true
+          },
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          delay: i * 0.1
+        });
+      });
+      
+      // Animación para cards
+      gsap.utils.toArray('.card-mobile').forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            once: true
+          },
+          opacity: 0,
+          y: 20,
+          duration: 0.6,
+          delay: i * 0.05
+        });
+      });
+    }
+
+    // ===== OPTIMIZACIONES PARA MÓVILES =====
+    function optimizeForMobile() {
+      // Prevenir zoom en inputs en iOS
+      document.addEventListener('touchstart', () => {}, { passive: true });
+      
+      // Mejorar rendimiento de scroll
+      document.addEventListener('touchmove', (e) => {
+        if (e.scale !== 1) e.preventDefault();
+      }, { passive: false });
+      
+      // Cargar imágenes lazy
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('loaded');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+      
+      lazyImages.forEach(img => imageObserver.observe(img));
+      
+      // Ajustar altura para viewport móvil
+      function setVH() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      
+      setVH();
+      window.addEventListener('resize', setVH);
+      window.addEventListener('orientationchange', setVH);
+    }
+
+    // ===== SMOOTH SCROLL PARA ANCHORS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        if (href === '#') return;
+        
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          e.preventDefault();
+          
+          const headerHeight = document.querySelector('nav').offsetHeight;
+          const targetPosition = targetElement.offsetTop - headerHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // ===== DETECCIÓN DE TIPO DE DISPOSITIVO =====
+    function detectDevice() {
+      const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isTablet = /iPad|Android(?!.*Mobile)|Tablet|Silk/i.test(navigator.userAgent);
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      
+      document.body.classList.toggle('is-mobile', isMobile);
+      document.body.classList.toggle('is-tablet', isTablet);
+      document.body.classList.toggle('is-touch', isTouch);
+      
+      // Optimizaciones específicas por dispositivo
+      if (isMobile) {
+        // Desactivar animaciones pesadas en móviles viejos
+        if (window.innerWidth < 375) {
+          document.querySelectorAll('.will-change').forEach(el => {
+            el.style.willChange = 'auto';
+          });
+        }
+      }
+    }
+
+    // ===== INICIALIZACIÓN COMPLETA =====
+    window.addEventListener('load', () => {
+      optimizeForMobile();
+      detectDevice();
+      
+      // Inicializar tooltips si existen
+      if (typeof tippy !== 'undefined') {
+        tippy('[title]', {
+          theme: 'campesino',
+          placement: 'top',
+          animation: 'scale'
+        });
+      }
+    });
+
+    // ===== MANEJADOR DE ERRORES GLOBAL =====
+    window.addEventListener('error', (e) => {
+      console.error('Error capturado:', e.error);
+      // Aquí podrías enviar el error a un servicio de monitoreo
+    });
+
+    // ===== OFFLINE DETECTION =====
+    window.addEventListener('offline', () => {
+      Swal.fire({
+        title: 'Sin conexión',
+        text: 'Parece que perdiste la conexión a Internet. Algunas funciones pueden no estar disponibles.',
+        icon: 'warning',
+        confirmButtonText: 'Entendido'
+      });
+    });
+
+    window.addEventListener('online', () => {
+      // Silenciosamente reconectar
+      console.log('Conexión restablecida');
+    });
+
+    // ===== PERFORMANCE MONITORING =====
+    if ('performance' in window) {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const timing = performance.timing;
+          const loadTime = timing.loadEventEnd - timing.navigationStart;
+          
+          console.log(`🕒 Tiempo de carga total: ${loadTime}ms`);
+          
+          if (loadTime > 3000) {
+            console.warn('⚠️ El sitio está cargando lento. Considera optimizar imágenes y scripts.');
+          }
+        }, 0);
+      });
+    }
+
+    // ===== PWA READINESS =====
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+
+    // ===== BACK TO TOP BUTTON =====
+    const backToTop = document.createElement('button');
+    backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    backToTop.className = 'fixed bottom-24 right-4 md:right-6 w-12 h-12 bg-verde text-white rounded-full shadow-2xl z-40 flex items-center justify-center opacity-0 transition-opacity duration-300 touch-target';
+    backToTop.setAttribute('aria-label', 'Volver arriba');
+    document.body.appendChild(backToTop);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.style.opacity = '1';
+        backToTop.style.pointerEvents = 'auto';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.pointerEvents = 'none';
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // ===== COPIAR NÚMERO DE WHATSAPP =====
+    const whatsappBtn = document.querySelector('.whatsapp-float');
+    if (whatsappBtn) {
+      whatsappBtn.addEventListener('click', (e) => {
+        // Opcional: Tracking de clics en WhatsApp
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'whatsapp_click', {
+            'event_category': 'engagement',
+            'event_label': 'floating_button'
+          });
+        }
+      });
+    }
+
+    // ===== VIBRATION API PARA MÓVILES (OPCIONAL) =====
+    if ('vibrate' in navigator) {
+      document.querySelectorAll('.btn-tactil').forEach(btn => {
+        btn.addEventListener('touchstart', () => {
+          navigator.vibrate(10); // Vibración sutil al tocar botones
+        });
+      });
+    }
+
+    // ===== COMPARTIR EN REDES SOCIALES =====
+    function shareOnSocial(platform) {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent('¡Conoce a Diego Guerrero - Voto 23! La voz del campo en el Congreso. #SoyCampesino #Voto23');
+      
+      let shareUrl = '';
+      
+      switch(platform) {
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+          break;
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+          break;
+        case 'whatsapp':
+          shareUrl = `https://wa.me/?text=${text}%20${url}`;
+          break;
+      }
+      
+      if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+      }
+    }
+
+    // ===== FINAL INIT =====
+    console.log('🚀 Sitio Soy Campesino cargado y listo para la acción!');
+    console.log('📱 Dispositivo:', navigator.userAgent);
+    console.log('🖥️ Viewport:', window.innerWidth, 'x', window.innerHeight);
+  </script>
+</body>
+</html>
