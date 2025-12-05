@@ -3,70 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <meta name="description" content="Diego Guerrero - La Voz del Campo - Soy Campesino - Voto 23 - Seguridad Alimentaria para Bogotá" />
-  <meta name="theme-color" content="#009440" />
-  <meta name="format-detection" content="telephone=no" />
-  <title>Diego Guerrero | La Voz del Campo - Soy Campesino - Voto 23</title>
+  <title>Diego Guerrero | La Voz del Campo - Soy Campesino</title>
+  
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥔</text></svg>" />
 
-  <!-- FONTS OPTIMIZADAS -->
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   
-  <!-- ICONOS -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- TAILWIND CSS -->
+  
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- ANIMACIONES -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
-  <!-- ALERTAS -->
+  <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <!-- CONFIGURACIÓN TAILWIND -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            verde: "#009440",
-            tierra: "#5D4037",
-            girasol: "#FFD100",
-            arena: "#f4f1ea",
-            negro: "#1a1a1a",
-            verdeOscuro: "#007a35",
-            verdeClaro: "#00c853",
-          },
-          fontFamily: {
-            titulo: ["Montserrat", "sans-serif"],
-            cuerpo: ["Open Sans", "sans-serif"],
-          },
-          screens: {
-            'xs': '320px',
-            'sm': '375px',
-            'md': '768px',
-            'lg': '1024px',
-            'xl': '1280px',
-            '2xl': '1536px',
-            '3xl': '1920px',
-          },
-        },
-      },
-    };
-  </script>
-
-  <!-- FIREBASE SDK -->
+  <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC0hXc8Goumy9cDht82fXGMewi1wggfC5E",
-      authDomain: "soycampesino2025.firebaseapp.com",
+      authDomain: "soycampesino2025.firebasestorage.app",
       projectId: "soycampesino2025",
       storageBucket: "soycampesino2025.firebasestorage.app",
       messagingSenderId: "9297095496",
@@ -77,7 +43,7 @@
     try {
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
-
+      
       window.firebaseDB = db;
       window.firebaseAddDoc = addDoc;
       window.firebaseCollection = collection;
@@ -88,1098 +54,688 @@
     }
   </script>
 
-  <!-- ESTILOS SUPER MEGA OPTIMIZADOS -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            verde: "#009440",
+            tierra: "#5D4037",
+            girasol: "#FFD100",
+            arena: "#f4f1ea",
+            negro: "#1a1a1a",
+          },
+          fontFamily: {
+            titulo: ["Montserrat", "sans-serif"],
+            cuerpo: ["Open Sans", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
   <style>
-    /* === RESET COMPLETO === */
-    *, *::before, *::after {
-      box-sizing: border-box;
+    /* RESET BÁSICO */
+    * {
       margin: 0;
       padding: 0;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-overflow-scrolling: touch;
+      box-sizing: border-box;
     }
 
     html {
-      font-size: 16px;
       scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-      overflow-x: hidden;
-      width: 100vw;
     }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      line-height: 1.6;
-      color: #1a1a1a;
       background-color: #f4f1ea;
+      color: #1a1a1a;
       overflow-x: hidden;
-      width: 100vw;
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-      touch-action: pan-y pan-x; /* PERMITE SCROLL TÁCTIL */
-      -webkit-overflow-scrolling: touch; /* SCROLL SUAVE EN iOS */
-      overscroll-behavior: none; /* EVITA EFECTO REBOTE */
-    }
-
-    /* === GARANTIZAR SCROLL TÁCTIL EN TODOS LOS ELEMENTOS === */
-    .scrollable {
-      -webkit-overflow-scrolling: touch;
-      overflow-scrolling: touch;
-    }
-
-    /* === PREVENT SCROLL LOCK === */
-    .no-scroll {
-      overflow: hidden;
-      position: fixed;
       width: 100%;
-      height: 100%;
     }
 
-    /* === PRELOADER === */
-    #preloader {
+    /* NAVBAR FIJA */
+    nav.fixed {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      height: -webkit-fill-available;
-      background: linear-gradient(135deg, #009440 0%, #007a35 50%, #FFD100 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 999999;
-      transition: opacity 0.5s ease-out;
+      right: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 4px solid #009440;
     }
 
-    #preloader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .campesino-3d {
-      font-size: clamp(3rem, 15vw, 6rem);
-      margin-bottom: 1.5rem;
-      animation: flotar 3s ease-in-out infinite;
-    }
-
-    @keyframes flotar {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-
-    /* === NAVEGACIÓN MÓVIL === */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      height: -webkit-fill-available;
-      background: rgba(0, 148, 64, 0.98);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 9998;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow-y: auto; /* PERMITE SCROLL SI EL MENÚ ES MUY LARGO */
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    /* === HERO SECTION CON SCROLL TÁCTIL === */
-    .hero-mobile {
-      position: relative;
-      width: 100vw;
+    /* HERO SECTION */
+    .hero-section {
       min-height: 100vh;
-      min-height: -webkit-fill-available;
+      position: relative;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
-      overflow: hidden;
-      touch-action: pan-y; /* PERMITE SCROLL VERTICAL */
+      padding-top: 80px;
     }
 
-    /* === BOTONES TÁCTILES === */
-    .btn-tactil {
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+    }
+
+    /* CONTENEDORES SEGUROS */
+    .safe-container {
+      width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 768px) {
+      .safe-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .safe-container {
+        max-width: 1200px;
+      }
+    }
+
+    /* IMÁGENES RESPONSIVAS */
+    .img-responsive {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+    }
+
+    /* BOTONES TÁCTILES */
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 50px;
+      padding: 12px 24px;
+      font-weight: bold;
+      border-radius: 9999px;
       text-decoration: none;
       transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
       min-height: 48px;
       min-width: 48px;
-      touch-action: manipulation;
-      user-select: none;
-      -webkit-user-select: none;
     }
 
-    .btn-tactil:active {
-      transform: scale(0.95);
+    .btn-primary {
+      background-color: #009440;
+      color: white;
+      border: 2px solid #009440;
     }
 
-    /* === MEJORAS ESPECÍFICAS PARA SCROLL TÁCTIL === */
-    @media (hover: none) and (pointer: coarse) {
-      /* Dispositivos táctiles */
-      body {
-        cursor: pointer; /* Mejor feedback táctil */
-      }
-      
-      input, select, textarea, button {
-        font-size: 16px !important; /* Previene zoom en iOS */
-      }
-      
-      /* Aumentar áreas táctiles */
-      .touch-target {
-        min-height: 44px;
-        min-width: 44px;
-        padding: 12px 24px;
-      }
-      
-      /* Scroll más suave */
-      * {
-        -webkit-overflow-scrolling: touch !important;
-      }
-      
-      /* Prevenir selección de texto accidental */
-      p, h1, h2, h3, h4, h5, h6 {
-        -webkit-user-select: none;
-        user-select: none;
+    .btn-primary:hover {
+      background-color: white;
+      color: #009440;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background-color: white;
+      color: #1a1a1a;
+    }
+
+    /* SECCIONES */
+    .section {
+      padding: 4rem 1rem;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 6rem 2rem;
       }
     }
 
-    /* === ANIMACIONES OPTIMIZADAS PARA MÓVIL === */
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    /* GRID RESPONSIVO */
+    .grid-responsive {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-responsive {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    /* === CORRECCIÓN PARA iOS SAFARI === */
-    @supports (-webkit-touch-callout: none) {
-      .hero-mobile {
-        min-height: -webkit-fill-available;
+    @media (min-width: 1024px) {
+      .grid-responsive {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
-    /* === MEJORAS DE RENDIMIENTO === */
-    .will-change {
-      will-change: transform, opacity;
+    /* CARRUSEL */
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
     }
 
-    /* === SCROLLBAR PERSONALIZADA === */
-    ::-webkit-scrollbar {
-      width: 8px;
+    .carousel-track {
+      display: flex;
+      transition: transform 0.3s ease;
     }
 
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
+    .carousel-slide {
+      min-width: 100%;
+      flex-shrink: 0;
     }
 
-    ::-webkit-scrollbar-thumb {
-      background: #009440;
-      border-radius: 4px;
+    /* FORMULARIO */
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid rgba(255, 209, 0, 0.6);
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 16px;
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #007a35;
+    .form-input:focus {
+      outline: none;
+      border-color: #FFD100;
+      box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.3);
     }
 
-    /* === TIPOGRAFÍA RESPONSIVA === */
-    h1 {
-      font-size: clamp(1.75rem, 8vw, 3rem);
-    }
-    
-    h2 {
-      font-size: clamp(1.5rem, 6vw, 2.5rem);
-    }
-    
-    p {
-      font-size: clamp(0.875rem, 4vw, 1.125rem);
-    }
-
-    /* === UTILIDADES === */
+    /* UTILIDADES */
     .text-balance {
       text-wrap: balance;
     }
-    
-    .full-viewport {
-      width: 100vw;
-      height: 100vh;
-      height: -webkit-fill-available;
+
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* MEDIA QUERIES CRÍTICAS */
+    @media (max-width: 640px) {
+      .hero-section {
+        min-height: 80vh;
+        padding-top: 70px;
+      }
+      
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+      }
+      
+      .section {
+        padding: 3rem 1rem;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-responsive {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .mobile-hidden {
+        display: none;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .desktop-only {
+        display: block;
+      }
     }
   </style>
 </head>
-<body class="font-cuerpo bg-arena text-negro overflow-x-hidden" id="bodyElement">
-  
-  <!-- === PRELOADER === -->
-  <div id="preloader">
-    <div class="campesino-3d">👨‍🌾</div>
-    <h1 class="font-titulo font-black text-white text-2xl md:text-4xl text-center mb-4">SOY CAMPESINO</h1>
-    <p class="text-white text-center mb-6">Sembrando el cambio para Bogotá...</p>
-    <div class="w-64 h-2 bg-white/30 rounded-full overflow-hidden">
-      <div class="h-full bg-gradient-to-r from-green-400 to-yellow-400 rounded-full" id="progressFill" style="width: 0%"></div>
+
+<body class="font-cuerpo">
+  <!-- PRELOADER SIMPLIFICADO -->
+  <div id="preloader" style="position:fixed; inset:0; background:white; z-index:9999; display:flex; align-items:center; justify-content:center;">
+    <div style="text-align:center;">
+      <div style="font-size:60px; margin-bottom:20px;">👨‍🌾</div>
+      <p style="font-weight:bold;">Cargando...</p>
     </div>
   </div>
 
-  <!-- === NÚMERO 23 FLOTANTE === -->
-  <div class="floating-23 fixed left-4 top-4 md:left-6 md:top-6 z-40 flex flex-col items-center">
-    <div class="w-14 h-14 md:w-16 md:h-16 bg-verde rounded-full flex items-center justify-center border-4 border-girasol shadow-2xl animate-pulse">
-      <span class="font-titulo font-black text-white text-2xl md:text-3xl">23</span>
-    </div>
-    <div class="mt-1 bg-white px-2 py-1 rounded-lg shadow">
-      <span class="font-bold text-verde text-xs">VOTO</span>
-    </div>
-  </div>
-
-  <!-- === WHATSAPP FLOTANTE === -->
-  <a href="https://wa.me/573001234567?text=¡Hola!%20Quiero%20unirme%20al%20movimiento%20Soy%20Campesino%20-%20Voto%2023" 
-     target="_blank" 
-     class="whatsapp-float fixed bottom-6 right-6 z-40 w-14 h-14 md:w-16 md:h-16 bg-green-500 rounded-full flex items-center justify-center shadow-2xl animate-bounce"
-     aria-label="Contactar por WhatsApp">
-    <i class="fab fa-whatsapp text-white text-2xl"></i>
-  </a>
-
-  <!-- === NAVEGACIÓN === -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b-2 border-verde shadow-lg">
-    <div class="container mx-auto px-4 flex justify-between items-center h-16">
-      <div class="flex items-center gap-2">
-        <span class="text-2xl">🥔</span>
+  <!-- NAVBAR SIMPLIFICADA -->
+  <nav class="fixed">
+    <div class="safe-container" style="height: 70px; display: flex; align-items: center; justify-content: space-between;">
+      <a href="#inicio" style="display: flex; align-items: center; gap: 10px;">
+        <div style="background: #009440; color: white; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 900;">23</div>
         <div>
-          <div class="font-titulo font-black text-verde text-sm">DIEGO GUERRERO</div>
-          <div class="text-xs font-bold text-tierra uppercase">Soy Campesino</div>
+          <div style="font-weight: 900; color: #009440; font-size: 14px;">DIEGO GUERRERO</div>
+          <div style="font-size: 10px; color: #5D4037; font-weight: bold;">Soy Campesino</div>
         </div>
+      </a>
+      
+      <div class="mobile-hidden" style="display: flex; gap: 20px; align-items: center;">
+        <a href="#inicio" style="text-decoration: none; color: #1a1a1a; font-weight: bold; font-size: 14px;">Inicio</a>
+        <a href="#logros" style="text-decoration: none; color: #1a1a1a; font-weight: bold; font-size: 14px;">Logros</a>
+        <a href="#historia" style="text-decoration: none; color: #1a1a1a; font-weight: bold; font-size: 14px;">Historia</a>
+        <a href="#propuestas" style="text-decoration: none; color: #1a1a1a; font-weight: bold; font-size: 14px;">Propuestas</a>
+        <a href="#contacto" style="background: #FFD100; color: #1a1a1a; padding: 8px 16px; border-radius: 20px; font-weight: 900; text-decoration: none;">Sumarme</a>
       </div>
-
-      <button id="menuToggle" class="w-10 h-10 flex flex-col justify-center items-center gap-1.5 md:hidden" aria-label="Abrir menú">
-        <span class="w-6 h-1 bg-verde rounded-full transition-all"></span>
-        <span class="w-6 h-1 bg-verde rounded-full transition-all"></span>
-        <span class="w-6 h-1 bg-verde rounded-full transition-all"></span>
+      
+      <button onclick="toggleMenu()" class="md:hidden" style="background: none; border: none; font-size: 24px; color: #009440;">
+        <i class="fa-solid fa-bars"></i>
       </button>
-
-      <div class="hidden md:flex gap-6">
-        <a href="#inicio" class="font-bold hover:text-verde transition">INICIO</a>
-        <a href="#historia" class="font-bold hover:text-verde transition">HISTORIA</a>
-        <a href="#propuestas" class="font-bold hover:text-verde transition">PROPUESTAS</a>
-        <a href="#contacto" class="font-bold bg-verde text-white px-4 py-2 rounded-full hover:bg-verdeOscuro">SUMARME</a>
-      </div>
+    </div>
+    
+    <!-- MENÚ MÓVIL -->
+    <div id="mobileMenu" style="display: none; background: white; border-top: 4px solid #FFD100;">
+      <a href="#inicio" onclick="toggleMenu()" style="display: block; padding: 16px; text-align: center; border-bottom: 1px solid #eee; text-decoration: none; color: #1a1a1a; font-weight: bold;">INICIO</a>
+      <a href="#logros" onclick="toggleMenu()" style="display: block; padding: 16px; text-align: center; border-bottom: 1px solid #eee; text-decoration: none; color: #1a1a1a; font-weight: bold;">LOGROS</a>
+      <a href="#historia" onclick="toggleMenu()" style="display: block; padding: 16px; text-align: center; border-bottom: 1px solid #eee; text-decoration: none; color: #1a1a1a; font-weight: bold;">HISTORIA</a>
+      <a href="#propuestas" onclick="toggleMenu()" style="display: block; padding: 16px; text-align: center; border-bottom: 1px solid #eee; text-decoration: none; color: #1a1a1a; font-weight: bold;">PROPUESTAS</a>
+      <a href="#contacto" onclick="toggleMenu()" style="display: block; padding: 16px; text-align: center; background: #1a1a1a; color: #FFD100; text-decoration: none; font-weight: 900;">¡INSCRÍBETE!</a>
     </div>
   </nav>
 
-  <!-- === MENÚ MÓVIL === -->
-  <div class="mobile-nav" id="mobileNav">
-    <button id="closeMenu" class="absolute top-4 right-4 text-white text-2xl" aria-label="Cerrar menú">
-      <i class="fas fa-times"></i>
-    </button>
-    
-    <div class="flex flex-col items-center gap-6">
-      <a href="#inicio" class="text-white text-2xl font-bold hover:text-girasol transition">INICIO</a>
-      <a href="#historia" class="text-white text-2xl font-bold hover:text-girasol transition">HISTORIA</a>
-      <a href="#propuestas" class="text-white text-2xl font-bold hover:text-girasol transition">PROPUESTAS</a>
-      <a href="#logros" class="text-white text-2xl font-bold hover:text-girasol transition">LOGROS</a>
-      <a href="#testimonios" class="text-white text-2xl font-bold hover:text-girasol transition">TESTIMONIOS</a>
-      <a href="#contacto" class="text-2xl font-bold bg-girasol text-negro px-8 py-3 rounded-full mt-4">¡SUMARME!</a>
+  <!-- HERO SECTION SIMPLIFICADO -->
+  <section id="inicio" class="hero-section">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+      <img src="img/portada.jpg" alt="Campo" class="img-responsive" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     
-    <div class="mt-12 text-center">
-      <div class="text-white/70 mb-2">Voto 23 - Luchamos por el campo</div>
-      <div class="flex gap-4">
-        <a href="https://instagram.com/soycampesinocol" class="text-white text-xl"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@soycampesinocol" class="text-white text-xl"><i class="fab fa-tiktok"></i></a>
-        <a href="https://facebook.com/soycampesinocol" class="text-white text-xl"><i class="fab fa-facebook"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- === HERO SECTION === -->
-  <section id="inicio" class="hero-mobile bg-negro relative">
-    <!-- Fondo -->
-    <div class="absolute inset-0">
-      <img src="img/portada.jpg" alt="Campo colombiano" class="w-full h-full object-cover opacity-60" />
-      <div class="absolute inset-0 bg-gradient-to-r from-negro via-negro/70 to-transparent"></div>
-    </div>
-    
-    <!-- Contenido -->
-    <div class="relative z-10 text-white text-center max-w-4xl px-4">
-      <div class="inline-block bg-girasol text-negro font-black px-4 py-2 rounded-full text-sm uppercase mb-6">
-        MOVIMIENTO SOY CAMPESINO
-      </div>
-      
-      <h1 class="font-titulo font-black mb-6">
-        SEGURIDAD<br>
-        <span class="text-girasol">ALIMENTARIA</span><br>
-        PARA BOGOTÁ
-      </h1>
-      
-      <p class="text-xl mb-8">
-        Del Campo a la Política. La voz de los campesinos en el Congreso.
-        Eliminamos intermediarios, garantizamos precios justos.
-      </p>
-      
-      <!-- Badge Voto 23 -->
-      <div class="bg-gradient-to-r from-verde to-girasol p-6 rounded-2xl mb-8 shadow-2xl">
-        <p class="font-black text-2xl">VOTO 23</p>
-        <p class="text-lg">Luchamos por el campo</p>
-        <p class="text-sm mt-2">Por los campesinos, por ustedes, por Bogotá</p>
-      </div>
-      
-      <!-- Botones -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contacto" class="btn-tactil bg-verde hover:bg-verdeOscuro text-white">
-          <i class="fas fa-hands-helping mr-2"></i> UNIRME AL MOVIMIENTO
-        </a>
-        <a href="#propuestas" class="btn-tactil bg-girasol hover:bg-yellow-500 text-negro">
-          <i class="fas fa-bullhorn mr-2"></i> VER PROPUESTAS
-        </a>
-      </div>
-    </div>
-    
-    <!-- Flecha indicadora -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <i class="fas fa-chevron-down text-white text-2xl"></i>
-    </div>
-  </section>
-
-  <!-- === SECCIÓN HISTORIA === -->
-  <section id="historia" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="font-titulo font-black text-verde mb-4">
-          DE LA TIERRA<br>
-          <span class="text-tierra">A LA POLÍTICA</span>
-        </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Conozca la historia real del campesino que quiere cambiar Bogotá desde el Congreso.
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <img src="img/diego-hero.png" alt="Diego Guerrero" class="rounded-2xl shadow-2xl w-full" />
+    <div class="safe-container hero-content">
+      <div style="max-width: 600px;">
+        <div style="background: #FFD100; color: #1a1a1a; display: inline-block; padding: 8px 16px; font-weight: 900; margin-bottom: 20px; border-radius: 4px;">
+          MOVIMIENTO SOY CAMPESINO
         </div>
         
-        <div>
-          <p class="text-lg mb-4">
-            <strong class="text-verde">Mi nombre es Diego Guerrero, y soy campesino.</strong> 
-            Nací en una vereda sin luz, crecí trabajando la tierra con mis padres, 
-            y vi de primera mano cómo los intermediarios abusan de los campesinos.
-          </p>
-          
-          <p class="text-lg mb-6">
-            Estudié ingeniería agronómica con mucho esfuerzo, y decidí que en lugar de 
-            huir del campo, iba a luchar por él. Por 8 años he liderado el movimiento 
-            <strong>Soy Campesino</strong>, organizando a más de 50 mil productores.
-          </p>
-          
-          <div class="bg-verde/10 p-4 rounded-xl border-l-4 border-verde">
-            <p class="font-bold text-verde">
-              "La papa no está cara, los insumos sí. ¡A regular precios!"
-            </p>
-          </div>
-          
-          <a href="#contacto" class="btn-tactil bg-verde text-white mt-6 inline-flex">
-            <i class="fas fa-heart mr-2"></i> APOYAR ESTA LUCHA
+        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 3rem; line-height: 1.1; margin-bottom: 20px;">
+          SEGURIDAD<br>
+          <span style="color: #009440;">ALIMENTARIA</span><br>
+          PARA BOGOTÁ
+        </h1>
+        
+        <p style="font-size: 1.125rem; margin-bottom: 30px; opacity: 0.9;">
+          No más precios injustos. Conectamos el campo con la ciudad para eliminar intermediarios y garantizar comida digna en tu mesa.
+        </p>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px;">
+          <a href="#contacto" class="btn btn-primary">
+            SÚMATE AL EQUIPO <i class="fa-solid fa-tractor" style="margin-left: 8px;"></i>
+          </a>
+          <a href="#multimedia" class="btn btn-secondary">
+            <i class="fa-solid fa-play" style="margin-right: 8px;"></i> VER VIDEOS
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- === SECCIÓN PROPUESTAS === -->
-  <section id="propuestas" class="py-16 bg-gradient-to-b from-verde to-verdeOscuro text-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="font-titulo font-black mb-4">
-          PROPUESTAS <span class="text-girasol">CONCRETAS</span>
+  <!-- LOGROS SECTION SIMPLIFICADO -->
+  <section id="logros" class="section" style="background: white;">
+    <div class="safe-container">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.5rem; margin-bottom: 1rem;">
+          LOGROS <span style="color: #009440;">CONCRETOS</span>
         </h2>
-        <p class="text-white/80 max-w-2xl mx-auto">
-          No son promesas vacías. Son acciones específicas que implementaremos desde el día 1.
+        <p style="color: #666; max-width: 600px; margin: 0 auto;">
+          No son promesas. Son hechos. Esto es lo que hemos construido juntos.
         </p>
       </div>
       
-      <div class="grid md:grid-cols-3 gap-6">
-        <!-- Propuesta 1 -->
-        <div class="bg-white/10 backdrop-blur p-6 rounded-2xl border border-white/20">
-          <div class="w-16 h-16 bg-girasol rounded-full flex items-center justify-center mb-4">
-            <i class="fas fa-handshake text-negro text-2xl"></i>
-          </div>
-          <h3 class="font-titulo font-black text-xl mb-3">Precios Justos</h3>
-          <p class="text-white/90">
-            Ley para eliminar intermediarios. El campesino recibirá mínimo el 70% del precio final.
-            Canales directos de comercialización.
-          </p>
+      <div class="grid-responsive">
+        <div style="background: linear-gradient(135deg, #009440, #00662B); padding: 2rem; border-radius: 1rem; text-align: center; color: white;">
+          <i class="fa-solid fa-users" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+          <div style="font-size: 2.5rem; font-weight: 900;">50</div>
+          <p style="font-weight: bold;">MIL CAMPESINOS</p>
         </div>
         
-        <!-- Propuesta 2 -->
-        <div class="bg-white/10 backdrop-blur p-6 rounded-2xl border border-white/20">
-          <div class="w-16 h-16 bg-girasol rounded-full flex items-center justify-center mb-4">
-            <i class="fas fa-tractor text-negro text-2xl"></i>
-          </div>
-          <h3 class="font-titulo font-black text-xl mb-3">Tecnología Rural</h3>
-          <p class="text-white/90">
-            Créditos blandos para modernización agrícola. Acceso a tecnología, riego eficiente
-            y asistencia técnica gratuita.
-          </p>
+        <div style="background: linear-gradient(135deg, #FFD100, #E6B800); padding: 2rem; border-radius: 1rem; text-align: center;">
+          <i class="fa-solid fa-seedling" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+          <div style="font-size: 2.5rem; font-weight: 900;">120</div>
+          <p style="font-weight: bold;">PROYECTOS ACTIVOS</p>
         </div>
         
-        <!-- Propuesta 3 -->
-        <div class="bg-white/10 backdrop-blur p-6 rounded-2xl border border-white/20">
-          <div class="w-16 h-16 bg-girasol rounded-full flex items-center justify-center mb-4">
-            <i class="fas fa-graduation-cap text-negro text-2xl"></i>
-          </div>
-          <h3 class="font-titulo font-black text-xl mb-3">Educación Campesina</h3>
-          <p class="text-white/90">
-            Becas universitarias para hijos de campesinos. Capacitación en nuevas técnicas
-            y escuelas rurales de calidad.
-          </p>
-        </div>
-      </div>
-      
-      <div class="text-center mt-12">
-        <a href="#contacto" class="btn-tactil bg-girasol text-negro font-bold text-lg px-8">
-          <i class="fas fa-vote-yea mr-2"></i> APOYAR ESTAS PROPUESTAS
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- === SECCIÓN LOGROS === -->
-  <section id="logros" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="font-titulo font-black text-verde mb-4">
-          LOGROS <span class="text-tierra">COMPROBADOS</span>
-        </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Estos números no son promesas. Son realidades que hemos construido juntos.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <!-- Logro 1 -->
-        <div class="text-center p-6 bg-verde rounded-2xl text-white shadow-lg">
-          <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="50">0</div>
-          <p class="text-sm font-bold">MIL CAMPESINOS<br>ORGANIZADOS</p>
+        <div style="background: linear-gradient(135deg, #5D4037, #3E2723); padding: 2rem; border-radius: 1rem; text-align: center; color: white;">
+          <i class="fa-solid fa-tractor" style="font-size: 3rem; margin-bottom: 1rem; color: #FFD100;"></i>
+          <div style="font-size: 2.5rem; font-weight: 900;">8</div>
+          <p style="font-weight: bold;">AÑOS DE LUCHA</p>
         </div>
         
-        <!-- Logro 2 -->
-        <div class="text-center p-6 bg-girasol rounded-2xl text-negro shadow-lg">
-          <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="120">0</div>
-          <p class="text-sm font-bold">PROYECTOS<br>ACTIVOS</p>
-        </div>
-        
-        <!-- Logro 3 -->
-        <div class="text-center p-6 bg-tierra rounded-2xl text-white shadow-lg">
-          <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="8">0</div>
-          <p class="text-sm font-bold">AÑOS DE<br>LUCHA</p>
-        </div>
-        
-        <!-- Logro 4 -->
-        <div class="text-center p-6 bg-negro rounded-2xl text-white shadow-lg">
-          <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="300">0</div>
-          <p class="text-sm font-bold">ALIANZAS<br>ESTRATÉGICAS</p>
+        <div style="background: linear-gradient(135deg, #1a1a1a, #000); padding: 2rem; border-radius: 1rem; text-align: center; color: white;">
+          <i class="fa-solid fa-handshake" style="font-size: 3rem; margin-bottom: 1rem; color: #FFD100;"></i>
+          <div style="font-size: 2.5rem; font-weight: 900;">300</div>
+          <p style="font-weight: bold;">ALIANZAS</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- === SECCIÓN TESTIMONIOS === -->
-  <section id="testimonios" class="py-16 bg-arena">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="font-titulo font-black text-verde mb-4">
-          LA VOZ DEL <span class="text-tierra">CAMPO</span>
-        </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Escuche directamente a los campesinos que han transformado sus vidas con nuestro movimiento.
-        </p>
-      </div>
-      
-      <div class="testimonial-slider relative overflow-hidden rounded-2xl bg-white p-6 shadow-xl">
-        <div class="slider-track flex transition-transform duration-500" id="sliderTrack">
-          <!-- Testimonio 1 -->
-          <div class="slider-slide min-w-full p-4">
-            <div class="flex items-center mb-6">
-              <div class="w-16 h-16 bg-verde rounded-full flex items-center justify-center text-white font-black text-2xl">
-                JM
-              </div>
-              <div class="ml-4">
-                <h4 class="font-black text-lg">Juan Martínez</h4>
-                <p class="text-gray-600">Productor de papa, Suba</p>
-              </div>
-            </div>
-            <p class="text-gray-700 text-lg italic">
-              "Diego no solo habla del campo, vive el campo. Sus propuestas son reales porque las conoce desde adentro. Gracias a él, ahora recibimos un precio justo por nuestra papa."
-            </p>
-            <div class="flex mt-4">
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-            </div>
+  <!-- HISTORIA SECTION SIMPLIFICADO -->
+  <section id="historia" class="section" style="background: linear-gradient(135deg, #5D4037, #1a1a1a); color: white;">
+    <div class="safe-container">
+      <div class="grid-responsive" style="align-items: center; gap: 3rem;">
+        <div>
+          <div style="background: #FFD100; color: #1a1a1a; display: inline-block; padding: 8px 16px; font-weight: 900; margin-bottom: 20px; border-radius: 4px;">
+            MI HISTORIA
           </div>
           
-          <!-- Testimonio 2 -->
-          <div class="slider-slide min-w-full p-4">
-            <div class="flex items-center mb-6">
-              <div class="w-16 h-16 bg-girasol rounded-full flex items-center justify-center text-negro font-black text-2xl">
-                MR
-              </div>
-              <div class="ml-4">
-                <h4 class="font-black text-lg">María Rodríguez</h4>
-                <p class="text-gray-600">Productora de hortalizas, Kennedy</p>
-              </div>
-            </div>
-            <p class="text-gray-700 text-lg italic">
-              "Con Diego hemos logrado vender sin intermediarios. Nuestras ganancias aumentaron un 40%. Por primera vez, mi familia tiene seguridad alimentaria y económica."
-            </p>
-            <div class="flex mt-4">
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-            </div>
-          </div>
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.5rem; margin-bottom: 1.5rem;">
+            DE LA TIERRA<br>
+            A LA <span style="color: #FFD100;">POLÍTICA</span>
+          </h2>
           
-          <!-- Testimonio 3 -->
-          <div class="slider-slide min-w-full p-4">
-            <div class="flex items-center mb-6">
-              <div class="w-16 h-16 bg-tierra rounded-full flex items-center justify-center text-white font-black text-2xl">
-                CL
-              </div>
-              <div class="ml-4">
-                <h4 class="font-black text-lg">Carlos López</h4>
-                <p class="text-gray-600">Productor de maíz, Bosa</p>
-              </div>
-            </div>
-            <p class="text-gray-700 text-lg italic">
-              "Diego nos enseñó a organizarnos como gremio. Ahora tenemos voz en las decisiones que nos afectan. Es el primer político que realmente entiende al campesino."
-            </p>
-            <div class="flex mt-4">
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-              <i class="fas fa-star text-girasol"></i>
-            </div>
-          </div>
+          <p style="margin-bottom: 1rem; opacity: 0.9;">
+            Nací en una vereda sin luz. Vi a mi papá vender la cosecha por menos de lo que costó producirla. Vi llorar a mi mamá porque no alcanzaba para el mercado.
+          </p>
+          
+          <p style="margin-bottom: 1rem; opacity: 0.9;">
+            Estudié con becas y préstamos. Me gradué de ingeniero agrónomo. Volví al campo. Y entendí que el problema no es técnico: es político.
+          </p>
+          
+          <p style="margin-bottom: 2rem; font-weight: bold;">
+            Por eso estoy acá. No vengo a prometer. Vengo a hacer lo que siempre hice: trabajar.
+          </p>
+          
+          <a href="#contacto" class="btn" style="background: #FFD100; color: #1a1a1a;">
+            <i class="fa-solid fa-heart" style="margin-right: 8px;"></i> ÚNETE A LA CAUSA
+          </a>
         </div>
         
-        <!-- Controles del slider -->
-        <div class="flex justify-center gap-2 mt-6">
-          <button class="slider-dot w-3 h-3 rounded-full bg-gray-300 active:bg-verde" data-slide="0"></button>
-          <button class="slider-dot w-3 h-3 rounded-full bg-gray-300 active:bg-verde" data-slide="1"></button>
-          <button class="slider-dot w-3 h-3 rounded-full bg-gray-300 active:bg-verde" data-slide="2"></button>
+        <div>
+          <img src="img/historia.jpg" alt="Historia" class="img-responsive" style="border-radius: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
         </div>
-        
-        <!-- Flechas de navegación -->
-        <button class="slider-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
-          <i class="fas fa-chevron-left text-verde"></i>
-        </button>
-        <button class="slider-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
-          <i class="fas fa-chevron-right text-verde"></i>
-        </button>
       </div>
     </div>
   </section>
 
-  <!-- === SECCIÓN CONTACTO === -->
-  <section id="contacto" class="py-16 bg-gradient-to-b from-tierra to-negro text-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="font-titulo font-black mb-4">
-          ¡TE <span class="text-girasol">NECESITAMOS</span>!
+  <!-- PROPUESTAS SECTION SIMPLIFICADO -->
+  <section id="propuestas" class="section" style="background: #1a1a1a; color: white;">
+    <div class="safe-container">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div style="background: #FFD100; color: #1a1a1a; display: inline-block; padding: 8px 16px; font-weight: 900; margin-bottom: 20px; border-radius: 4px;">
+          PROPUESTAS REALES
+        </div>
+        
+        <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.5rem; margin-bottom: 1rem;">
+          NO SON <span style="color: #FFD100;">PROMESAS</span>
         </h2>
-        <p class="text-white/80 max-w-2xl mx-auto">
-          Únete a nuestro movimiento. Registra tu apoyo y sé parte del cambio real para Bogotá.
+        
+        <p style="opacity: 0.8; max-width: 600px; margin: 0 auto;">
+          Estas son las acciones concretas que implementaremos desde el primer día.
         </p>
       </div>
       
-      <div class="max-w-2xl mx-auto bg-white/10 backdrop-blur rounded-2xl p-6 md:p-8 border border-white/20">
-        <form id="contactForm" class="space-y-6">
-          <!-- Nombre y Apellido -->
-          <div class="grid md:grid-cols-2 gap-4">
+      <div class="grid-responsive" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 1rem; border: 2px solid rgba(255,209,0,0.3); backdrop-filter: blur(10px);">
+          <i class="fa-solid fa-handshake" style="font-size: 3rem; color: #FFD100; margin-bottom: 1rem;"></i>
+          <h3 style="font-weight: 900; font-size: 1.5rem; margin-bottom: 1rem;">Precio Justo</h3>
+          <p>Eliminar intermediarios y garantizar que el campesino reciba el 70% del precio final.</p>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 1rem; border: 2px solid rgba(255,209,0,0.3); backdrop-filter: blur(10px);">
+          <i class="fa-solid fa-tractor" style="font-size: 3rem; color: #FFD100; margin-bottom: 1rem;"></i>
+          <h3 style="font-weight: 900; font-size: 1.5rem; margin-bottom: 1rem;">Tecnología</h3>
+          <p>Acceso a créditos blandos para modernizar la producción agrícola.</p>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 1rem; border: 2px solid rgba(255,209,0,0.3); backdrop-filter: blur(10px);">
+          <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: #FFD100; margin-bottom: 1rem;"></i>
+          <h3 style="font-weight: 900; font-size: 1.5rem; margin-bottom: 1rem;">Educación</h3>
+          <p>Becas para hijos de campesinos y capacitación en nuevas técnicas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO SECTION SIMPLIFICADO -->
+  <section id="contacto" class="section" style="background: linear-gradient(135deg, #5D4037, #1a1a1a); color: white;">
+    <div class="safe-container">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div style="background: #FFD100; color: #1a1a1a; display: inline-block; padding: 8px 16px; font-weight: 900; margin-bottom: 20px; border-radius: 4px;">
+          ¡TE NECESITAMOS!
+        </div>
+        
+        <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.5rem; margin-bottom: 1rem;">
+          ÚNETE AL <span style="color: #FFD100;">MOVIMIENTO</span>
+        </h2>
+        
+        <p style="opacity: 0.8; max-width: 600px; margin: 0 auto;">
+          Regístrate como voluntario y sé parte del cambio que el campo necesita.
+        </p>
+      </div>
+      
+      <div style="max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 1rem; border: 2px solid rgba(255,209,0,0.3); backdrop-filter: blur(10px);">
+        <form id="contactForm" style="display: grid; gap: 1.5rem;">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
             <div>
-              <label class="block font-bold mb-2">Nombre *</label>
-              <input type="text" id="nombre" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-girasol" placeholder="Tu nombre" required />
+              <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Nombre *</label>
+              <input type="text" id="nombre" required class="form-input" placeholder="Tu nombre">
             </div>
             
             <div>
-              <label class="block font-bold mb-2">Apellido *</label>
-              <input type="text" id="apellido" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-girasol" placeholder="Tu apellido" required />
+              <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Apellido *</label>
+              <input type="text" id="apellido" required class="form-input" placeholder="Tu apellido">
             </div>
           </div>
           
-          <!-- Teléfono -->
-          <div>
-            <label class="block font-bold mb-2">Teléfono *</label>
-            <input type="tel" id="telefono" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-girasol" placeholder="Ej: 300 123 4567" required />
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+            <div>
+              <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Teléfono *</label>
+              <input type="tel" id="telefono" required class="form-input" placeholder="Tu teléfono">
+            </div>
+            
+            <div>
+              <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Localidad *</label>
+              <select id="localidad" required class="form-input">
+                <option value="">Selecciona tu localidad</option>
+                <option value="Suba">Suba</option>
+                <option value="Kennedy">Kennedy</option>
+                <option value="Engativá">Engativá</option>
+                <option value="Bosa">Bosa</option>
+                <option value="Usme">Usme</option>
+              </select>
+            </div>
           </div>
           
-          <!-- Localidad -->
           <div>
-            <label class="block font-bold mb-2">Localidad *</label>
-            <select id="localidad" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:border-girasol" required>
-              <option value="">Selecciona tu localidad</option>
-              <option value="Usaquén">Usaquén</option>
-              <option value="Chapinero">Chapinero</option>
-              <option value="Santa Fe">Santa Fe</option>
-              <option value="San Cristóbal">San Cristóbal</option>
-              <option value="Usme">Usme</option>
-              <option value="Tunjuelito">Tunjuelito</option>
-              <option value="Bosa">Bosa</option>
-              <option value="Kennedy">Kennedy</option>
-              <option value="Fontibón">Fontibón</option>
-              <option value="Engativá">Engativá</option>
-              <option value="Suba">Suba</option>
-              <option value="Barrios Unidos">Barrios Unidos</option>
-              <option value="Teusaquillo">Teusaquillo</option>
-              <option value="Los Mártires">Los Mártires</option>
-              <option value="Antonio Nariño">Antonio Nariño</option>
-              <option value="Puente Aranda">Puente Aranda</option>
-              <option value="La Candelaria">La Candelaria</option>
-              <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
-              <option value="Ciudad Bolívar">Ciudad Bolívar</option>
-              <option value="Sumapaz">Sumapaz</option>
-            </select>
-          </div>
-          
-          <!-- Ayuda -->
-          <div>
-            <label class="block font-bold mb-2">¿Cómo te gustaría ayudar? *</label>
-            <select id="ayuda" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:border-girasol" required>
+            <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">¿Cómo te gustaría ayudar? *</label>
+            <select id="ayuda" required class="form-input">
               <option value="">Selecciona una opción</option>
-              <option value="Voluntario en terreno">Voluntario en terreno</option>
+              <option value="Voluntario">Voluntario en terreno</option>
               <option value="Redes Sociales">Redes Sociales</option>
-              <option value="Organizar eventos">Organizar eventos</option>
-              <option value="Hacer donaciones">Hacer donaciones</option>
-              <option value="Otro">Otro</option>
+              <option value="Eventos">Organizar eventos</option>
+              <option value="Donaciones">Hacer donaciones</option>
             </select>
           </div>
           
-          <!-- Mensaje de privacidad -->
-          <div class="bg-white/5 p-4 rounded-lg border-l-4 border-girasol">
-            <div class="flex">
-              <i class="fas fa-lock text-girasol mt-1 mr-3"></i>
-              <p class="text-sm text-white/70">
-                Tus datos están protegidos y solo serán usados para coordinar actividades del movimiento. 
-                Nunca compartiremos tu información con terceros.
-              </p>
-            </div>
+          <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #FFD100;">
+            <p style="font-size: 0.875rem; opacity: 0.8;">
+              <i class="fa-solid fa-lock" style="color: #FFD100; margin-right: 8px;"></i>
+              Tus datos están protegidos. Solo usaremos tu información para coordinar actividades del movimiento.
+            </p>
           </div>
           
-          <!-- Botón de envío -->
-          <button type="submit" class="btn-tactil w-full bg-gradient-to-r from-verde to-girasol text-negro font-black text-lg">
-            <i class="fas fa-user-plus mr-2"></i> REGISTRARME AHORA
+          <button type="submit" class="btn" style="background: linear-gradient(135deg, #009440, #FFD100); color: #1a1a1a; font-weight: 900; font-size: 1.125rem;">
+            REGISTRARME AHORA <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
           </button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- === FOOTER === -->
-  <footer class="bg-negro text-white py-12">
-    <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-4 gap-8 mb-8">
-        <!-- Columna 1 -->
-        <div>
-          <div class="flex items-center gap-2 mb-4">
-            <span class="text-3xl">🥔</span>
-            <div>
-              <div class="font-titulo font-black text-white">DIEGO GUERRERO</div>
-              <div class="text-sm text-gray-300">Movimiento Soy Campesino</div>
-            </div>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Del campo a la política. La voz de los campesinos en el Congreso.
-          </p>
-        </div>
-        
-        <!-- Columna 2 -->
-        <div>
-          <h4 class="font-bold text-girasol mb-4">NAVEGACIÓN</h4>
-          <ul class="space-y-2">
-            <li><a href="#inicio" class="text-gray-300 hover:text-girasol">Inicio</a></li>
-            <li><a href="#historia" class="text-gray-300 hover:text-girasol">Historia</a></li>
-            <li><a href="#propuestas" class="text-gray-300 hover:text-girasol">Propuestas</a></li>
-            <li><a href="#contacto" class="text-gray-300 hover:text-girasol">Contacto</a></li>
-          </ul>
-        </div>
-        
-        <!-- Columna 3 -->
-        <div>
-          <h4 class="font-bold text-girasol mb-4">REDES SOCIALES</h4>
-          <div class="flex gap-4">
-            <a href="https://instagram.com/soycampesinocol" class="text-2xl text-gray-300 hover:text-girasol">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://tiktok.com/@soycampesinocol" class="text-2xl text-gray-300 hover:text-girasol">
-              <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://facebook.com/soycampesinocol" class="text-2xl text-gray-300 hover:text-girasol">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://youtube.com/c/SoyCampesinooficial" class="text-2xl text-gray-300 hover:text-girasol">
-              <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Columna 4 -->
-        <div>
-          <h4 class="font-bold text-girasol mb-4">CONTACTO</h4>
-          <p class="text-gray-300 mb-2">
-            <i class="fas fa-phone-alt text-girasol mr-2"></i>
-            <a href="https://wa.me/573001234567" class="hover:text-girasol">+57 300 123 4567</a>
-          </p>
-          <p class="text-gray-400 text-sm">Disponible 24/7 para el campo</p>
-        </div>
-      </div>
-      
-      <!-- Copyright -->
-      <div class="pt-8 border-t border-gray-800 text-center">
-        <p class="text-gray-400 text-sm">
-          &copy; 2025 Movimiento Soy Campesino - Diego Guerrero. Voto 23 - La voz del campo en el Congreso.
+  <!-- FOOTER SIMPLIFICADO -->
+  <footer style="background: #1a1a1a; color: white; padding: 3rem 1rem;">
+    <div class="safe-container">
+      <div style="text-align: center;">
+        <p style="opacity: 0.7; font-size: 0.875rem;">
+          &copy; 2025 Movimiento Soy Campesino. Voto 23 - Luchamos por el campo.
         </p>
       </div>
     </div>
   </footer>
 
-  <!-- === BACK TO TOP BUTTON === -->
-  <button id="backToTop" class="fixed bottom-24 right-6 w-12 h-12 bg-verde text-white rounded-full shadow-2xl z-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-    <i class="fas fa-chevron-up"></i>
-  </button>
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/573001234567" target="_blank" style="position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 
-  <!-- === SCRIPT COMPLETO === -->
+  <!-- SCRIPTS SIMPLIFICADOS -->
   <script>
-    // ===== ARREGLAR SCROLL TÁCTIL - FIX PRINCIPAL =====
-    document.addEventListener('DOMContentLoaded', function() {
-      // 1. Permitir scroll táctil en todo el body
-      document.body.style.overflowX = 'hidden';
-      document.body.style.overflowY = 'auto';
-      document.body.style.webkitOverflowScrolling = 'touch';
-      
-      // 2. Remover cualquier bloqueo de scroll
-      document.querySelectorAll('*').forEach(el => {
-        el.style.overflow = '';
-        el.style.touchAction = 'auto';
-      });
-      
-      // 3. Especial para iOS Safari
-      if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-        document.body.style.height = '100%';
-        document.body.style.overflowY = 'scroll';
-        document.body.style.webkitOverflowScrolling = 'touch';
-      }
+    // PRELOADER
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('preloader').style.display = 'none';
+      }, 1000);
     });
 
-    // ===== PRELOADER =====
-    window.addEventListener('load', () => {
-      const preloader = document.getElementById('preloader');
-      const progressFill = document.getElementById('progressFill');
-      
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += Math.random() * 25;
-        if (progress > 95) progress = 95;
-        progressFill.style.width = progress + '%';
-      }, 100);
-      
-      setTimeout(() => {
-        clearInterval(interval);
-        progressFill.style.width = '100%';
-        setTimeout(() => {
-          preloader.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-          initAnimations();
-        }, 300);
-      }, 2500);
-    });
+    // MENÚ MÓVIL
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      document.body.style.overflow = menu.style.display === 'block' ? 'hidden' : 'auto';
+    }
 
-    // ===== NAVEGACIÓN MÓVIL =====
-    const menuToggle = document.getElementById('menuToggle');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileNav = document.getElementById('mobileNav');
-    
-    function openMobileMenu() {
-      mobileNav.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-    }
-    
-    function closeMobileMenu() {
-      mobileNav.classList.remove('active');
-      document.body.style.overflow = 'auto';
-      document.body.style.position = 'static';
-    }
-    
-    menuToggle.addEventListener('click', openMobileMenu);
-    closeMenu.addEventListener('click', closeMobileMenu);
-    
-    // Cerrar menú al hacer clic en un enlace
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMobileMenu);
-    });
-
-    // ===== SLIDER DE TESTIMONIOS =====
-    let currentSlide = 0;
-    const sliderTrack = document.getElementById('sliderTrack');
-    const slides = document.querySelectorAll('.slider-slide');
-    const dots = document.querySelectorAll('.slider-dot');
-    const prevBtn = document.querySelector('.slider-prev');
-    const nextBtn = document.querySelector('.slider-next');
-    
-    function updateSlider() {
-      sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-      
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-      });
-    }
-    
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateSlider();
-    }
-    
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      updateSlider();
-    }
-    
-    // Event listeners
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-    
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentSlide = index;
-        updateSlider();
-      });
-    });
-    
-    // Auto-slide
-    setInterval(nextSlide, 5000);
-
-    // ===== CONTADORES ANIMADOS =====
-    function animateCounters() {
-      const counters = document.querySelectorAll('.counter');
-      
-      counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        const increment = target / 100;
-        let current = 0;
-        
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            counter.textContent = target;
-            clearInterval(timer);
-          } else {
-            counter.textContent = Math.floor(current);
-          }
-        }, 20);
-      });
-    }
-    
-    // Observador para animar contadores cuando son visibles
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    observer.observe(document.getElementById('logros'));
-
-    // ===== FORMULARIO FIREBASE =====
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    // FORMULARIO
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      const nombre = document.getElementById('nombre').value.trim();
-      const apellido = document.getElementById('apellido').value.trim();
-      const telefono = document.getElementById('telefono').value.trim();
+      const nombre = document.getElementById('nombre').value;
+      const apellido = document.getElementById('apellido').value;
+      const telefono = document.getElementById('telefono').value;
       const localidad = document.getElementById('localidad').value;
       const ayuda = document.getElementById('ayuda').value;
       
       if (!nombre || !apellido || !telefono || !localidad || !ayuda) {
-        Swal.fire({
-          title: '¡Completa todos los campos!',
-          text: 'Por favor llena todos los campos obligatorios.',
-          icon: 'warning',
-          confirmButtonColor: '#009440'
-        });
+        Swal.fire('¡Completa todos los campos!', 'Por favor llena todos los campos obligatorios.', 'warning');
         return;
       }
       
       try {
-        Swal.fire({
-          title: 'Registrando...',
-          allowOutsideClick: false,
-          didOpen: () => Swal.showLoading()
-        });
-        
         const volunteerData = {
-          nombre,
-          apellido,
-          telefono,
-          localidad,
-          ayuda,
-          fecha: new Date().toISOString(),
-          timestamp: Date.now()
+          nombre: nombre,
+          apellido: apellido,
+          telefono: telefono,
+          localidad: localidad,
+          ayuda: ayuda,
+          fecha: new Date().toISOString()
         };
-        
-        await window.firebaseAddDoc(
-          window.firebaseCollection(window.firebaseDB, 'voluntarios'),
-          volunteerData
-        );
-        
+
+        if (window.firebaseDB && window.firebaseAddDoc && window.firebaseCollection) {
+          const docRef = await window.firebaseAddDoc(
+            window.firebaseCollection(window.firebaseDB, 'voluntarios'), 
+            volunteerData
+          );
+          console.log('✅ Registrado con ID:', docRef.id);
+        }
+
         Swal.fire({
           title: '¡Registro Exitoso! 🎉',
           html: `
-            <div class="text-left">
+            <div style="text-align: left;">
               <p><strong>Nombre:</strong> ${nombre} ${apellido}</p>
               <p><strong>Teléfono:</strong> ${telefono}</p>
               <p><strong>Localidad:</strong> ${localidad}</p>
               <p><strong>Ayuda:</strong> ${ayuda}</p>
             </div>
-            <p class="mt-4 text-green-600 font-bold">¡Gracias por unirte al movimiento!</p>
+            <p style="margin-top: 1rem;">¡Gracias por unirte al movimiento!</p>
           `,
           icon: 'success',
-          confirmButtonColor: '#009440'
+          confirmButtonText: '¡Entendido!'
         });
-        
+
         document.getElementById('contactForm').reset();
         
       } catch (error) {
-        console.error('Error:', error);
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un problema al registrar. Intenta de nuevo.',
-          icon: 'error',
-          confirmButtonColor: '#009440'
-        });
+        console.error('❌ Error:', error);
+        Swal.fire('Error en el registro', 'Por favor intenta de nuevo.', 'error');
       }
     });
 
-    // ===== ANIMACIONES GSAP =====
-    function initAnimations() {
-      if (window.innerWidth < 768) return;
-      
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Animación de secciones
-      gsap.utils.toArray('section').forEach((section, i) => {
-        gsap.from(section, {
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 85%',
-            once: true
-          },
-          opacity: 0,
-          y: 50,
-          duration: 1,
-          delay: i * 0.1
-        });
-      });
-    }
-
-    // ===== BACK TO TOP =====
-    const backToTop = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 500) {
-        backToTop.style.opacity = '1';
-      } else {
-        backToTop.style.opacity = '0';
-      }
-    });
-    
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // ===== SMOOTH SCROLL PARA LINKS INTERNOS =====
+    // SMOOTH SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
         
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          const headerHeight = document.querySelector('nav').offsetHeight;
-          const targetPosition = target.offsetTop - headerHeight;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // Cerrar menú móvil
+          document.getElementById('mobileMenu').style.display = 'none';
+          document.body.style.overflow = 'auto';
           
+          // Scroll suave
           window.scrollTo({
-            top: targetPosition,
+            top: targetElement.offsetTop - 70,
             behavior: 'smooth'
           });
         }
       });
     });
 
-    // ===== DETECCIÓN DE TIPO DE DISPOSITIVO =====
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    if (isTouchDevice) {
-      document.body.classList.add('touch-device');
-      
-      // Mejoras específicas para táctil
-      document.querySelectorAll('button, a').forEach(el => {
-        el.classList.add('touch-target');
-      });
+    // CONTADORES ANIMADOS
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = target / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        element.textContent = Math.floor(current);
+      }, 30);
     }
 
-    // ===== MEJORAR SCROLL EN iOS =====
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-      document.addEventListener('touchmove', function(e) {
-        // Permitir scroll normal
-      }, { passive: true });
+    // Observer para contadores
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseInt(counter.textContent);
+          animateCounter(counter, target);
+          observer.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    // Observar contadores
+    document.querySelectorAll('#logros .grid-responsive > div > div:nth-child(2)').forEach(counter => {
+      observer.observe(counter);
+    });
+
+    // NAVBAR SCROLL EFFECT
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('nav');
+      const currentScroll = window.pageYOffset;
       
-      // Fix para viewport height en iOS
-      function setVH() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      if (currentScroll > 100) {
+        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+      } else {
+        navbar.style.boxShadow = 'none';
       }
       
-      setVH();
-      window.addEventListener('resize', setVH);
-      window.addEventListener('orientationchange', setVH);
-    }
-
-    // ===== CONSOLE LOG DE INICIALIZACIÓN =====
-    console.log('🚀 Sitio Soy Campesino - Voto 23');
-    console.log('📱 Scroll táctil activado y optimizado');
-    console.log('🎯 Firebase configurado correctamente');
-    console.log('💚 Listo para la campaña!');
+      lastScroll = currentScroll;
+    });
   </script>
 </body>
 </html>
