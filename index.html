@@ -82,7 +82,7 @@
     </script>
 
     <style>
-      /* === MARCA DE AGUA 106 HIPER VISIBLE PERO PROFESIONAL === */
+      /* === MARCA DE AGUA 106 OPTIMIZADA PARA FONDOS CLAROS Y OSCUROS === */
       .watermark-106-global {
         position: fixed;
         top: 0;
@@ -92,35 +92,53 @@
         pointer-events: none;
         z-index: 1;
         overflow: hidden;
+        mix-blend-mode: multiply;
       }
 
+      /* Para fondos CLAROS: color verde con opacidad */
       .watermark-106-global .watermark-item {
         position: absolute;
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
-        color: rgba(0, 148, 64, 0.08); /* Aumentada opacidad */
+        color: rgba(0, 148, 64, 0.12); /* Verde visible en fondos claros */
         user-select: none;
-        animation: floatWatermark 25s linear infinite;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        opacity: 0.15; /* Más visible */
+        animation: floatWatermark 30s linear infinite;
+        text-shadow: 
+          0 2px 4px rgba(255, 255, 255, 0.3),  /* Sombra clara para contraste */
+          0 0 8px rgba(255, 255, 255, 0.2);     /* Glow para visibilidad */
+        opacity: 0.15;
+        mix-blend-mode: multiply;
       }
 
-      /* Patrón ultra denso y visible */
-      .watermark-106-global .watermark-item:nth-child(1) { top: 5%; left: 5%; font-size: 140px; animation-delay: 0s; }
-      .watermark-106-global .watermark-item:nth-child(2) { top: 12%; left: 30%; font-size: 110px; animation-delay: 2s; }
-      .watermark-106-global .watermark-item:nth-child(3) { top: 20%; left: 65%; font-size: 180px; animation-delay: 4s; }
-      .watermark-106-global .watermark-item:nth-child(4) { top: 28%; left: 15%; font-size: 130px; animation-delay: 6s; }
-      .watermark-106-global .watermark-item:nth-child(5) { top: 35%; left: 80%; font-size: 160px; animation-delay: 8s; }
-      .watermark-106-global .watermark-item:nth-child(6) { top: 45%; left: 45%; font-size: 120px; animation-delay: 10s; }
-      .watermark-106-global .watermark-item:nth-child(7) { top: 55%; left: 20%; font-size: 170px; animation-delay: 12s; }
-      .watermark-106-global .watermark-item:nth-child(8) { top: 65%; left: 70%; font-size: 140px; animation-delay: 14s; }
-      .watermark-106-global .watermark-item:nth-child(9) { top: 75%; left: 35%; font-size: 200px; animation-delay: 16s; }
-      .watermark-106-global .watermark-item:nth-child(10) { top: 85%; left: 60%; font-size: 110px; animation-delay: 18s; }
-      .watermark-106-global .watermark-item:nth-child(11) { top: 90%; left: 10%; font-size: 130px; animation-delay: 20s; }
-      .watermark-106-global .watermark-item:nth-child(12) { top: 15%; left: 85%; font-size: 150px; animation-delay: 22s; }
-      .watermark-106-global .watermark-item:nth-child(13) { top: 50%; left: 90%; font-size: 170px; animation-delay: 24s; }
-      .watermark-106-global .watermark-item:nth-child(14) { top: 80%; left: 95%; font-size: 140px; animation-delay: 26s; }
-      .watermark-106-global .watermark-item:nth-child(15) { top: 40%; left: 5%; font-size: 160px; animation-delay: 28s; }
+      /* Para secciones OSCURAS: color girasol con opacidad */
+      .section-dark-bg .watermark-item,
+      .dark-bg .watermark-item,
+      #historia .watermark-item,
+      #testimonios .watermark-item,
+      #contacto .watermark-item,
+      footer .watermark-item {
+        color: rgba(255, 209, 0, 0.15); /* Girasol visible en fondos oscuros */
+        text-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.4),  /* Sombra oscura para contraste */
+          0 0 8px rgba(0, 0, 0, 0.3);     /* Glow oscuro */
+      }
+
+      /* Patrón denso y visible */
+      .watermark-106-global .watermark-item:nth-child(1) { top: 5%; left: 5%; font-size: 160px; animation-delay: 0s; }
+      .watermark-106-global .watermark-item:nth-child(2) { top: 12%; left: 30%; font-size: 130px; animation-delay: 3s; }
+      .watermark-106-global .watermark-item:nth-child(3) { top: 20%; left: 65%; font-size: 200px; animation-delay: 6s; }
+      .watermark-106-global .watermark-item:nth-child(4) { top: 28%; left: 15%; font-size: 150px; animation-delay: 9s; }
+      .watermark-106-global .watermark-item:nth-child(5) { top: 35%; left: 80%; font-size: 180px; animation-delay: 12s; }
+      .watermark-106-global .watermark-item:nth-child(6) { top: 45%; left: 45%; font-size: 140px; animation-delay: 15s; }
+      .watermark-106-global .watermark-item:nth-child(7) { top: 55%; left: 20%; font-size: 190px; animation-delay: 18s; }
+      .watermark-106-global .watermark-item:nth-child(8) { top: 65%; left: 70%; font-size: 160px; animation-delay: 21s; }
+      .watermark-106-global .watermark-item:nth-child(9) { top: 75%; left: 35%; font-size: 220px; animation-delay: 24s; }
+      .watermark-106-global .watermark-item:nth-child(10) { top: 85%; left: 60%; font-size: 130px; animation-delay: 27s; }
+      .watermark-106-global .watermark-item:nth-child(11) { top: 90%; left: 10%; font-size: 150px; animation-delay: 30s; }
+      .watermark-106-global .watermark-item:nth-child(12) { top: 15%; left: 85%; font-size: 170px; animation-delay: 33s; }
+      .watermark-106-global .watermark-item:nth-child(13) { top: 50%; left: 90%; font-size: 190px; animation-delay: 36s; }
+      .watermark-106-global .watermark-item:nth-child(14) { top: 80%; left: 95%; font-size: 160px; animation-delay: 39s; }
+      .watermark-106-global .watermark-item:nth-child(15) { top: 40%; left: 5%; font-size: 180px; animation-delay: 42s; }
 
       @keyframes floatWatermark {
         0% {
@@ -128,7 +146,7 @@
           opacity: 0.12;
         }
         25% {
-          transform: translateY(-15px) rotate(-8deg);
+          transform: translateY(-20px) rotate(-5deg);
           opacity: 0.18;
         }
         50% {
@@ -136,7 +154,7 @@
           opacity: 0.12;
         }
         75% {
-          transform: translateY(15px) rotate(8deg);
+          transform: translateY(20px) rotate(5deg);
           opacity: 0.08;
         }
         100% {
@@ -156,15 +174,25 @@
         position: absolute;
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
-        color: rgba(0, 148, 64, 0.1);
-        font-size: clamp(100px, 20vw, 250px);
+        color: rgba(0, 148, 64, 0.08);
+        font-size: clamp(120px, 25vw, 300px);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-15deg);
         z-index: -1;
         pointer-events: none;
-        opacity: 0.2;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        opacity: 0.15;
+        text-shadow: 
+          2px 2px 4px rgba(255, 255, 255, 0.3),
+          0 0 10px rgba(255, 255, 255, 0.2);
+      }
+
+      .dark-bg .title-watermark::after,
+      .section-dark-bg .title-watermark::after {
+        color: rgba(255, 209, 0, 0.08);
+        text-shadow: 
+          2px 2px 4px rgba(0, 0, 0, 0.4),
+          0 0 10px rgba(0, 0, 0, 0.3);
       }
 
       /* Marca de agua para secciones específicas */
@@ -172,34 +200,59 @@
         position: absolute;
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
-        color: rgba(0, 148, 64, 0.07);
-        font-size: clamp(120px, 25vw, 350px);
+        color: rgba(0, 148, 64, 0.08);
+        font-size: clamp(140px, 30vw, 400px);
         z-index: 0;
         pointer-events: none;
-        opacity: 0.18;
-        animation: pulseWatermark 20s ease-in-out infinite;
+        opacity: 0.12;
+        animation: pulseWatermark 25s ease-in-out infinite;
+        text-shadow: 
+          2px 2px 4px rgba(255, 255, 255, 0.3),
+          0 0 10px rgba(255, 255, 255, 0.2);
+      }
+
+      .section-dark-bg .section-watermark-106 {
+        color: rgba(255, 209, 0, 0.1);
+        text-shadow: 
+          2px 2px 4px rgba(0, 0, 0, 0.4),
+          0 0 10px rgba(0, 0, 0, 0.3);
       }
 
       @keyframes pulseWatermark {
-        0%, 100% { opacity: 0.15; }
-        50% { opacity: 0.25; }
+        0%, 100% { opacity: 0.10; }
+        50% { opacity: 0.20; }
       }
 
-      /* Ajustes para móviles */
+      /* Ajustes para móviles - Marca de agua */
       @media (max-width: 768px) {
         .watermark-106-global .watermark-item {
-          font-size: 80px !important;
-          opacity: 0.1;
+          font-size: 100px !important;
+          opacity: 0.10;
         }
         
         .title-watermark::after {
-          font-size: clamp(60px, 15vw, 120px);
-          opacity: 0.15;
+          font-size: clamp(80px, 20vw, 150px);
+          opacity: 0.12;
         }
         
         .section-watermark-106 {
-          font-size: clamp(80px, 18vw, 200px);
-          opacity: 0.12;
+          font-size: clamp(100px, 22vw, 250px);
+          opacity: 0.10;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .watermark-106-global .watermark-item {
+          font-size: 80px !important;
+          opacity: 0.08;
+        }
+        
+        .title-watermark::after {
+          font-size: clamp(60px, 18vw, 120px);
+        }
+        
+        .section-watermark-106 {
+          font-size: clamp(80px, 20vw, 200px);
         }
       }
 
@@ -375,53 +428,124 @@
         padding-bottom: 177.78%;
       }
 
-      /* VIDEO CAROUSEL - OPTIMIZADO PARA TODAS LAS PANTALLAS */
-      .carousel-container {
+      /* === REELS HORIZONTALES OPTIMIZADOS === */
+      .reels-section {
         position: relative;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 10px;
+      }
+
+      .reels-section::-webkit-scrollbar {
+        display: none;
+      }
+
+      .reels-container {
+        display: flex;
+        gap: clamp(15px, 3vw, 25px);
+        padding: 0 clamp(15px, 3vw, 30px) 15px;
+        min-width: min-content;
+        scroll-snap-type: x mandatory;
+      }
+
+      .reel-card {
+        flex: 0 0 auto;
+        width: clamp(280px, 85vw, 320px);
+        scroll-snap-align: start;
+        border-radius: 20px;
         overflow: hidden;
+        position: relative;
         background: #000;
-        border-radius: 1.5rem;
-      }
-
-      .carousel-track {
-        display: flex;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: transform;
-      }
-
-      .carousel-slide {
-        min-width: 100%;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* PHONE FRAME - RESPONSIVE */
-      .phone-frame {
-        border: clamp(4px, 1vw, 8px) solid #1a1a1a;
-        border-radius: clamp(12px, 2vw, 20px);
-        overflow: hidden;
-        background: black;
-        position: relative;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        aspect-ratio: 9/19;
-        width: 100%;
-        height: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        aspect-ratio: 9/16;
         max-height: 600px;
       }
 
-      .phone-frame img {
+      .reel-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 148, 64, 0.4);
+      }
+
+      .reel-card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: center;
+        transition: transform 0.5s ease;
       }
 
-      .phone-frame:hover {
-        transform: scale(1.02) translateY(-5px);
-        box-shadow: 0 20px 50px rgba(0, 148, 64, 0.4);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      .reel-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .reel-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: linear-gradient(135deg, #ff006e, #ff3c87);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 25px;
+        font-size: clamp(11px, 2vw, 13px);
+        font-weight: 900;
+        z-index: 10;
+        animation: pulse 2s infinite;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .reel-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+        color: white;
+      }
+
+      .reel-title {
+        font-size: clamp(18px, 4vw, 22px);
+        font-weight: 900;
+        margin-bottom: 5px;
+      }
+
+      .reel-description {
+        font-size: clamp(12px, 2.5vw, 14px);
+        opacity: 0.9;
+      }
+
+      /* Tablet: mostrar 2 reels */
+      @media (min-width: 640px) {
+        .reel-card {
+          width: clamp(280px, 40vw, 350px);
+        }
+        
+        .reels-container {
+          justify-content: center;
+        }
+      }
+
+      /* Desktop: mostrar 3-4 reels */
+      @media (min-width: 1024px) {
+        .reels-container {
+          justify-content: center;
+          padding: 0 40px 20px;
+        }
+        
+        .reel-card {
+          width: clamp(300px, 25vw, 380px);
+        }
+        
+        .reels-section {
+          overflow-x: visible;
+        }
       }
 
       /* CARRUSEL TESTIMONIOS */
@@ -429,6 +553,8 @@
         position: relative;
         overflow: hidden;
         border-radius: 1.5rem;
+        max-width: 400px;
+        margin: 0 auto;
       }
 
       .carousel-track-testimonios {
@@ -453,23 +579,6 @@
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         z-index: 10;
-      }
-
-      /* BADGE REEL */
-      .badge-reel {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: linear-gradient(135deg, #ff006e, #ff3c87);
-        color: white;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: clamp(10px, 2vw, 12px);
-        font-weight: 900;
-        z-index: 15;
-        animation: pulse 2s infinite;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       }
 
       @keyframes pulse {
@@ -644,7 +753,7 @@
       @media (max-width: 767px) {
         .hero-section {
           height: 100vh !important;
-          min-height: 100vh;
+          min-height: -webkit-fill-available;
           max-height: 100vh;
           padding-top: 80px !important;
         }
@@ -666,8 +775,8 @@
         }
         
         .grid-cols-2 {
-          grid-template-columns: repeat(2, 1fr) !important;
-          gap: 12px !important;
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
         }
         
         #mobile-menu {
@@ -678,7 +787,7 @@
         
         .aspect-\[9\/16\] {
           aspect-ratio: 9/16 !important;
-          min-height: 500px;
+          min-height: 400px;
         }
         
         .hover\:scale-105,
@@ -696,10 +805,22 @@
             padding-top: max(80px, env(safe-area-inset-top)) !important;
           }
         }
+        
+        /* Optimización de botones para móviles */
+        button, .btn, .ley-btn {
+          min-height: 50px;
+          min-width: 50px;
+          padding: 14px 20px !important;
+          font-size: 15px !important;
+        }
       }
 
       /* Tabletas (768px - 1024px) */
-      @media (max-width: 1024px) {
+      @media (min-width: 768px) and (max-width: 1024px) {
+        .reel-card {
+          width: clamp(300px, 45vw, 400px);
+        }
+        
         .phone-frame {
           max-height: 500px;
         }
@@ -744,11 +865,12 @@
         }
 
         button,
-        .btn {
-          min-height: 50px;
-          min-width: 50px;
-          padding: 12px 24px;
-          font-size: 15px;
+        .btn,
+        .ley-btn {
+          min-height: 48px;
+          min-width: 48px;
+          padding: 12px 18px !important;
+          font-size: 14px !important;
         }
         
         .grid-cols-2 {
@@ -809,6 +931,7 @@
       .touch-target {
         min-height: 44px;
         min-width: 44px;
+        padding: 12px 20px;
       }
       
       .prevent-zoom {
@@ -816,7 +939,7 @@
         touch-action: manipulation;
       }
 
-      /* Estilos para las nuevas propuestas */
+      /* === ESTILOS PARA LAS LEYES - BOTONES REPARADOS === */
       .propuesta-card {
         position: relative;
         overflow: hidden;
@@ -829,29 +952,62 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       }
 
+      /* BOTONES DE LEY VISIBLES Y ACCESIBLES */
       .ley-badge {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 25px;
+        right: 25px;
         background: linear-gradient(135deg, #009440, #00732d);
         color: white;
-        padding: 10px 20px;
+        padding: 12px 24px;
         border-radius: 12px;
         font-weight: 900;
-        font-size: 1rem;
-        z-index: 10;
-        box-shadow: 0 4px 12px rgba(0, 148, 64, 0.3);
+        font-size: clamp(14px, 1.5vw, 16px);
+        z-index: 50;
+        box-shadow: 0 6px 20px rgba(0, 148, 64, 0.4);
+        border: 2px solid white;
+        text-align: center;
+        min-width: 140px;
+        backdrop-filter: blur(10px);
+        pointer-events: auto;
+      }
+
+      .ley-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 30px;
+        font-weight: 900;
+        font-size: clamp(14px, 1.5vw, 16px);
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        text-decoration: none;
+        min-height: 50px;
+        width: 100%;
+        max-width: 350px;
+      }
+
+      .ley-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       }
 
       .contenido-propuesta {
         position: relative;
         z-index: 10;
+        padding-top: 60px; /* Espacio para el badge */
       }
 
       .tarjeta-propuesta {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
         backdrop-filter: blur(10px);
         border: 1px solid rgba(0, 148, 64, 0.1);
+        position: relative;
+        overflow: visible !important;
       }
 
       /* Colores armonizados para las propuestas */
@@ -935,23 +1091,88 @@
         background-color: rgba(0, 180, 216, 0.05);
       }
 
-      /* Botones actualizados */
-      .btn-ley {
+      /* Ley específica Papatón */
+      .ley-papaton .ley-badge {
+        background: linear-gradient(135deg, #FF6B35, #FF9E00);
+      }
+
+      .ley-valentina .ley-badge {
+        background: linear-gradient(135deg, #00B4D8, #0077B6);
+      }
+
+      .ley-salvacion .ley-badge {
+        background: linear-gradient(135deg, #009440, #00732d);
+      }
+
+      .ley-leche .ley-badge {
+        background: linear-gradient(135deg, #1e88e5, #0d47a1);
+      }
+
+      .ley-acoso .ley-badge {
+        background: linear-gradient(135deg, #7b1fa2, #4a148c);
+      }
+
+      /* Estilos para botones de descarga */
+      .descargar-ley-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 30px;
         background: linear-gradient(135deg, #009440, #00732d);
         color: white;
         font-weight: 900;
-        padding: 12px 24px;
         border-radius: 10px;
         border: none;
+        cursor: pointer;
         transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
+        margin: 20px auto;
+        text-decoration: none;
+        min-height: 50px;
+        width: 100%;
+        max-width: 350px;
+        box-shadow: 0 6px 20px rgba(0, 148, 64, 0.3);
       }
 
-      .btn-ley:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 25px rgba(0, 148, 64, 0.3);
+      .descargar-ley-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 148, 64, 0.4);
+      }
+
+      /* Ajustes para móviles en botones de ley */
+      @media (max-width: 768px) {
+        .ley-badge {
+          top: 15px;
+          right: 15px;
+          padding: 10px 18px;
+          font-size: 13px;
+          min-width: 120px;
+        }
+        
+        .contenido-propuesta {
+          padding-top: 50px;
+        }
+        
+        .descargar-ley-btn,
+        .ley-btn {
+          padding: 14px 24px;
+          font-size: 14px;
+          min-height: 48px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .ley-badge {
+          top: 12px;
+          right: 12px;
+          padding: 8px 14px;
+          font-size: 12px;
+          min-width: 110px;
+        }
+        
+        .contenido-propuesta {
+          padding-top: 45px;
+        }
       }
 
       /* Nuevas clases para las leyes añadidas */
@@ -959,11 +1180,32 @@
         position: relative;
         overflow: hidden;
       }
+
+      /* Estilos para modo oscuro en formularios */
+      @media (prefers-color-scheme: dark) {
+        body:not(.light-mode) {
+          background-color: #1a1a1a;
+          color: #f4f1ea;
+        }
+        
+        body:not(.light-mode) .tarjeta-propuesta {
+          background: linear-gradient(135deg, rgba(40, 40, 40, 0.95), rgba(50, 50, 50, 0.98));
+          color: #f4f1ea;
+        }
+        
+        body:not(.light-mode) .text-gray-700 {
+          color: #d1d1d1 !important;
+        }
+        
+        body:not(.light-mode) .text-gray-800 {
+          color: #e0e0e0 !important;
+        }
+      }
     </style>
   </head>
 
   <body class="text-negro font-cuerpo bg-arena">
-    <!-- MARCA DE AGUA 106 HIPER VISIBLE EN TODO EL SITIO -->
+    <!-- MARCA DE AGUA 106 VISIBLE EN FONDOS CLAROS Y OSCUROS -->
     <div class="watermark-106-global">
       <div class="watermark-item">106</div>
       <div class="watermark-item">106</div>
@@ -1143,7 +1385,7 @@
     <!-- HERO SECTION RESPONSIVA -->
     <section
       id="inicio"
-      class="relative pt-16 md:pt-20 flex items-center bg-negro overflow-hidden hero-section"
+      class="relative pt-16 md:pt-20 flex items-center bg-negro overflow-hidden hero-section section-dark-bg"
       style="height: 100vh; min-height: 100vh;"
     >
       <!-- Marca de agua específica para hero -->
@@ -1350,13 +1592,13 @@
     <!-- HISTORIA SECTION RESPONSIVA -->
     <section
       id="historia"
-      class="py-12 md:py-24 bg-gradient-to-br from-tierra to-negro text-white relative overflow-hidden"
+      class="py-12 md:py-24 bg-gradient-to-br from-tierra to-negro text-white relative overflow-hidden section-dark-bg"
     >
       <!-- Marca de agua específica para historia -->
-      <div class="section-watermark-106" style="top: 20%; left: 12%; color: rgba(255, 209, 0, 0.08);">106</div>
-      <div class="section-watermark-106" style="bottom: 20%; right: 12%; color: rgba(255, 209, 0, 0.08);">106</div>
-      <div class="section-watermark-106" style="top: 60%; left: 8%; color: rgba(255, 209, 0, 0.06);">106</div>
-      <div class="section-watermark-106" style="bottom: 40%; right: 5%; color: rgba(255, 209, 0, 0.06);">106</div>
+      <div class="section-watermark-106" style="top: 20%; left: 12%;">106</div>
+      <div class="section-watermark-106" style="bottom: 20%; right: 12%;">106</div>
+      <div class="section-watermark-106" style="top: 60%; left: 8%;">106</div>
+      <div class="section-watermark-106" style="bottom: 40%; right: 5%;">106</div>
       
       <div
         class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"
@@ -1453,10 +1695,10 @@
         </div>
 
         <!-- LEY PAPATÓN COLOMBIA -->
-        <div class="mb-16 md:mb-20">
+        <div class="mb-16 md:mb-20 ley-papaton">
           <div class="propuesta-card tarjeta-propuesta shadow-2xl">
             <div class="relative p-1 fondo-ley-4 rounded-2xl">
-              <!-- SOLO EL BOTÓN, NO EL TÍTULO REPETIDO -->
+              <!-- BOTÓN VISIBLE Y ACCESIBLE -->
               <div class="ley-badge color-ley-4">LEY PAPATÓN</div>
               <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
                 <div class="contenido-propuesta">
@@ -1553,9 +1795,9 @@
                     <div class="text-center pt-4 md:pt-6">
                       <button
                         onclick="descargarLey('papaton')"
-                        class="color-ley-4 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg hover:scale-105 transition duration-300 shadow-lg inline-flex items-center gap-2"
+                        class="descargar-ley-btn color-ley-4 hover:scale-105 transition duration-300"
                       >
-                        <i class="fa-solid fa-download"></i> DESCARGAR LEY PAPATÓN COLOMBIA (PDF)
+                        <i class="fa-solid fa-download"></i> DESCARGAR LEY PAPATÓN (PDF)
                       </button>
                       <p class="text-gray-600 text-sm mt-2">
                         Borrador completo de la ley listo para implementar
@@ -1569,10 +1811,10 @@
         </div>
 
         <!-- LEY VALENTINA -->
-        <div class="mb-16 md:mb-20">
+        <div class="mb-16 md:mb-20 ley-valentina">
           <div class="propuesta-card tarjeta-propuesta shadow-2xl">
             <div class="relative p-1 fondo-ley-5 rounded-2xl">
-              <!-- SOLO EL BOTÓN, NO EL TÍTULO REPETIDO -->
+              <!-- BOTÓN VISIBLE Y ACCESIBLE -->
               <div class="ley-badge color-ley-5">LEY VALENTINA</div>
               <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
                 <div class="contenido-propuesta">
@@ -1695,7 +1937,7 @@
                     <div class="text-center pt-4 md:pt-6">
                       <button
                         onclick="descargarLey('valentina')"
-                        class="color-ley-5 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg hover:scale-105 transition duration-300 shadow-lg inline-flex items-center gap-2"
+                        class="descargar-ley-btn color-ley-5 hover:scale-105 transition duration-300"
                       >
                         <i class="fa-solid fa-download"></i> DESCARGAR LEY VALENTINA (PDF)
                       </button>
@@ -1711,10 +1953,10 @@
         </div>
 
         <!-- LEY SALVACIÓN (ORIGINAL) -->
-        <div class="mb-16 md:mb-20">
+        <div class="mb-16 md:mb-20 ley-salvacion">
           <div class="propuesta-card tarjeta-propuesta shadow-2xl">
             <div class="relative p-1 fondo-ley-1 rounded-2xl">
-              <!-- SOLO EL BOTÓN, NO EL TÍTULO REPETIDO -->
+              <!-- BOTÓN VISIBLE Y ACCESIBLE -->
               <div class="ley-badge color-ley-1">LEY SALVACIÓN</div>
               <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
                 <div class="contenido-propuesta">
@@ -1809,10 +2051,10 @@
         </div>
 
         <!-- LEY 100% LECHE COLOMBIANA -->
-        <div class="mb-16 md:mb-20">
+        <div class="mb-16 md:mb-20 ley-leche">
           <div class="propuesta-card tarjeta-propuesta shadow-2xl">
             <div class="relative p-1 fondo-ley-2 rounded-2xl">
-              <!-- SOLO EL BOTÓN, NO EL TÍTULO REPETIDO -->
+              <!-- BOTÓN VISIBLE Y ACCESIBLE -->
               <div class="ley-badge color-ley-2">LEY LECHE 100%</div>
               <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
                 <div class="contenido-propuesta">
@@ -1833,7 +2075,7 @@
                     </div>
 
                     <p class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-blue-500/5 rounded-lg">
-                      Yo he estado en esas fincas. He visto al papá lechero abrir la válvula y dejar correr la leche con lágrimas en los ojos. Eso se acabó.
+                      Yo he estado en esas fincas. He visto al papá lechero abrir la válvula y dejar correr la leche con lágrimas en los ojos. Eto se acabó.
                     </p>
 
                     <div class="fondo-ley-2 p-5 md:p-6 rounded-xl">
@@ -1903,10 +2145,10 @@
         </div>
 
         <!-- LEY NO MÁS ACOSO DIGITAL -->
-        <div class="mb-16 md:mb-20">
+        <div class="mb-16 md:mb-20 ley-acoso">
           <div class="propuesta-card tarjeta-propuesta shadow-2xl">
             <div class="relative p-1 fondo-ley-3 rounded-2xl">
-              <!-- SOLO EL BOTÓN, NO EL TÍTULO REPETIDO -->
+              <!-- BOTÓN VISIBLE Y ACCESIBLE -->
               <div class="ley-badge color-ley-3">LEY NO MÁS ACOSO</div>
               <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
                 <div class="contenido-propuesta">
@@ -1972,7 +2214,7 @@
                           <div class="bg-purple-600 text-white rounded-full p-2 mt-1">
                             <i class="fa-solid fa-check text-sm"></i>
                           </div>
-                          <p class="text-gray-800">Empresas que no cumplan pagan multas que <strong>les cierran el call center</strong></p>
+                          <p class="text-gray-800">Empresas que no cumplan pagan multas que <strong>les cierren el call center</strong></p>
                         </div>
                       </div>
                     </div>
@@ -2001,10 +2243,10 @@
 
         <!-- MI COMPROMISO -->
         <div class="mt-16 md:mt-24">
-          <div class="bg-gradient-to-br from-verde to-tierra rounded-3xl p-8 md:p-12 lg:p-16 text-white text-center relative overflow-hidden">
+          <div class="bg-gradient-to-br from-verde to-tierra rounded-3xl p-8 md:p-12 lg:p-16 text-white text-center relative overflow-hidden section-dark-bg">
             <!-- Marca de agua específica para compromiso -->
-            <div class="section-watermark-106" style="color: rgba(255,255,255,0.1); top: 20%; left: 10%;">106</div>
-            <div class="section-watermark-106" style="color: rgba(255,255,255,0.1); top: 60%; right: 15%;">106</div>
+            <div class="section-watermark-106" style="top: 20%; left: 10%;">106</div>
+            <div class="section-watermark-106" style="top: 60%; right: 15%;">106</div>
             
             <div class="relative z-10">
               <h3 class="font-titulo font-black text-2xl md:text-4xl lg:text-5xl mb-6 md:mb-8 title-watermark">
@@ -2040,8 +2282,8 @@
         <!-- LLAMADO A LA ACCIÓN -->
         <div class="mt-12 md:mt-20 bg-gradient-to-r from-verde via-verde/90 to-girasol rounded-3xl p-8 md:p-10 lg:p-12 text-center shadow-2xl relative overflow-hidden">
           <!-- Marca de agua específica para el llamado -->
-          <div class="section-watermark-106" style="top: 10%; left: 5%; color: rgba(255,255,255,0.1);">106</div>
-          <div class="section-watermark-106" style="bottom: 10%; right: 5%; color: rgba(255,255,255,0.1);">106</div>
+          <div class="section-watermark-106" style="top: 10%; left: 5%;">106</div>
+          <div class="section-watermark-106" style="bottom: 10%; right: 5%;">106</div>
           
           <div class="relative z-10">
             <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl text-white mb-4 md:mb-6">
@@ -2066,12 +2308,12 @@
     <!-- TESTIMONIOS SECTION RESPONSIVA -->
     <section
       id="testimonios"
-      class="py-12 md:py-24 bg-negro relative overflow-hidden"
+      class="py-12 md:py-24 bg-negro relative overflow-hidden section-dark-bg"
     >
       <!-- Marca de agua específica para testimonios -->
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.08); top: 18%; left: 12%;">106</div>
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.08); bottom: 18%; right: 12%;">106</div>
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.06); top: 50%; left: 8%;">106</div>
+      <div class="section-watermark-106" style="top: 18%; left: 12%;">106</div>
+      <div class="section-watermark-106" style="bottom: 18%; right: 12%;">106</div>
+      <div class="section-watermark-106" style="top: 50%; left: 8%;">106</div>
       
       <div class="container mx-auto px-4 md:px-6 relative z-10">
         <div class="text-center mb-8 md:mb-16">
@@ -2100,7 +2342,7 @@
               <div class="carousel-slide-testimonios">
                 <div
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
-                  style="min-height: 500px;"
+                  style="min-height: 400px;"
                 >
                   <video
                     class="w-full h-full object-cover"
@@ -2172,7 +2414,7 @@
               <div class="carousel-slide-testimonios">
                 <div
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
-                  style="min-height: 500px;"
+                  style="min-height: 400px;"
                 >
                   <video
                     class="w-full h-full object-cover"
@@ -2244,7 +2486,7 @@
               <div class="carousel-slide-testimonios">
                 <div
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
-                  style="min-height: 500px;"
+                  style="min-height: 400px;"
                 >
                   <video
                     class="w-full h-full object-cover"
@@ -2332,7 +2574,7 @@
       </div>
     </section>
 
-    <!-- MULTIMEDIA SECTION (REELS VIRALES) RESPONSIVA -->
+    <!-- MULTIMEDIA SECTION (REELS HORIZONTALES) RESPONSIVA -->
     <section
       id="multimedia"
       class="py-12 md:py-24 bg-arena relative overflow-hidden"
@@ -2360,161 +2602,65 @@
           </p>
         </div>
 
-        <div class="mb-8 md:mb-12">
-          <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-              <!-- SLIDE 1 - INSTAGRAM -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.instagram.com/soycampesinocol/"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video1.jpg"
-                      class="w-full h-full object-cover"
-                      alt="Instagram Reel"
-                    />
-                    <div class="badge-reel">
-                      <i class="fa-brands fa-instagram"></i> INSTAGRAM
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        Denuncia Papa
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        La verdad del campo en 15 segundos
-                      </p>
-                    </div>
-                  </a>
-                </div>
+        <!-- REELS HORIZONTALES OPTIMIZADOS -->
+        <div class="reels-section">
+          <div class="reels-container">
+            <!-- REEL 1 - INSTAGRAM -->
+            <a href="https://www.instagram.com/soycampesinocol/" target="_blank" class="reel-card">
+              <img src="img/video1.jpg" alt="Instagram Reel" loading="lazy">
+              <div class="reel-badge">
+                <i class="fa-brands fa-instagram"></i> INSTAGRAM
               </div>
-
-              <!-- SLIDE 2 - TIKTOK -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.tiktok.com/@soycampesinocol?lang=es"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video2.jpg"
-                      class="w-full h-full object-cover"
-                      alt="TikTok Reel"
-                    />
-                    <div
-                      class="badge-reel"
-                      style="background: linear-gradient(135deg, #000, #25f4ee)"
-                    >
-                      <i class="fa-brands fa-tiktok"></i> TIKTOK
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        Respuesta Ministro
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        Cuando el campo se hace escuchar
-                      </p>
-                    </div>
-                  </a>
-                </div>
+              <div class="reel-info">
+                <div class="reel-title">Denuncia Papa</div>
+                <div class="reel-description">La verdad del campo en 15 segundos</div>
               </div>
+            </a>
 
-              <!-- SLIDE 3 - FACEBOOK -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.facebook.com/soycampesinocol/"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video3.jpg"
-                      class="w-full h-full object-cover"
-                      alt="Facebook Video"
-                    />
-                    <div
-                      class="badge-reel"
-                      style="
-                        background: linear-gradient(135deg, #1877f2, #0a66c2);
-                      "
-                    >
-                      <i class="fa-brands fa-facebook"></i> FACEBOOK
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        En Corabastos
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        Donde se reúne el campo colombiano
-                      </p>
-                    </div>
-                  </a>
-                </div>
+            <!-- REEL 2 - TIKTOK -->
+            <a href="https://www.tiktok.com/@soycampesinocol?lang=es" target="_blank" class="reel-card">
+              <img src="img/video2.jpg" alt="TikTok Reel" loading="lazy">
+              <div class="reel-badge" style="background: linear-gradient(135deg, #000, #25f4ee)">
+                <i class="fa-brands fa-tiktok"></i> TIKTOK
               </div>
-
-              <!-- SLIDE 4 - YOUTUBE -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.youtube.com/c/SoyCampesinooficial"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video4.jpg"
-                      class="w-full h-full object-cover"
-                      alt="YouTube Video"
-                    />
-                    <div
-                      class="badge-reel"
-                      style="
-                        background: linear-gradient(135deg, #ff0000, #cc0000);
-                      "
-                    >
-                      <i class="fa-brands fa-youtube"></i> YOUTUBE
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        Mi Historia
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        Del campo al Congreso
-                      </p>
-                    </div>
-                  </a>
-                </div>
+              <div class="reel-info">
+                <div class="reel-title">Respuesta Ministro</div>
+                <div class="reel-description">Cuando el campo se hace escuchar</div>
               </div>
-            </div>
+            </a>
 
-            <button class="carousel-btn prev" onclick="prevSlide()">
-              <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next" onclick="nextSlide()">
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
+            <!-- REEL 3 - FACEBOOK -->
+            <a href="https://www.facebook.com/soycampesinocol/" target="_blank" class="reel-card">
+              <img src="img/video3.jpg" alt="Facebook Video" loading="lazy">
+              <div class="reel-badge" style="background: linear-gradient(135deg, #1877f2, #0a66c2)">
+                <i class="fa-brands fa-facebook"></i> FACEBOOK
+              </div>
+              <div class="reel-info">
+                <div class="reel-title">En Corabastos</div>
+                <div class="reel-description">Donde se reúne el campo colombiano</div>
+              </div>
+            </a>
+
+            <!-- REEL 4 - YOUTUBE -->
+            <a href="https://www.youtube.com/c/SoyCampesinooficial" target="_blank" class="reel-card">
+              <img src="img/video4.jpg" alt="YouTube Video" loading="lazy">
+              <div class="reel-badge" style="background: linear-gradient(135deg, #ff0000, #cc0000)">
+                <i class="fa-brands fa-youtube"></i> YOUTUBE
+              </div>
+              <div class="reel-info">
+                <div class="reel-title">Mi Historia</div>
+                <div class="reel-description">Del campo al Congreso</div>
+              </div>
+            </a>
           </div>
+        </div>
 
-          <div class="carousel-dots" id="carouselDots">
-            <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-            <div class="carousel-dot" onclick="goToSlide(1)"></div>
-            <div class="carousel-dot" onclick="goToSlide(2)"></div>
-            <div class="carousel-dot" onclick="goToSlide(3)"></div>
-          </div>
+        <!-- INDICADORES DE SCROLL PARA MÓVILES -->
+        <div class="text-center mt-6 md:mt-8">
+          <p class="text-gray-600 text-sm">
+            <i class="fa-solid fa-arrows-left-right text-verde mr-2"></i>
+            Desliza para ver más reels
+          </p>
         </div>
       </div>
     </section>
@@ -2522,12 +2668,12 @@
     <!-- CONTACTO SECTION RESPONSIVA - FORMULARIO CORREGIDO -->
     <section
       id="contacto"
-      class="py-12 md:py-24 bg-gradient-to-b from-tierra to-negro relative overflow-hidden"
+      class="py-12 md:py-24 bg-gradient-to-b from-tierra to-negro relative overflow-hidden section-dark-bg"
     >
       <!-- Marca de agua específica para contacto -->
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.08); top: 22%; left: 12%;">106</div>
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.08); bottom: 22%; right: 15%;">106</div>
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.06); top: 50%; left: 8%;">106</div>
+      <div class="section-watermark-106" style="top: 22%; left: 12%;">106</div>
+      <div class="section-watermark-106" style="bottom: 22%; right: 15%;">106</div>
+      <div class="section-watermark-106" style="top: 50%; left: 8%;">106</div>
       
       <div
         class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"
@@ -2673,11 +2819,11 @@
     </section>
 
     <!-- FOOTER RESPONSIVO -->
-    <footer class="bg-negro text-white py-8 md:py-12 relative overflow-hidden">
+    <footer class="bg-negro text-white py-8 md:py-12 relative overflow-hidden section-dark-bg">
       <!-- Marca de agua específica para footer -->
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.05); top: 35%; left: 12%;">106</div>
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.05); bottom: 35%; right: 12%;">106</div>
-      <div class="section-watermark-106" style="color: rgba(255, 209, 0, 0.04); top: 60%; right: 8%;">106</div>
+      <div class="section-watermark-106" style="top: 35%; left: 12%;">106</div>
+      <div class="section-watermark-106" style="bottom: 35%; right: 12%;">106</div>
+      <div class="section-watermark-106" style="top: 60%; right: 8%;">106</div>
       
       <div
         class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"
@@ -2772,14 +2918,14 @@
                 href="https://wa.me/573001234567"
                 target="_blank"
                 class="hover:text-girasol transition"
-                >+57 320 994 8187</a
+                >+57 300 123 4567</a
               >
             </p>
           </div>
         </div>
 
         <div
-          class="border-t border-gray-700 pt-63209948187 md:pt-8 text-center text-xs md:text-sm text-gray-400"
+          class="border-t border-gray-700 pt-6 md:pt-8 text-center text-xs md:text-sm text-gray-400"
         >
           <p>
             &copy; 2025 Movimiento Soy Campesino. <strong class="text-girasol">Voto 106</strong> - Luchamos por el
@@ -2791,7 +2937,7 @@
 
     <!-- BOTÓN FLOTANTE WHATSAPP RESPONSIVO -->
     <a
-      href="https://wa.me/573209948187"
+      href="https://wa.me/573001234567"
       target="_blank"
       class="fixed bottom-4 md:bottom-6 right-4 md:right-6 z-40 bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shadow-2xl transition transform hover:scale-110 animate-bounce touch-target"
       style="z-index: 9998;"
@@ -2805,16 +2951,25 @@
       // === DETECCIÓN DE DISPOSITIVO ===
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const isTablet = /iPad|Android(?!.*Mobile)|Tablet|Silk/i.test(navigator.userAgent);
 
       // === FUNCIÓN PARA DESCARGAR LEYES ===
       function descargarLey(tipo) {
+        const leyNombres = {
+          'papaton': 'Ley Papatón Colombia',
+          'valentina': 'Ley Valentina',
+          'salvacion': 'Ley Salvación',
+          'leche': 'Ley 100% Leche Colombiana',
+          'acoso': 'Ley No Más Acoso Digital'
+        };
+
         Swal.fire({
           title: '¡Descarga iniciada!',
           html: `
             <div class="text-left">
-              <p class="mb-3">El borrador completo de la ley está siendo descargado.</p>
+              <p class="mb-3">El borrador completo de <strong>${leyNombres[tipo]}</strong> está siendo descargado.</p>
               <p class="mb-2"><strong>📋 Contenido del PDF:</strong></p>
-              <ul class="list-disc pl-5 text-left">
+              <ul class="list-disc pl-5 text-left" style="font-size: ${isMobileDevice ? '14px' : '16px'}">
                 <li>Texto completo de la ley</li>
                 <li>Exposición de motivos</li>
                 <li>Artículos detallados</li>
@@ -2831,9 +2986,14 @@
         });
 
         // En un entorno real, aquí iría la lógica para descargar el PDF
-        // Simulación de descarga
+        console.log(`Descargando ley: ${leyNombres[tipo]}`);
+        
+        // Simulación de descarga con tiempo real
         setTimeout(() => {
-          console.log(`Descargando ley: ${tipo}`);
+          const link = document.createElement('a');
+          link.href = '#';
+          link.download = `${leyNombres[tipo]}.pdf`;
+          link.click();
         }, 1000);
       }
 
@@ -2858,13 +3018,16 @@
               document.body.style.overflow = 'auto';
               document.body.style.height = 'auto';
             }
+            
+            // Inicializar animaciones después del preloader
+            initAnimations();
           }, 500);
         }, 1500);
       });
 
       // === CURSOR PAPA (SOLO DESKTOP) ===
       const cursor = document.querySelector(".potato-cursor");
-      if (cursor && !isMobileDevice) {
+      if (cursor && !isMobileDevice && !isTablet) {
         document.addEventListener("mousemove", (e) => {
           cursor.style.left = e.clientX + "px";
           cursor.style.top = e.clientY + "px";
@@ -2895,45 +3058,6 @@
           document.body.style.overflow = "auto";
         });
       });
-
-      // === CARRUSEL REELS RESPONSIVO ===
-      let currentSlide = 0;
-      const slides = document.querySelectorAll(".carousel-slide");
-      const totalSlides = slides.length;
-
-      function updateCarousel() {
-        const track = document.getElementById("carouselTrack");
-        if (track) {
-          track.style.transform = `translateX(-${currentSlide * 100}%)`;
-          document
-            .querySelectorAll("#carouselDots .carousel-dot")
-            .forEach((dot, index) => {
-              dot.classList.toggle("active", index === currentSlide);
-            });
-        }
-      }
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-      }
-
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-      }
-
-      function goToSlide(index) {
-        if (index >= 0 && index < totalSlides) {
-          currentSlide = index;
-          updateCarousel();
-        }
-      }
-
-      // Auto-play solo en desktop
-      if (!isMobileDevice) {
-        setInterval(nextSlide, 6000);
-      }
 
       // === CARRUSEL TESTIMONIOS RESPONSIVO ===
       let currentTestimonio = 0;
@@ -2972,9 +3096,58 @@
         }
       }
 
-      // Auto-play solo en desktop
-      if (!isMobileDevice) {
+      // Auto-play solo en desktop y tablet
+      if (!isMobileDevice || isTablet) {
         setInterval(nextTestimonio, 6000);
+      }
+
+      // === SCROLL HORIZONTAL PARA REELS ===
+      function initReelsScroll() {
+        const reelsSection = document.querySelector('.reels-section');
+        if (!reelsSection) return;
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        reelsSection.addEventListener('mousedown', (e) => {
+          if (isMobileDevice) return;
+          isDown = true;
+          reelsSection.classList.add('active');
+          startX = e.pageX - reelsSection.offsetLeft;
+          scrollLeft = reelsSection.scrollLeft;
+        });
+
+        reelsSection.addEventListener('mouseleave', () => {
+          isDown = false;
+          reelsSection.classList.remove('active');
+        });
+
+        reelsSection.addEventListener('mouseup', () => {
+          isDown = false;
+          reelsSection.classList.remove('active');
+        });
+
+        reelsSection.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - reelsSection.offsetLeft;
+          const walk = (x - startX) * 2;
+          reelsSection.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events para móviles
+        reelsSection.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].pageX - reelsSection.offsetLeft;
+          scrollLeft = reelsSection.scrollLeft;
+        });
+
+        reelsSection.addEventListener('touchmove', (e) => {
+          if (!isMobileDevice) return;
+          const x = e.touches[0].pageX - reelsSection.offsetLeft;
+          const walk = (x - startX) * 2;
+          reelsSection.scrollLeft = scrollLeft - walk;
+        });
       }
 
       // === CONTADOR ANIMADO RESPONSIVO ===
@@ -3000,6 +3173,7 @@
 
       const observerOptions = {
         threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -3032,6 +3206,21 @@
               icon: "warning",
               confirmButtonColor: "#009440",
               confirmButtonText: "Entendido",
+              width: isMobileDevice ? "90%" : "500px"
+            });
+            return;
+          }
+
+          // Validar teléfono
+          const phoneRegex = /^[0-9\s\-\+\(\)]{7,15}$/;
+          if (!phoneRegex.test(telefono)) {
+            Swal.fire({
+              title: "Teléfono inválido",
+              text: "Por favor ingresa un número de teléfono válido.",
+              icon: "error",
+              confirmButtonColor: "#009440",
+              confirmButtonText: "Entendido",
+              width: isMobileDevice ? "90%" : "500px"
             });
             return;
           }
@@ -3087,43 +3276,66 @@
             Swal.fire({
               title: "Error en el registro",
               html: `
-            <p>Hubo un problema al registrar tu información.</p>
-            <p style="margin-top: 10px">Por favor intenta de nuevo o contacta al soporte.</p>
+            <p style="font-size: ${isMobileDevice ? '14px' : '16px'}">Hubo un problema al registrar tu información.</p>
+            <p style="margin-top: 10px; font-size: ${isMobileDevice ? '14px' : '16px'}">Por favor intenta de nuevo o contacta al soporte.</p>
           `,
               icon: "error",
               confirmButtonColor: "#009440",
               confirmButtonText: "Reintentar",
+              width: isMobileDevice ? "90%" : "500px"
             });
           }
         });
 
       // === GSAP SCROLL ANIMATIONS RESPONSIVAS ===
-      gsap.registerPlugin(ScrollTrigger);
+      function initAnimations() {
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!isMobileDevice && window.innerWidth >= 768) {
-        gsap.utils.toArray("section").forEach((section) => {
-          gsap.from(section, {
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: 1,
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1,
+        if (!isMobileDevice || isTablet) {
+          gsap.utils.toArray("section").forEach((section) => {
+            gsap.from(section, {
+              scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false
+              },
+              opacity: 0,
+              y: 50,
+              duration: 1,
+            });
           });
-        });
+
+          // Animación específica para propuestas
+          gsap.utils.toArray(".propuesta-card").forEach((card, index) => {
+            gsap.from(card, {
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                end: "top 15%",
+                scrub: 1,
+                markers: false
+              },
+              opacity: 0,
+              y: 80,
+              duration: 1.2,
+              delay: index * 0.1,
+            });
+          });
+        }
       }
 
       // === AJUSTES DE HERO PARA MÓVILES ===
       function adjustHeroForMobile() {
         const heroSection = document.querySelector(".hero-section");
         if (heroSection && isMobileDevice) {
+          // Usar innerHeight para evitar problemas con navegadores móviles
           const vh = window.innerHeight * 0.01;
-          heroSection.style.height = `calc(${vh * 100}px)`;
+          heroSection.style.height = `${window.innerHeight}px`;
           
           if (CSS.supports('padding-top: env(safe-area-inset-top)')) {
+            const safeAreaTop = window.visualViewport ? window.visualViewport.height : window.innerHeight;
             heroSection.style.paddingTop = `calc(80px + env(safe-area-inset-top))`;
           }
         }
@@ -3133,24 +3345,58 @@
       adjustHeroForMobile();
       window.addEventListener('resize', adjustHeroForMobile);
       window.addEventListener('orientationchange', () => {
-        setTimeout(adjustHeroForMobile, 100);
+        setTimeout(() => {
+          adjustHeroForMobile();
+          // Forzar redibujado en iOS
+          if (isIOS) {
+            document.body.style.display = 'none';
+            setTimeout(() => {
+              document.body.style.display = 'block';
+            }, 50);
+          }
+        }, 300);
       });
 
       // === NAVBAR SCROLL EFFECT ===
+      let lastScroll = 0;
       window.addEventListener("scroll", () => {
         const navbar = document.getElementById("navbar");
-        if (window.scrollY > 100) {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
           navbar.classList.add("shadow-xl");
           navbar.classList.remove("shadow-lg");
+          
+          // Ocultar/mostrar navbar en móviles
+          if (isMobileDevice) {
+            if (currentScroll > lastScroll && currentScroll > 100) {
+              navbar.style.transform = "translateY(-100%)";
+            } else {
+              navbar.style.transform = "translateY(0)";
+            }
+          }
         } else {
           navbar.classList.remove("shadow-xl");
           navbar.classList.add("shadow-lg");
+          if (isMobileDevice) {
+            navbar.style.transform = "translateY(0)";
+          }
         }
+        
+        lastScroll = currentScroll;
       });
 
       // === OPTIMIZACIONES TÁCTILES ===
-      document.querySelectorAll("button, a, input, select").forEach((element) => {
+      document.querySelectorAll("button, a.btn, .ley-btn, .descargar-ley-btn").forEach((element) => {
         element.classList.add("touch-target");
+        element.style.cursor = "pointer";
+        
+        // Prevenir zoom en doble tap en iOS
+        if (isIOS) {
+          element.addEventListener('touchstart', function() {
+            this.style.fontSize = '16px';
+          }, { passive: true });
+        }
       });
 
       // === PREVENIR ZOOM EN INPUTS EN iOS ===
@@ -3160,6 +3406,15 @@
         document.querySelectorAll('input, select, textarea').forEach(el => {
           el.addEventListener('focus', () => {
             el.style.fontSize = '16px';
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 100);
+          });
+          
+          el.addEventListener('blur', () => {
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 100);
           });
         });
       }
@@ -3169,31 +3424,51 @@
         document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
           img.loading = "lazy";
         });
+      } else {
+        // Polyfill para lazy loading
+        const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              let lazyImage = entry.target;
+              lazyImage.src = lazyImage.dataset.src;
+              lazyImage.classList.remove("lazy");
+              lazyImageObserver.unobserve(lazyImage);
+            }
+          });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+          lazyImageObserver.observe(lazyImage);
+        });
       }
 
       // === SMOOTH SCROLL PARA ANCHORS (MEJORADO PARA MÓVILES) ===
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
-          e.preventDefault();
           const targetId = this.getAttribute("href");
           if (targetId === "#") return;
 
           const targetElement = document.querySelector(targetId);
           if (targetElement) {
+            e.preventDefault();
+            
+            // Cerrar menú móvil si está abierto
+            const mobileMenu = document.getElementById("mobile-menu");
+            if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
+              document.body.style.overflow = "auto";
+            }
+            
+            // Calcular offset basado en dispositivo
             const offset = isMobileDevice ? 70 : 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
             
             window.scrollTo({
-              top: targetElement.offsetTop - offset,
-              behavior: "smooth",
+              top: offsetPosition,
+              behavior: "smooth"
             });
-            
-            if (isMobileDevice) {
-              const menu = document.getElementById("mobile-menu");
-              if (!menu.classList.contains("hidden")) {
-                menu.classList.add("hidden");
-                document.body.style.overflow = "auto";
-              }
-            }
           }
         });
       });
@@ -3202,28 +3477,57 @@
       if (isMobileDevice) {
         document.body.style.webkitTapHighlightColor = 'transparent';
         
+        // Deshabilitar transformaciones hover en móviles
         document.querySelectorAll('.hover\\:scale-105, .hover\\:scale-110').forEach(el => {
           el.style.transform = 'none';
         });
+        
+        // Mejorar scroll en iOS
+        if (isIOS) {
+          document.body.style.webkitOverflowScrolling = 'touch';
+        }
       }
 
-      // === ANIMACIÓN DE LAS PROPUESTAS ===
-      if (!isMobileDevice) {
-        gsap.utils.toArray(".propuesta-card").forEach((card, index) => {
-          gsap.from(card, {
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: 1,
-            },
-            opacity: 0,
-            y: 100,
-            duration: 1,
-            delay: index * 0.2,
-          });
-        });
+      // === DETECCIÓN DE MODO OSCURO/CLARO ===
+      function detectColorScheme() {
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        function updateForColorScheme(e) {
+          if (e.matches) {
+            // Modo oscuro detectado
+            document.body.classList.add('dark-mode-detected');
+            console.log('Modo oscuro detectado');
+          } else {
+            // Modo claro detectado
+            document.body.classList.remove('dark-mode-detected');
+            console.log('Modo claro detectado');
+          }
+        }
+        
+        // Ejecutar al cargar
+        updateForColorScheme(darkModeMediaQuery);
+        
+        // Escuchar cambios
+        darkModeMediaQuery.addEventListener('change', updateForColorScheme);
       }
+
+      // === INICIALIZAR TODO ===
+      document.addEventListener('DOMContentLoaded', () => {
+        adjustHeroForMobile();
+        initReelsScroll();
+        detectColorScheme();
+        
+        // Forzar redibujado después de un tiempo
+        setTimeout(() => {
+          document.body.style.opacity = '1';
+        }, 100);
+      });
+
+      // Manejar el evento antes de que la página se descargue
+      window.addEventListener('beforeunload', () => {
+        // Limpiar cualquier estado que pueda causar problemas
+        document.body.style.overflow = 'auto';
+      });
     </script>
   </body>
 </html>
