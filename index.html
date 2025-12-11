@@ -83,7 +83,7 @@
     </script>
 
     <style>
-      /* === MARCA DE AGUA 106 EN TODAS LAS SECCIONES === */
+      /* === MARCA DE AGUA 106 EN TODO EL SITIO - MEJORADA === */
       .watermark-106 {
         position: fixed;
         top: 0;
@@ -99,61 +99,71 @@
         position: absolute;
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
-        font-size: clamp(200px, 40vw, 600px);
-        color: rgba(0, 148, 64, 0.07);
-        opacity: 0.15;
+        font-size: clamp(180px, 35vw, 500px);
+        color: rgba(0, 148, 64, 0.08);
+        opacity: 0.2;
         transform: rotate(-25deg);
         white-space: nowrap;
         user-select: none;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       }
 
-      /* Patrón de marcas de agua repetidas */
-      .watermark-106 span:nth-child(1) {
-        top: 10%;
-        left: 5%;
-      }
-
-      .watermark-106 span:nth-child(2) {
-        top: 40%;
-        left: 60%;
-      }
-
-      .watermark-106 span:nth-child(3) {
-        top: 70%;
-        left: 20%;
-      }
-
-      .watermark-106 span:nth-child(4) {
-        top: 85%;
-        left: 70%;
-      }
-
-      .watermark-106 span:nth-child(5) {
-        top: 25%;
-        left: 80%;
-      }
+      /* Patrón más denso de marcas de agua */
+      .watermark-106 span:nth-child(1) { top: 5%; left: 2%; }
+      .watermark-106 span:nth-child(2) { top: 15%; left: 45%; }
+      .watermark-106 span:nth-child(3) { top: 25%; left: 75%; }
+      .watermark-106 span:nth-child(4) { top: 40%; left: 15%; }
+      .watermark-106 span:nth-child(5) { top: 55%; left: 60%; }
+      .watermark-106 span:nth-child(6) { top: 70%; left: 5%; }
+      .watermark-106 span:nth-child(7) { top: 80%; left: 40%; }
+      .watermark-106 span:nth-child(8) { top: 90%; left: 80%; }
+      .watermark-106 span:nth-child(9) { top: 35%; left: 85%; }
+      .watermark-106 span:nth-child(10) { top: 65%; left: 25%; }
 
       /* Ajustes para móviles */
       @media (max-width: 768px) {
         .watermark-106 span {
-          font-size: clamp(120px, 30vw, 300px);
-          opacity: 0.1;
+          font-size: clamp(100px, 25vw, 250px);
+          opacity: 0.15;
         }
         
-        .watermark-106 span:nth-child(2),
-        .watermark-106 span:nth-child(4),
-        .watermark-106 span:nth-child(5) {
+        /* Mantener solo 6 marcas en móviles */
+        .watermark-106 span:nth-child(7),
+        .watermark-106 span:nth-child(8),
+        .watermark-106 span:nth-child(9),
+        .watermark-106 span:nth-child(10) {
           display: none;
         }
       }
 
-      /* Excluir secciones con imágenes/videos */
+      /* Excluir secciones con imágenes/videos oscuras */
       .hero-section .watermark-106,
       #testimonios .watermark-106,
       #multimedia .watermark-106,
-      section.bg-negro .watermark-106 span,
-      section.bg-black .watermark-106 span {
+      .bg-negro .watermark-106,
+      .bg-black .watermark-106 {
         display: none;
+      }
+
+      /* Añadir marcas de agua a textos específicos */
+      .text-watermark {
+        position: relative;
+      }
+
+      .text-watermark::after {
+        content: "106";
+        position: absolute;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: clamp(40px, 8vw, 80px);
+        color: rgba(0, 148, 64, 0.05);
+        opacity: 0.3;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-15deg);
+        z-index: 0;
+        pointer-events: none;
+        white-space: nowrap;
       }
 
       /* === RESET Y BASE RESPONSIVA === */
@@ -789,56 +799,125 @@
         position: relative;
         overflow: hidden;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1.5rem;
       }
 
       .propuesta-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       }
 
       .ley-badge {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 20px;
+        right: 20px;
         background: linear-gradient(135deg, #009440, #00732d);
         color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
+        padding: 10px 20px;
+        border-radius: 12px;
         font-weight: 900;
-        font-size: 0.9rem;
+        font-size: 1rem;
         z-index: 10;
         box-shadow: 0 4px 12px rgba(0, 148, 64, 0.3);
       }
 
-      .descargar-btn {
-        background: linear-gradient(135deg, #ffd100, #ffb300);
-        color: #1a1a1a;
+      .numero-106 {
+        font-family: 'Montserrat', sans-serif;
         font-weight: 900;
-        padding: 14px 28px;
-        border-radius: 12px;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        transition: all 0.3s ease;
-        border: 2px solid #1a1a1a;
-        text-decoration: none;
+        color: rgba(0, 148, 64, 0.1);
+        font-size: clamp(100px, 15vw, 200px);
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
       }
 
-      .descargar-btn:hover {
+      .contenido-propuesta {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Tarjeta de propuesta con fondo sutil */
+      .tarjeta-propuesta {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 148, 64, 0.1);
+      }
+
+      /* Colores armonizados para las propuestas */
+      .color-ley-1 {
+        background: linear-gradient(135deg, #009440, #00732d);
+      }
+
+      .color-ley-2 {
+        background: linear-gradient(135deg, #1e88e5, #0d47a1);
+      }
+
+      .color-ley-3 {
+        background: linear-gradient(135deg, #7b1fa2, #4a148c);
+      }
+
+      .texto-ley-1 {
+        color: #009440;
+      }
+
+      .texto-ley-2 {
+        color: #1e88e5;
+      }
+
+      .texto-ley-3 {
+        color: #7b1fa2;
+      }
+
+      .borde-ley-1 {
+        border-color: #009440;
+      }
+
+      .borde-ley-2 {
+        border-color: #1e88e5;
+      }
+
+      .borde-ley-3 {
+        border-color: #7b1fa2;
+      }
+
+      .fondo-ley-1 {
+        background-color: rgba(0, 148, 64, 0.05);
+      }
+
+      .fondo-ley-2 {
+        background-color: rgba(30, 136, 229, 0.05);
+      }
+
+      .fondo-ley-3 {
+        background-color: rgba(123, 31, 162, 0.05);
+      }
+
+      /* Botones actualizados */
+      .btn-ley {
+        background: linear-gradient(135deg, #009440, #00732d);
+        color: white;
+        font-weight: 900;
+        padding: 12px 24px;
+        border-radius: 10px;
+        border: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-ley:hover {
         transform: scale(1.05);
-        box-shadow: 0 10px 25px rgba(255, 209, 0, 0.4);
+        box-shadow: 0 10px 25px rgba(0, 148, 64, 0.3);
       }
     </style>
   </head>
 
   <body class="text-negro font-cuerpo bg-arena">
-    <!-- MARCA DE AGUA 106 EN TODO EL SITIO -->
+    <!-- MARCA DE AGUA 106 EN TODO EL SITIO - MEJORADA -->
     <div class="watermark-106">
-      <span>106</span>
-      <span>106</span>
-      <span>106</span>
-      <span>106</span>
-      <span>106</span>
+      <span>106</span><span>106</span><span>106</span><span>106</span><span>106</span>
+      <span>106</span><span>106</span><span>106</span><span>106</span><span>106</span>
     </div>
 
     <!-- NÚMERO FLOTANTE 106 - CANDIDATO -->
@@ -1266,15 +1345,21 @@
       </div>
     </section>
 
-    <!-- NUEVAS PROPUESTAS SECTION RESPONSIVA -->
+    <!-- NUEVAS PROPUESTAS SECTION RESPONSIVA - ACTUALIZADA -->
     <section
       id="propuestas"
       class="py-12 md:py-24 bg-gradient-to-b from-white to-arena relative overflow-hidden"
     >
+      <!-- MARCA DE AGUA 106 ESPECÍFICA PARA PROPUESTAS -->
+      <div class="numero-106" style="top: 10%; left: 5%;">106</div>
+      <div class="numero-106" style="top: 30%; right: 10%;">106</div>
+      <div class="numero-106" style="bottom: 20%; left: 15%;">106</div>
+      <div class="numero-106" style="bottom: 10%; right: 5%;">106</div>
+
       <div class="container mx-auto px-4 md:px-6 relative z-10">
-        <div class="text-center mb-8 md:mb-16">
+        <div class="text-center mb-12 md:mb-16">
           <div
-            class="inline-block bg-verde text-white font-black px-4 md:px-6 py-2 md:py-3 text-sm md:text-base uppercase tracking-widest mb-4 md:mb-6 rounded-full shadow-[2px_2px_0px_#000] md:shadow-[4px_4px_0px_#000]"
+            class="inline-block color-ley-1 text-white font-black px-4 md:px-6 py-2 md:py-3 text-sm md:text-base uppercase tracking-widest mb-4 md:mb-6 rounded-full shadow-lg"
           >
             🎯 PROPUESTAS CONCRETAS | VOTO 106
           </div>
@@ -1282,89 +1367,103 @@
             TRES LEYES QUE <span class="text-verde">CAMBIARÁN TODO</span>
           </h2>
           <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base px-4">
-            No son promesas vacías. Son proyectos de ley listos para radicar el día 1.
+            Proyectos completos listos para radicar el día 1 en el Congreso.
           </p>
         </div>
 
         <!-- PROPUESTA 1: LEY SALVACIÓN -->
-        <div class="mb-12 md:mb-16">
-          <div class="bg-white rounded-3xl shadow-2xl overflow-hidden propuesta-card">
-            <div class="relative">
-              <div class="p-6 md:p-8 lg:p-12">
-                <div class="ley-badge">LEY #1</div>
-                <div class="mb-4 md:mb-6">
-                  <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl text-verde mb-2 md:mb-4">
-                    LEY SALVACIÓN
-                  </h3>
-                  <p class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6">
-                    Cuando el campo se esté muriendo, Bogotá lo rescata
-                  </p>
-                </div>
-
-                <div class="space-y-4 md:space-y-6">
-                  <div class="bg-verde/10 p-4 md:p-6 rounded-xl border-l-4 border-verde">
-                    <p class="text-negro font-bold mb-2 md:mb-3">
-                      Imagínate la escena que yo veo cada semana:
-                    </p>
-                    <p class="text-gray-700">
-                      Un campesino de 60 años, manos partidas de tanto trabajo, sube a su camión viejo con 20 bultos de papa que cuidó día y noche. Llega a la plaza y le ofrecen $180.000 por todo. No le alcanza ni para la gasolina de regreso.
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
+            <div class="relative p-1 fondo-ley-1 rounded-2xl">
+              <div class="ley-badge color-ley-1">LEY #1</div>
+              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+                <div class="contenido-propuesta">
+                  <div class="mb-6 md:mb-8">
+                    <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl texto-ley-1 mb-3 md:mb-4">
+                      LEY SALVACIÓN
+                    </h3>
+                    <p class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-1 pl-4">
+                      Cuando el campo se esté muriendo, Bogotá lo rescata
                     </p>
                   </div>
 
-                  <p class="text-lg md:text-xl text-gray-800 font-bold">
-                    Eso no es un negocio. Eso es un crimen. Yo no vine a la política a hacerme el de la vista gorda. Vine a cambiarlo todo.
-                  </p>
+                  <div class="space-y-5 md:space-y-6">
+                    <div class="bg-gray-50 p-4 md:p-6 rounded-xl border borde-ley-1/30">
+                      <p class="text-negro font-bold mb-3 md:mb-4 text-lg">
+                        Imagínate la escena que yo veo cada semana:
+                      </p>
+                      <p class="text-gray-700">
+                        Un campesino de 60 años, manos partidas de tanto trabajo, sube a su camión viejo con 20 bultos de papa que cuidó día y noche. Llega a la plaza y le ofrecen $180.000 por todo. No le alcanza ni para la gasolina de regreso.
+                      </p>
+                    </div>
 
-                  <div class="bg-girasol/20 p-4 md:p-6 rounded-xl">
-                    <h4 class="font-black text-lg md:text-xl mb-3 md:mb-4 text-verde">
-                      Con la Ley Salvación:
-                    </h4>
-                    <ul class="space-y-2 md:space-y-3">
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-verde mt-1"></i>
-                        <span class="text-gray-800"><strong>Mínimo seis veces al año</strong> Bogotá abre un parque o centro de acopio masivo en una localidad distinta (Kennedy, Bosa, Suba, Ciudad Bolívar, Usme, Engativá...)</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-verde mt-1"></i>
-                        <span class="text-gray-800">El campesino de cualquier departamento llega directo con su camión lleno de lo que esté perdiendo esa semana: papa, yuca, tomate, cebolla, mora, queso, plátano, lo que sea</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-verde mt-1"></i>
-                        <span class="text-gray-800">El Distrito pone <strong>TODO gratis</strong>: espacio gigante, seguridad 24 horas, baños, energía, carpas, sonido y publicidad masiva en Waze, Instagram, radio y TV</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-verde mt-1"></i>
-                        <span class="text-gray-800">Tú llegas, hablas con el campesino, compras directo de su mano a la tuya, sin intermediarios, sin revendedores, sin nadie que se quede con el 70% de la plata</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-verde mt-1"></i>
-                        <span class="text-gray-800">El productor se devuelve a su finca con la dignidad recuperada y la cosecha salvada</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <p class="text-lg md:text-xl text-gray-800 font-bold">
-                    Y los que durante décadas han vivido de especular con la comida del pueblo... se quedan sin negocio.
-                  </p>
-
-                  <div class="bg-red-50 border border-red-200 p-4 md:p-6 rounded-xl">
-                    <p class="text-red-800 font-bold">
-                      Esto no es un evento. Esto es el comienzo del fin de la intermediación abusiva en Colombia. Primera ley que radico el día 1 en el Congreso.
+                    <p class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-verde/5 rounded-lg">
+                      Eso no es un negocio. Eso es un crimen. Yo no vine a la política a hacerme el de la vista gorda. Vine a cambiarlo todo.
                     </p>
-                  </div>
 
-                  <p class="text-gray-700 text-lg">
-                    No es un favor que le hacemos al campo. Es la deuda histórica que Bogotá le tiene a quien nos da de comer todos los días.
-                  </p>
+                    <div class="fondo-ley-1 p-5 md:p-6 rounded-xl">
+                      <h4 class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-1">
+                        Con la Ley Salvación:
+                      </h4>
+                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                        <div class="flex items-start gap-3">
+                          <div class="bg-verde text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800"><strong>Mínimo seis veces al año</strong> Bogotá abre un parque o centro de acopio masivo en una localidad distinta</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-verde text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">El campesino llega directo con su camión lleno de lo que esté perdiendo esa semana</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-verde text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">El Distrito pone <strong>TODO gratis</strong>: espacio, seguridad 24 horas, baños, energía, publicidad masiva</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-verde text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Tú compras directo de su mano a la tuya, sin intermediarios, sin revendedores</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-verde text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">El productor se devuelve a su finca con la dignidad recuperada y la cosecha salvada</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-verde text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Los especuladores que han vivido del pueblo... se quedan sin negocio</p>
+                        </div>
+                      </div>
+                    </div>
 
-                  <div class="pt-4 md:pt-6">
-                    <p class="font-black text-verde mb-3 md:mb-4">
-                      ¿Quieres ser parte de la salvación del campo colombiano?
+                    <div class="bg-red-50 border border-red-200 p-4 md:p-5 rounded-xl">
+                      <p class="text-red-800 font-bold text-center">
+                        Esto no es un evento. Esto es el comienzo del fin de la intermediación abusiva en Colombia.
+                      </p>
+                      <p class="text-red-800 font-bold text-center mt-2">
+                        Primera ley que radico el día 1 en el Congreso.
+                      </p>
+                    </div>
+
+                    <p class="text-gray-700 text-lg text-center font-medium">
+                      No es un favor que le hacemos al campo. Es la deuda histórica que Bogotá le tiene a quien nos da de comer todos los días.
                     </p>
-                    <a href="#" class="descargar-btn inline-block">
-                      <i class="fa-solid fa-download"></i>
-                      DESCARGAR PROYECTO COMPLETO
-                    </a>
+
+                    <div class="text-center pt-4 md:pt-6">
+                      <div class="inline-block bg-verde text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg">
+                        <i class="fa-solid fa-law mr-2"></i>
+                        PROYECTO COMPLETO LISTO
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1373,82 +1472,94 @@
         </div>
 
         <!-- PROPUESTA 2: LEY 100% LECHE COLOMBIANA -->
-        <div class="mb-12 md:mb-16">
-          <div class="bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-2xl overflow-hidden propuesta-card">
-            <div class="relative">
-              <div class="p-6 md:p-8 lg:p-12">
-                <div class="ley-badge" style="background: linear-gradient(135deg, #1e88e5, #1565c0);">LEY #2</div>
-                <div class="mb-4 md:mb-6">
-                  <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl text-blue-700 mb-2 md:mb-4">
-                    LEY 100% LECHE COLOMBIANA
-                  </h3>
-                  <p class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6">
-                    Ni un litro botado. Ni un lechero quebrado nunca más
-                  </p>
-                </div>
-
-                <div class="space-y-4 md:space-y-6">
-                  <div class="bg-blue-100 p-4 md:p-6 rounded-xl border-l-4 border-blue-500">
-                    <p class="text-gray-700">
-                      <strong>320.000 familias campesinas</strong> viven de la leche. Hoy botan más de <strong>50.000 litros diarios</strong> porque el precio no alcanza ni para pagar el transporte.
-                    </p>
-                    <p class="text-gray-700 mt-2">
-                      Mientras tanto, en 2025 ya entramos más de <strong>54.000 toneladas de lácteos importados</strong> (proyectando 72.000 toneladas al cierre del año, 33.000 de ellas leche en polvo).
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
+            <div class="relative p-1 fondo-ley-2 rounded-2xl">
+              <div class="ley-badge color-ley-2">LEY #2</div>
+              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+                <div class="contenido-propuesta">
+                  <div class="mb-6 md:mb-8">
+                    <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl texto-ley-2 mb-3 md:mb-4">
+                      LEY 100% LECHE COLOMBIANA
+                    </h3>
+                    <p class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-2 pl-4">
+                      Ni un litro botado. Ni un lechero quebrado nunca más
                     </p>
                   </div>
 
-                  <p class="text-lg md:text-xl text-gray-800 font-bold">
-                    Yo he estado en esas fincas. He visto al papá lechero abrir la válvula y dejar correr la leche con lágrimas en los ojos. Eso se acabó.
-                  </p>
+                  <div class="space-y-5 md:space-y-6">
+                    <div class="bg-blue-50 p-4 md:p-6 rounded-xl border borde-ley-2/30">
+                      <p class="text-gray-700">
+                        <strong class="texto-ley-2">320.000 familias campesinas</strong> viven de la leche. Hoy botan más de <strong class="texto-ley-2">50.000 litros diarios</strong> porque el precio no alcanza ni para pagar el transporte.
+                      </p>
+                      <p class="text-gray-700 mt-3">
+                        Mientras tanto, en 2025 ya entramos más de <strong class="texto-ley-2">54.000 toneladas de lácteos importados</strong> (proyectando 72.000 toneladas al cierre del año, 33.000 de ellas leche en polvo).
+                      </p>
+                    </div>
 
-                  <div class="bg-blue-50 p-4 md:p-6 rounded-xl">
-                    <h4 class="font-black text-lg md:text-xl mb-3 md:mb-4 text-blue-700">
-                      Con la Ley 100% Leche Colombiana:
-                    </h4>
-                    <ul class="space-y-2 md:space-y-3">
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-blue-700 mt-1"></i>
-                        <span class="text-gray-800">El Estado compra directo al pequeño y mediano lechero <strong>toda la leche que no pueda vender</strong></span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-blue-700 mt-1"></i>
-                        <span class="text-gray-800">Pagamos <strong>rápido y sin intermediarios</strong></span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-blue-700 mt-1"></i>
-                        <span class="text-gray-800">Construimos una red nacional de plantas de <strong>leche en polvo 100% colombiana</strong> (una nueva cada año desde 2027)</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-blue-700 mt-1"></i>
-                        <span class="text-gray-800">Esa leche va <strong>obligatoria a colegios, cárceles, hospitales, batallones y programas sociales</strong> de todo Colombia</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-blue-700 mt-1"></i>
-                        <span class="text-gray-800">El excedente se vende al pueblo en grandes almacenes de cadena</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-blue-700 mt-1"></i>
-                        <span class="text-gray-800">Los lecheros reciben <strong>créditos sin interés, subsidios y bonos por calidad</strong> para que produzcan más y mejor</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <p class="text-2xl md:text-3xl font-black text-blue-700 text-center py-4 md:py-6">
-                    Tu hijo va a tomar leche de vacas colombianas criadas por familias colombianas.
-                  </p>
-
-                  <p class="text-lg md:text-xl text-gray-800 font-bold text-center">
-                    Soberanía alimentaria de verdad. Segunda ley que radico el día 1.
-                  </p>
-
-                  <div class="pt-4 md:pt-6 text-center">
-                    <p class="font-black text-blue-700 mb-3 md:mb-4">
-                      ¿Quieres que Colombia vuelva a tomar leche nuestra?
+                    <p class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-blue-500/5 rounded-lg">
+                      Yo he estado en esas fincas. He visto al papá lechero abrir la válvula y dejar correr la leche con lágrimas en los ojos. Eso se acabó.
                     </p>
-                    <a href="#" class="descargar-btn inline-block" style="background: linear-gradient(135deg, #1e88e5, #1565c0); color: white; border-color: #1565c0;">
-                      <i class="fa-solid fa-download"></i>
-                      DESCARGAR PROYECTO COMPLETO
-                    </a>
+
+                    <div class="fondo-ley-2 p-5 md:p-6 rounded-xl">
+                      <h4 class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-2">
+                        Con la Ley 100% Leche Colombiana:
+                      </h4>
+                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                        <div class="flex items-start gap-3">
+                          <div class="bg-blue-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">El Estado compra directo al pequeño y mediano lechero <strong>toda la leche que no pueda vender</strong></p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-blue-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Pagamos <strong>rápido y sin intermediarios</strong></p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-blue-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Construimos una red nacional de plantas de <strong>leche en polvo 100% colombiana</strong></p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-blue-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Esa leche va <strong>obligatoria a colegios, cárceles, hospitales, batallones</strong></p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-blue-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">El excedente se vende al pueblo en grandes almacenes de cadena</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-blue-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Los lecheros reciben <strong>créditos sin interés, subsidios y bonos por calidad</strong></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-center py-4 md:py-6">
+                      <p class="text-2xl md:text-3xl font-black texto-ley-2 mb-3">
+                        Tu hijo va a tomar leche de vacas colombianas criadas por familias colombianas.
+                      </p>
+                      <p class="text-lg md:text-xl text-gray-800 font-bold">
+                        Soberanía alimentaria de verdad. Segunda ley que radico el día 1.
+                      </p>
+                    </div>
+
+                    <div class="text-center pt-4 md:pt-6">
+                      <div class="inline-block color-ley-2 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg">
+                        <i class="fa-solid fa-cow mr-2"></i>
+                        PROYECTO COMPLETO LISTO
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1457,85 +1568,97 @@
         </div>
 
         <!-- PROPUESTA 3: LEY NO MÁS ACOSO DIGITAL -->
-        <div class="mb-12 md:mb-16">
-          <div class="bg-gradient-to-br from-purple-50 to-white rounded-3xl shadow-2xl overflow-hidden propuesta-card">
-            <div class="relative">
-              <div class="p-6 md:p-8 lg:p-12">
-                <div class="ley-badge" style="background: linear-gradient(135deg, #7b1fa2, #4a148c);">LEY #3</div>
-                <div class="mb-4 md:mb-6">
-                  <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl text-purple-700 mb-2 md:mb-4">
-                    LEY NO MÁS ACOSO DIGITAL
-                  </h3>
-                  <p class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6">
-                    Tu celular vuelve a ser tuyo. De una vez por todas, sin trucos
-                  </p>
-                </div>
-
-                <div class="space-y-4 md:space-y-6">
-                  <div class="bg-purple-100 p-4 md:p-6 rounded-xl border-l-4 border-purple-500">
-                    <p class="text-xl md:text-2xl font-bold text-purple-800 mb-3">
-                      ¿Cuántas veces te ha pasado?
-                    </p>
-                    <p class="text-gray-700">
-                      Estás en la caja de un almacén, con la fila atrás y los niños esperando. Para que te den la factura te obligan a firmar o tocar una pantalla donde, escondido, dice "acepto recibir publicidad". Si no lo aceptas, no te venden.
-                    </p>
-                    <p class="text-gray-700 mt-2">
-                      Al día siguiente empiezan: 6 a.m. ofreciéndote crédito, 10 p.m. amenazándote por una deuda, WhatsApp cada 5 minutos con "promociones".
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
+            <div class="relative p-1 fondo-ley-3 rounded-2xl">
+              <div class="ley-badge color-ley-3">LEY #3</div>
+              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+                <div class="contenido-propuesta">
+                  <div class="mb-6 md:mb-8">
+                    <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl texto-ley-3 mb-3 md:mb-4">
+                      LEY NO MÁS ACOSO DIGITAL
+                    </h3>
+                    <p class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-3 pl-4">
+                      Tu celular vuelve a ser tuyo. De una vez por todas, sin trucos
                     </p>
                   </div>
 
-                  <p class="text-lg md:text-xl text-gray-800 font-bold">
-                    Te inscribes en "Dejen de Fregar" y siguen igual. Porque la ley actual es puro papel. Yo estoy hasta aquí. Y tú también.
-                  </p>
+                  <div class="space-y-5 md:space-y-6">
+                    <div class="bg-purple-50 p-4 md:p-6 rounded-xl border borde-ley-3/30">
+                      <p class="text-xl md:text-2xl font-bold texto-ley-3 mb-3">
+                        ¿Cuántas veces te ha pasado?
+                      </p>
+                      <p class="text-gray-700">
+                        Estás en la caja de un almacén, con la fila atrás y los niños esperando. Para que te den la factura te obligan a firmar o tocar una pantalla donde, escondido, dice "acepto recibir publicidad". Si no lo aceptas, no te venden.
+                      </p>
+                      <p class="text-gray-700 mt-3">
+                        Al día siguiente empiezan: 6 a.m. ofreciéndote crédito, 10 p.m. amenazándote por una deuda, WhatsApp cada 5 minutos con "promociones".
+                      </p>
+                    </div>
 
-                  <div class="bg-purple-50 p-4 md:p-6 rounded-xl">
-                    <h4 class="font-black text-lg md:text-xl mb-3 md:mb-4 text-purple-700">
-                      Con la Ley No Más Acoso Digital:
-                    </h4>
-                    <ul class="space-y-2 md:space-y-3">
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-purple-700 mt-1"></i>
-                        <span class="text-gray-800"><strong>Prohibido obligarte a aceptar publicidad</strong> para comprar cualquier cosa o recibir factura</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-purple-700 mt-1"></i>
-                        <span class="text-gray-800">Las casillas estarán <strong>siempre desmarcadas</strong>. Si la empresa las pre-marca, multa millonaria automática</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-purple-700 mt-1"></i>
-                        <span class="text-gray-800"><strong>Registro Nacional Único</strong>: te inscribes una sola vez y quedas blindado para siempre</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-purple-700 mt-1"></i>
-                        <span class="text-gray-800"><strong>Cobranza solo en horario laboral</strong>. Prohibido noches, domingos y festivos</span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-purple-700 mt-1"></i>
-                        <span class="text-gray-800">Si después de inscribirte te joden → <strong>indemnización automática a tu cuenta</strong></span>
-                      </li>
-                      <li class="flex items-start gap-2 md:gap-3">
-                        <i class="fa-solid fa-check text-purple-700 mt-1"></i>
-                        <span class="text-gray-800">Empresas que no cumplan pagan multas que <strong>les cierran el call center</strong> y van a la <strong>Lista Negra pública</strong></span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <p class="text-2xl md:text-3xl font-black text-purple-700 text-center py-4 md:py-6">
-                    Tu celular deja de ser un enemigo y vuelve a ser tuyo: para hablar con tu familia, no para que te vendan como ganado.
-                  </p>
-
-                  <p class="text-lg md:text-xl text-gray-800 font-bold text-center">
-                    Tercera ley que radico el día 1.
-                  </p>
-
-                  <div class="pt-4 md:pt-6 text-center">
-                    <p class="font-black text-purple-700 mb-3 md:mb-4">
-                      ¿Estás listo para dormir tranquilo sin que te despierten ofreciéndote plata?
+                    <p class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-purple-500/5 rounded-lg">
+                      Te inscribes en "Dejen de Fregar" y siguen igual. Porque la ley actual es puro papel. Yo estoy hasta aquí. Y tú también.
                     </p>
-                    <a href="#" class="descargar-btn inline-block" style="background: linear-gradient(135deg, #7b1fa2, #4a148c); color: white; border-color: #4a148c;">
-                      <i class="fa-solid fa-download"></i>
-                      DESCARGAR PROYECTO COMPLETO
-                    </a>
+
+                    <div class="fondo-ley-3 p-5 md:p-6 rounded-xl">
+                      <h4 class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-3">
+                        Con la Ley No Más Acoso Digital:
+                      </h4>
+                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                        <div class="flex items-start gap-3">
+                          <div class="bg-purple-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800"><strong>Prohibido obligarte a aceptar publicidad</strong> para comprar cualquier cosa o recibir factura</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-purple-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Las casillas estarán <strong>siempre desmarcadas</strong>. Si la empresa las pre-marca, multa millonaria automática</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-purple-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800"><strong>Registro Nacional Único</strong>: te inscribes una sola vez y quedas blindado para siempre</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-purple-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800"><strong>Cobranza solo en horario laboral</strong>. Prohibido noches, domingos y festivos</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-purple-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Si después de inscribirte te joden → <strong>indemnización automática a tu cuenta</strong></p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="bg-purple-600 text-white rounded-full p-2 mt-1">
+                            <i class="fa-solid fa-check text-sm"></i>
+                          </div>
+                          <p class="text-gray-800">Empresas que no cumplan pagan multas que <strong>les cierran el call center</strong></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-center py-4 md:py-6">
+                      <p class="text-2xl md:text-3xl font-black texto-ley-3 mb-3">
+                        Tu celular deja de ser un enemigo y vuelve a ser tuyo
+                      </p>
+                      <p class="text-lg md:text-xl text-gray-800 font-bold">
+                        Para hablar con tu familia, no para que te vendan como ganado. Tercera ley que radico el día 1.
+                      </p>
+                    </div>
+
+                    <div class="text-center pt-4 md:pt-6">
+                      <div class="inline-block color-ley-3 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg">
+                        <i class="fa-solid fa-shield-alt mr-2"></i>
+                        PROYECTO COMPLETO LISTO
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1544,20 +1667,26 @@
         </div>
 
         <!-- LLAMADO A LA ACCIÓN -->
-        <div class="bg-gradient-to-r from-verde to-girasol rounded-3xl p-6 md:p-8 lg:p-12 text-center shadow-2xl">
-          <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl text-white mb-4 md:mb-6">
-            ¡ESTAS SON LAS 3 LEYES QUE VAMOS A SACAR ADELANTE!
-          </h3>
-          <p class="text-white text-lg md:text-xl mb-6 md:mb-8 font-bold">
-            El cambio no viene de promesas vacías. Viene de proyectos concretos, listos para radicar.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contacto" class="bg-white text-verde font-black py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-negro hover:text-white transition shadow-lg text-base md:text-lg">
-              <i class="fa-solid fa-user-plus"></i> ÚNETE AL MOVIMIENTO
-            </a>
-            <a href="#multimedia" class="bg-transparent border-2 border-white text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-white hover:text-verde transition text-base md:text-lg">
-              <i class="fa-solid fa-share-alt"></i> COMPARTE LAS PROPUESTAS
-            </a>
+        <div class="bg-gradient-to-r from-verde via-verde/90 to-girasol rounded-3xl p-8 md:p-10 lg:p-12 text-center shadow-2xl relative overflow-hidden">
+          <!-- Marca de agua específica para el llamado -->
+          <div class="numero-106" style="top: 10%; left: 5%; color: rgba(255,255,255,0.1);">106</div>
+          <div class="numero-106" style="bottom: 10%; right: 5%; color: rgba(255,255,255,0.1);">106</div>
+          
+          <div class="relative z-10">
+            <h3 class="font-titulo font-black text-2xl md:text-3xl lg:text-4xl text-white mb-4 md:mb-6">
+              ¡ESTAS SON LAS 3 LEYES QUE VAMOS A SACAR ADELANTE!
+            </h3>
+            <p class="text-white text-lg md:text-xl mb-6 md:mb-8 font-bold">
+              El cambio no viene de promesas vacías. Viene de proyectos concretos, listos para radicar.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#contacto" class="bg-white text-verde font-black py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-negro hover:text-white transition shadow-lg text-base md:text-lg">
+                <i class="fa-solid fa-user-plus mr-2"></i> ÚNETE AL MOVIMIENTO
+              </a>
+              <a href="#multimedia" class="bg-transparent border-2 border-white text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-white hover:text-verde transition text-base md:text-lg">
+                <i class="fa-solid fa-share-alt mr-2"></i> COMPARTE LAS PROPUESTAS
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -2249,10 +2378,10 @@
             <p class="text-xs md:text-sm text-gray-300">
               <i class="fa-solid fa-phone text-girasol mr-2"></i>
               <a
-                href="https://wa.me/573209948187"
+                href="https://wa.me/573001234567"
                 target="_blank"
                 class="hover:text-girasol transition"
-                >+57 320 994 8187</a
+                >+57 300 123 4567</a
               >
             </p>
           </div>
@@ -2271,7 +2400,7 @@
 
     <!-- BOTÓN FLOTANTE WHATSAPP RESPONSIVO -->
     <a
-      href="https://wa.me/573209948187"
+      href="https://wa.me/573001234567"
       target="_blank"
       class="fixed bottom-4 md:bottom-6 right-4 md:right-6 z-40 bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shadow-2xl transition transform hover:scale-110 animate-bounce touch-target"
       style="z-index: 9998;"
