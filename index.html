@@ -8,32 +8,32 @@
     />
     <title>Diego Guerrero | Voto 106 - La Voz del Campo - Soy Campesino</title>
 
-    <!-- FAVICON DINÁMICO -->
+    <!-- Favicon Dinámico -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥔</text></svg>"
     />
 
-    <!-- FUENTES GOOGLE -->
+    <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- ICONOS FONT AWESOME -->
+    <!-- Iconos Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <!-- LIBRERÍAS JS -->
+    <!-- Librerías JS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- CONFIGURACIÓN FIREBASE -->
+    <!-- Configuración Firebase -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
       import {
@@ -64,66 +64,6 @@
       }
     </script>
 
-    <!-- CONFIGURACIÓN TAILWIND PERSONALIZADA -->
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              verde: "#009440",
-              verdeClaro: "#00b34d",
-              tierra: "#5D4037",
-              girasol: "#FFD100",
-              arena: "#f0e9de",
-              arenaOscura: "#e5dccd",
-              negro: "#1a1a1a",
-              grisTexto: "#333333",
-              grisTextoClaro: "#f0f0f0",
-              naranjaLey: "#FF6B35",
-              azulLey: "#1e88e5",
-              moradoLey: "#7b1fa2",
-              indigoLey: "#3949ab",
-            },
-            fontFamily: {
-              titulo: ["Montserrat", "sans-serif"],
-              cuerpo: ["Open Sans", "sans-serif"],
-            },
-            screens: {
-              xs: "380px",
-              "3xl": "1920px",
-              "4xl": "2560px",
-            },
-            zIndex: {
-              60: "60",
-              100: "100",
-              max: "9999",
-            },
-            animation: {
-              "float-slow": "float 6s ease-in-out infinite",
-              "pulse-soft": "pulse-soft 2s ease-in-out infinite",
-              "bounce-soft": "bounce-soft 2s infinite",
-            },
-            keyframes: {
-              float: {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(-20px)" },
-              },
-              "pulse-soft": {
-                "0%, 100%": { opacity: 1 },
-                "50%": { opacity: 0.7 },
-              },
-              "bounce-soft": {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(-10px)" },
-              },
-            },
-          },
-        },
-      };
-    </script>
-
-    <!-- ESTILOS CSS COMPLETOS -->
     <style>
       /* ===== RESET Y BASE ===== */
       * {
@@ -183,43 +123,19 @@
           background-color: var(--color-fondo) !important;
           color: var(--color-texto) !important;
         }
-
-        .bg-arena {
-          background-color: var(--color-fondo) !important;
-        }
-
-        .text-negro {
-          color: var(--color-texto) !important;
-        }
-
-        .bg-white {
-          background-color: var(--color-tarjetas) !important;
-        }
-
-        .tarjeta-propuesta {
-          background-color: var(--color-tarjetas) !important;
-          color: var(--color-texto) !important;
-        }
-
-        .text-gray-600,
-        .text-gray-700,
-        .text-gray-800 {
-          color: #d1d5db !important;
-        }
       }
 
-      /* ===== MARCA DE AGUA "106" INTELIGENTE ===== */
-      section {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .watermark-container {
-        position: absolute;
-        inset: 0;
+      /* ===== MARCA DE AGUA "106" INTELIGENTE - MEJORADA ===== */
+      .watermark-106-global {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         pointer-events: none;
-        z-index: 0;
+        z-index: 1;
         overflow: hidden;
+        mix-blend-mode: multiply;
       }
 
       .watermark-item {
@@ -228,11 +144,22 @@
         font-weight: 900;
         user-select: none;
         animation: floatWatermark 25s ease-in-out infinite;
-        opacity: 0.25;
-        z-index: 0;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
           0 0 8px rgba(255, 255, 255, 0.3);
         -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        opacity: 0.25;
+      }
+
+      .watermark-106-global .watermark-item {
+        color: rgba(0, 148, 64, 0.15);
+        animation: floatWatermark 30s linear infinite;
+        opacity: 0.2;
+        mix-blend-mode: multiply;
+      }
+
+      .section-dark-bg .watermark-item {
+        color: rgba(255, 209, 0, 0.18);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 0, 0, 0.3);
       }
 
       .section-light .watermark-item {
@@ -253,158 +180,137 @@
         0%,
         100% {
           transform: translate(0, 0) rotate(-10deg);
-          opacity: 0.22;
+          opacity: 0.25;
         }
-        33% {
-          transform: translate(30px, -40px) rotate(5deg);
+        25% {
+          transform: translate(40px, -50px) rotate(8deg);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translate(-30px, 40px) rotate(-8deg);
+          opacity: 0.2;
+        }
+        75% {
+          transform: translate(50px, 30px) rotate(5deg);
           opacity: 0.28;
         }
-        66% {
-          transform: translate(-20px, 30px) rotate(-5deg);
-          opacity: 0.18;
+      }
+
+      /* Posiciones de las marcas de agua */
+      .watermark-106-global .watermark-item:nth-child(1) {
+        top: 5%;
+        left: 5%;
+        font-size: 180px;
+        animation-delay: 0s;
+        animation-duration: 35s;
+      }
+      .watermark-106-global .watermark-item:nth-child(2) {
+        top: 12%;
+        left: 30%;
+        font-size: 150px;
+        animation-delay: 3s;
+        animation-duration: 32s;
+      }
+      .watermark-106-global .watermark-item:nth-child(3) {
+        top: 20%;
+        left: 65%;
+        font-size: 220px;
+        animation-delay: 6s;
+        animation-duration: 38s;
+      }
+      .watermark-106-global .watermark-item:nth-child(4) {
+        top: 28%;
+        left: 15%;
+        font-size: 170px;
+        animation-delay: 9s;
+        animation-duration: 34s;
+      }
+      .watermark-106-global .watermark-item:nth-child(5) {
+        top: 35%;
+        left: 80%;
+        font-size: 200px;
+        animation-delay: 12s;
+        animation-duration: 36s;
+      }
+      .watermark-106-global .watermark-item:nth-child(6) {
+        top: 45%;
+        left: 45%;
+        font-size: 160px;
+        animation-delay: 15s;
+        animation-duration: 33s;
+      }
+      .watermark-106-global .watermark-item:nth-child(7) {
+        top: 55%;
+        left: 20%;
+        font-size: 210px;
+        animation-delay: 18s;
+        animation-duration: 37s;
+      }
+      .watermark-106-global .watermark-item:nth-child(8) {
+        top: 65%;
+        left: 70%;
+        font-size: 180px;
+        animation-delay: 21s;
+        animation-duration: 35s;
+      }
+      .watermark-106-global .watermark-item:nth-child(9) {
+        top: 75%;
+        left: 35%;
+        font-size: 240px;
+        animation-delay: 24s;
+        animation-duration: 39s;
+      }
+      .watermark-106-global .watermark-item:nth-child(10) {
+        top: 85%;
+        left: 60%;
+        font-size: 150px;
+        animation-delay: 27s;
+        animation-duration: 31s;
+      }
+
+      section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .watermark-container {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      /* ===== CURSOR PAPA PERSONALIZADO (SOLO DESKTOP) ===== */
+      .potato-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        font-size: clamp(24px, 2vw, 32px);
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3));
+        display: none;
+        animation: bouncePotato 0.6s ease infinite alternate;
+      }
+
+      @keyframes bouncePotato {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.1);
         }
       }
 
-      /* ===== MEJORAR CONTRASTE DE TEXTO ===== */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        color: var(--color-texto) !important;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) !important;
-      }
-
-      p,
-      span,
-      li {
-        color: var(--color-texto) !important;
-        opacity: 0.95 !important;
-      }
-
-      .text-gray-600,
-      .text-gray-700,
-      .text-gray-800 {
-        color: var(--color-texto) !important;
-        opacity: 0.85 !important;
-      }
-
-      /* ===== BOTONES CON MÁXIMO CONTRASTE ===== */
-      button,
-      .btn,
-      .ley-btn {
-        background-color: var(--color-botones) !important;
-        color: var(--color-botones-texto) !important;
-        border-color: var(--color-botones) !important;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
-      }
-
-      button:hover,
-      .btn:hover,
-      .ley-btn:hover {
-        filter: brightness(1.1) !important;
-      }
-
-      /* ===== BOTONES DE LEYES (SOLUCIÓN DEFINITIVA) ===== */
-      .ley-badge-fixed {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        z-index: 50;
-        padding: 14px 28px !important;
-        border-radius: 12px;
-        font-weight: 900;
-        font-family: "Montserrat", sans-serif;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
-        border: 3px solid white !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: clamp(14px, 1.8vw, 16px) !important;
-        max-width: 65%;
-        text-align: right;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 8px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-      }
-
-      /* Colores de leyes */
-      .ley-naranja {
-        background: linear-gradient(135deg, #ff6b35, #ff9e00) !important;
-        color: white !important;
-      }
-      .ley-azul {
-        background: linear-gradient(135deg, #00b4d8, #0077b6) !important;
-        color: white !important;
-      }
-      .ley-verde {
-        background: linear-gradient(135deg, #009440, #00732d) !important;
-        color: white !important;
-      }
-      .ley-morada {
-        background: linear-gradient(135deg, #7b1fa2, #4a148c) !important;
-        color: white !important;
-      }
-      .ley-indigo {
-        background: linear-gradient(135deg, #3949ab, #1a237e) !important;
-        color: white !important;
-      }
-
-      /* Espacio reservado para que el texto NO toque el botón */
-      .contenido-propuesta {
-        padding-top: 95px !important;
-        position: relative;
-        z-index: 10;
-      }
-
-      /* ===== REELS HORIZONTALES (ESTILO NETFLIX/INSTAGRAM) ===== */
-      .reels-scroller {
-        display: flex;
-        overflow-x: auto;
-        gap: 20px;
-        padding: 20px 5%;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .reels-scroller::-webkit-scrollbar {
-        display: none;
-      }
-
-      .reel-card {
-        flex: 0 0 auto;
-        width: 280px;
-        height: 500px;
-        scroll-snap-align: center;
-        border-radius: 20px;
-        overflow: hidden;
-        position: relative;
-        transition: transform 0.3s ease;
-        background: #000;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .reel-card:hover {
-        transform: scale(1.02);
-      }
-
-      .reel-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .reel-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-        padding: 20px;
-        color: white;
+      @media (min-width: 1024px) {
+        .potato-cursor {
+          display: block;
+        }
+        body {
+          cursor: none;
+        }
       }
 
       /* ===== PRELOADER ANIMADO ===== */
@@ -473,39 +379,241 @@
         transition: width 0.1s linear;
       }
 
-      /* ===== CURSOR PAPA PERSONALIZADO (SOLO DESKTOP) ===== */
-      .potato-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        font-size: clamp(24px, 2vw, 32px);
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3));
+      /* ===== NAVBAR MEJORADA ===== */
+      nav {
+        background-color: #ffffff !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 4px solid #009440 !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      nav a {
+        color: #000000 !important;
+        font-weight: 700 !important;
+        text-shadow: none !important;
+      }
+
+      nav a:hover {
+        color: #009440 !important;
+      }
+
+      nav .bg-girasol {
+        background: linear-gradient(135deg, #ffd100, #ffb300) !important;
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+        font-weight: 900 !important;
+      }
+
+      /* ===== HERO SECTION MEJORADA ===== */
+      .hero-section {
+        height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* ===== PROPUESTAS DE LEY - TEXTO VISIBLE ===== */
+      .ley-content {
+        position: relative;
+        z-index: 10 !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        padding: 2rem !important;
+        border-radius: 1rem;
+        margin-top: 90px;
+      }
+
+      .ley-papaton .bg-white,
+      .ley-valentina .bg-white,
+      .ley-salvacion .bg-white,
+      .ley-leche .bg-white,
+      .ley-acoso .bg-white {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        position: relative;
+        z-index: 10;
+      }
+
+      .ley-papaton .bg-white *,
+      .ley-valentina .bg-white *,
+      .ley-salvacion .bg-white *,
+      .ley-leche .bg-white *,
+      .ley-acoso .bg-white * {
+        color: #000000 !important;
+        position: relative;
+        z-index: 10;
+      }
+
+      .propuesta-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+        background: #ffffff;
+      }
+
+      .propuesta-card .bg-white {
+        background: #ffffff !important;
+        padding: 2rem;
+      }
+
+      .propuesta-card p,
+      .propuesta-card h3,
+      .propuesta-card h4,
+      .propuesta-card li,
+      .propuesta-card span,
+      .propuesta-card div:not(.ley-badge) {
+        color: #000000 !important;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* BOTONES DE LEYES VISIBLES */
+      .ley-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 50 !important;
+        padding: 12px 24px !important;
+        border-radius: 12px;
+        font-weight: 900;
+        font-family: "Montserrat", sans-serif;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+        border: 3px solid white !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: clamp(14px, 1.5vw, 16px) !important;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+        color: white !important;
+      }
+
+      /* Colores de leyes */
+      .ley-naranja {
+        background: linear-gradient(135deg, #ff6b35, #ff9e00) !important;
+      }
+      .ley-azul {
+        background: linear-gradient(135deg, #00b4d8, #0077b6) !important;
+      }
+      .ley-verde {
+        background: linear-gradient(135deg, #009440, #00732d) !important;
+      }
+      .ley-morada {
+        background: linear-gradient(135deg, #7b1fa2, #4a148c) !important;
+      }
+      .ley-indigo {
+        background: linear-gradient(135deg, #3949ab, #1a237e) !important;
+      }
+
+      .contenido-propuesta {
+        padding-top: 90px !important;
+        position: relative;
+        z-index: 20 !important;
+      }
+
+      .descargar-ley-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 30px;
+        background: linear-gradient(135deg, #009440, #00732d);
+        color: white;
+        font-weight: 900;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 20px auto;
+        text-decoration: none;
+        min-height: 50px;
+        width: 100%;
+        max-width: 350px;
+        box-shadow: 0 6px 20px rgba(0, 148, 64, 0.3);
+        position: relative;
+        z-index: 10;
+      }
+
+      .descargar-ley-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 148, 64, 0.4);
+      }
+
+      /* Colores específicos para cada ley */
+      .color-ley-1 {
+        background: linear-gradient(135deg, #009440, #00732d);
+      }
+      .color-ley-2 {
+        background: linear-gradient(135deg, #1e88e5, #0d47a1);
+      }
+      .color-ley-3 {
+        background: linear-gradient(135deg, #7b1fa2, #4a148c);
+      }
+      .color-ley-4 {
+        background: linear-gradient(135deg, #ff6b35, #ff9e00);
+      }
+      .color-ley-5 {
+        background: linear-gradient(135deg, #00b4d8, #0077b6);
+      }
+
+      /* ===== REELS HORIZONTALES (ESTILO NETFLIX/INSTAGRAM) ===== */
+      .reels-scroller {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 20px 5%;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .reels-scroller::-webkit-scrollbar {
         display: none;
       }
 
-      @media (min-width: 1024px) {
-        .potato-cursor {
-          display: block;
-        }
-        body {
-          cursor: none;
-        }
+      .reel-card {
+        flex: 0 0 auto;
+        width: 280px;
+        height: 500px;
+        scroll-snap-align: center;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s ease;
+        background: #000;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
       }
 
-      /* ===== TEXTURA DE FONDO ===== */
-      .texture-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
+      .reel-card:hover {
+        transform: scale(1.02);
+      }
+
+      .reel-card img {
         width: 100%;
         height: 100%;
-        background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-        opacity: 0.4;
-        pointer-events: none;
-        z-index: -1;
+        object-fit: cover;
+      }
+
+      .reel-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        padding: 20px;
+        color: white;
       }
 
       /* ===== CARRUSEL TESTIMONIOS ===== */
@@ -584,7 +692,6 @@
         background: rgba(0, 148, 64, 0.8);
         transform: scale(1.3);
       }
-
       .carousel-dot.active {
         background: #009440;
         width: clamp(24px, 4vw, 32px);
@@ -616,6 +723,21 @@
         }
       }
 
+      /* ===== TIPOGRAFÍA RESPONSIVA ===== */
+      h1 {
+        font-size: clamp(2rem, 7vw, 4.5rem) !important;
+        line-height: 1.2 !important;
+      }
+      h2 {
+        font-size: clamp(1.8rem, 5vw, 3.5rem) !important;
+      }
+      h3 {
+        font-size: clamp(1.3rem, 4vw, 2.5rem) !important;
+      }
+      p {
+        font-size: clamp(0.95rem, 2vw, 1.125rem) !important;
+      }
+
       /* ===== FORMULARIOS OPTIMIZADOS ===== */
       input,
       select,
@@ -645,240 +767,6 @@
         box-shadow: 0 0 15px rgba(255, 209, 0, 0.6) !important;
       }
 
-      /* ===== ESTILOS PARA LEYES ===== */
-      .propuesta-card {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 1.5rem;
-      }
-
-      .propuesta-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      }
-
-      .ley-badge {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        background: linear-gradient(135deg, #009440, #00732d);
-        color: white;
-        padding: 12px 24px;
-        border-radius: 12px;
-        font-weight: 900;
-        font-size: clamp(14px, 1.5vw, 16px);
-        z-index: 50;
-        box-shadow: 0 6px 20px rgba(0, 148, 64, 0.4);
-        border: 2px solid white;
-        text-align: center;
-        min-width: 140px;
-        backdrop-filter: blur(10px);
-        pointer-events: auto;
-      }
-
-      .descargar-ley-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 15px 30px;
-        background: linear-gradient(135deg, #009440, #00732d);
-        color: white;
-        font-weight: 900;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin: 20px auto;
-        text-decoration: none;
-        min-height: 50px;
-        width: 100%;
-        max-width: 350px;
-        box-shadow: 0 6px 20px rgba(0, 148, 64, 0.3);
-      }
-
-      .descargar-ley-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 30px rgba(0, 148, 64, 0.4);
-      }
-
-      /* Colores específicos para cada ley */
-      .color-ley-1 {
-        background: linear-gradient(135deg, #009440, #00732d);
-      }
-      .color-ley-2 {
-        background: linear-gradient(135deg, #1e88e5, #0d47a1);
-      }
-      .color-ley-3 {
-        background: linear-gradient(135deg, #7b1fa2, #4a148c);
-      }
-      .color-ley-4 {
-        background: linear-gradient(135deg, #ff6b35, #ff9e00);
-      }
-      .color-ley-5 {
-        background: linear-gradient(135deg, #00b4d8, #0077b6);
-      }
-
-      .texto-ley-1 {
-        color: #009440;
-      }
-      .texto-ley-2 {
-        color: #1e88e5;
-      }
-      .texto-ley-3 {
-        color: #7b1fa2;
-      }
-      .texto-ley-4 {
-        color: #ff6b35;
-      }
-      .texto-ley-5 {
-        color: #00b4d8;
-      }
-
-      .fondo-ley-1 {
-        background-color: rgba(0, 148, 64, 0.05);
-      }
-      .fondo-ley-2 {
-        background-color: rgba(30, 136, 229, 0.05);
-      }
-      .fondo-ley-3 {
-        background-color: rgba(123, 31, 162, 0.05);
-      }
-      .fondo-ley-4 {
-        background-color: rgba(255, 107, 53, 0.05);
-      }
-      .fondo-ley-5 {
-        background-color: rgba(0, 180, 216, 0.05);
-      }
-
-      .borde-ley-1 {
-        border-color: #009440;
-      }
-      .borde-ley-2 {
-        border-color: #1e88e5;
-      }
-      .borde-ley-3 {
-        border-color: #7b1fa2;
-      }
-      .borde-ley-4 {
-        border-color: #ff6b35;
-      }
-      .borde-ley-5 {
-        border-color: #00b4d8;
-      }
-
-      /* ===== TIPOGRAFÍA RESPONSIVA ===== */
-      h1 {
-        font-size: clamp(2rem, 7vw, 4.5rem) !important;
-        line-height: 1.2 !important;
-      }
-
-      h2 {
-        font-size: clamp(1.8rem, 5vw, 3.5rem) !important;
-      }
-
-      h3 {
-        font-size: clamp(1.3rem, 4vw, 2.5rem) !important;
-      }
-
-      p {
-        font-size: clamp(0.95rem, 2vw, 1.125rem) !important;
-      }
-
-      /* ===== MARCA DE AGUA GLOBAL 106 ===== */
-      .watermark-106-global {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-        overflow: hidden;
-        mix-blend-mode: multiply;
-      }
-
-      .watermark-106-global .watermark-item {
-        position: absolute;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 900;
-        color: rgba(0, 148, 64, 0.12);
-        user-select: none;
-        animation: floatWatermark 30s linear infinite;
-        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3),
-          0 0 8px rgba(255, 255, 255, 0.2);
-        opacity: 0.15;
-        mix-blend-mode: multiply;
-      }
-
-      .section-dark-bg .watermark-item {
-        color: rgba(255, 209, 0, 0.15);
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 0, 0, 0.3);
-      }
-
-      /* Posiciones de las marcas de agua */
-      .watermark-106-global .watermark-item:nth-child(1) {
-        top: 5%;
-        left: 5%;
-        font-size: 160px;
-        animation-delay: 0s;
-      }
-      .watermark-106-global .watermark-item:nth-child(2) {
-        top: 12%;
-        left: 30%;
-        font-size: 130px;
-        animation-delay: 3s;
-      }
-      .watermark-106-global .watermark-item:nth-child(3) {
-        top: 20%;
-        left: 65%;
-        font-size: 200px;
-        animation-delay: 6s;
-      }
-      .watermark-106-global .watermark-item:nth-child(4) {
-        top: 28%;
-        left: 15%;
-        font-size: 150px;
-        animation-delay: 9s;
-      }
-      .watermark-106-global .watermark-item:nth-child(5) {
-        top: 35%;
-        left: 80%;
-        font-size: 180px;
-        animation-delay: 12s;
-      }
-      .watermark-106-global .watermark-item:nth-child(6) {
-        top: 45%;
-        left: 45%;
-        font-size: 140px;
-        animation-delay: 15s;
-      }
-      .watermark-106-global .watermark-item:nth-child(7) {
-        top: 55%;
-        left: 20%;
-        font-size: 190px;
-        animation-delay: 18s;
-      }
-      .watermark-106-global .watermark-item:nth-child(8) {
-        top: 65%;
-        left: 70%;
-        font-size: 160px;
-        animation-delay: 21s;
-      }
-      .watermark-106-global .watermark-item:nth-child(9) {
-        top: 75%;
-        left: 35%;
-        font-size: 220px;
-        animation-delay: 24s;
-      }
-      .watermark-106-global .watermark-item:nth-child(10) {
-        top: 85%;
-        left: 60%;
-        font-size: 130px;
-        animation-delay: 27s;
-      }
-
       /* ===== OPTIMIZACIÓN MÓVIL COMPLETA ===== */
       @media (max-width: 768px) {
         .hero-section {
@@ -899,14 +787,7 @@
         }
 
         .contenido-propuesta {
-          padding-top: 85px !important;
-        }
-
-        .ley-badge-fixed {
-          font-size: 13px !important;
-          padding: 12px 20px !important;
-          top: 15px;
-          right: 15px;
+          padding-top: 70px !important;
         }
 
         .ley-badge {
@@ -915,6 +796,10 @@
           padding: 10px 18px;
           font-size: 13px;
           min-width: 120px;
+        }
+
+        .propuesta-card .bg-white {
+          padding: 1.5rem !important;
         }
 
         .reel-card {
@@ -952,18 +837,9 @@
           font-size: 2rem !important;
           line-height: 1.1 !important;
         }
-
         h2 {
           font-size: 1.6rem !important;
         }
-
-        .ley-badge-fixed {
-          top: 12px;
-          right: 12px;
-          padding: 10px 16px;
-          font-size: 12px;
-        }
-
         .ley-badge {
           top: 12px;
           right: 12px;
@@ -971,11 +847,12 @@
           font-size: 12px;
           min-width: 110px;
         }
-
         .contenido-propuesta {
-          padding-top: 45px;
+          padding-top: 60px !important;
         }
-
+        .propuesta-card .bg-white {
+          padding: 1rem !important;
+        }
         button,
         .btn,
         .ley-btn {
@@ -999,13 +876,54 @@
           max-width: 1920px;
           margin: 0 auto;
         }
-
         .container {
           max-width: 1800px !important;
         }
-
         .hero-section {
           height: 80vh !important;
+        }
+      }
+
+      /* ===== MODO OSCURO MEJORADO ===== */
+      @media (prefers-color-scheme: dark) {
+        nav {
+          background-color: #1a1a1a !important;
+          border-bottom: 4px solid #00a74a !important;
+        }
+        nav a {
+          color: #ffffff !important;
+        }
+        nav a:hover {
+          color: #00a74a !important;
+        }
+
+        .propuesta-card,
+        .propuesta-card .bg-white {
+          background-color: #2d2d2d !important;
+          color: #ffffff !important;
+          border: 1px solid #444444 !important;
+        }
+
+        .propuesta-card p,
+        .propuesta-card h3,
+        .propuesta-card h4,
+        .propuesta-card li,
+        .propuesta-card span,
+        .propuesta-card div:not(.ley-badge) {
+          color: #ffffff !important;
+        }
+
+        #mobile-menu {
+          background-color: #1a1a1a !important;
+          border-bottom: 4px solid #00a74a !important;
+        }
+        #mobile-menu a {
+          color: #ffffff !important;
+          border-color: #444444 !important;
+        }
+        #mobile-menu a:hover {
+          background-color: #333333 !important;
+          color: #00a74a !important;
         }
       }
 
@@ -1013,26 +931,94 @@
       .text-balance {
         text-wrap: balance;
       }
-
       .touch-target {
         min-height: 44px;
         min-width: 44px;
         padding: 12px 20px;
       }
-
       .prevent-zoom {
         font-size: 16px !important;
         touch-action: manipulation;
       }
-
       .aspect-ratio-preserve {
         aspect-ratio: 16/9;
       }
+      .force-black {
+        color: #000000 !important;
+      }
+      .force-white {
+        color: #ffffff !important;
+      }
+      .force-bg-white {
+        background-color: #ffffff !important;
+      }
+      .force-bg-black {
+        background-color: #000000 !important;
+      }
     </style>
+
+    <!-- Configuración Tailwind Personalizada -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              verde: "#009440",
+              verdeClaro: "#00b34d",
+              tierra: "#5D4037",
+              girasol: "#FFD100",
+              arena: "#f0e9de",
+              arenaOscura: "#e5dccd",
+              negro: "#1a1a1a",
+              grisTexto: "#333333",
+              grisTextoClaro: "#f0f0f0",
+              naranjaLey: "#FF6B35",
+              azulLey: "#1e88e5",
+              moradoLey: "#7b1fa2",
+              indigoLey: "#3949ab",
+            },
+            fontFamily: {
+              titulo: ["Montserrat", "sans-serif"],
+              cuerpo: ["Open Sans", "sans-serif"],
+            },
+            screens: {
+              xs: "380px",
+              "3xl": "1920px",
+              "4xl": "2560px",
+            },
+            zIndex: {
+              60: "60",
+              100: "100",
+              max: "9999",
+            },
+            animation: {
+              "float-slow": "float 6s ease-in-out infinite",
+              "pulse-soft": "pulse-soft 2s ease-in-out infinite",
+              "bounce-soft": "bounce-soft 2s infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              "pulse-soft": {
+                "0%, 100%": { opacity: 1 },
+                "50%": { opacity: 0.7 },
+              },
+              "bounce-soft": {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
   </head>
 
   <body class="bg-arena text-negro font-cuerpo">
-    <!-- MARCA DE AGUA 106 GLOBAL -->
+    <!-- MARCA DE AGUA 106 GLOBAL MEJORADA -->
     <div class="watermark-106-global">
       <div class="watermark-item">106</div>
       <div class="watermark-item">106</div>
@@ -1071,8 +1057,6 @@
       </div>
     </div>
 
-    <div class="texture-overlay"></div>
-
     <!-- PRELOADER OPTIMIZADO -->
     <div id="preloader">
       <div class="campesino-3d">👨‍🌾</div>
@@ -1102,11 +1086,12 @@
         class="container mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center"
       >
         <a href="#inicio" class="flex items-center gap-2 md:gap-3 group">
-          <div
-            class="w-10 h-10 bg-verde rounded-full flex items-center justify-center text-white font-black text-xl border-2 border-girasol"
-          >
-            106
-          </div>
+          <!-- REEMPLAZAR CON LOGO DEL PARTIDO -->
+          <img
+            src="img/logo-partido.png"
+            class="h-10 md:h-12 w-auto object-contain"
+            alt="Logo Alianza Verde"
+          />
           <div class="leading-tight border-l-2 border-gray-300 pl-2 md:pl-3">
             <span
               class="block font-titulo font-black text-verde text-sm md:text-lg"
@@ -1123,12 +1108,22 @@
         <div
           class="hidden md:flex gap-6 font-bold text-sm uppercase items-center"
         >
-          <a href="#inicio" class="hover:text-verde transition">Inicio</a>
-          <a href="#logros" class="hover:text-verde transition">Logros</a>
-          <a href="#propuestas" class="hover:text-verde transition"
+          <a href="#inicio" class="hover:text-verde transition hover:scale-110"
+            >Inicio</a
+          >
+          <a href="#logros" class="hover:text-verde transition hover:scale-110"
+            >Logros</a
+          >
+          <a
+            href="#propuestas"
+            class="hover:text-verde transition hover:scale-110"
             >Propuestas</a
           >
-          <a href="#multimedia" class="hover:text-verde transition">Reels</a>
+          <a
+            href="#multimedia"
+            class="hover:text-verde transition hover:scale-110"
+            >Reels</a
+          >
           <a
             href="#contacto"
             class="bg-girasol text-negro px-5 py-2 rounded-full border-2 border-negro font-black shadow-[4px_4px_0px_#000] hover:translate-y-1 hover:shadow-none transition"
@@ -1194,12 +1189,43 @@
     <section
       id="inicio"
       class="hero-section relative bg-negro flex items-center pt-16 section-dark overflow-hidden"
-      style="min-height: 100vh; min-height: 100svh"
     >
       <!-- MARCA DE AGUA -->
-      <div class="watermark-container" id="wm-hero"></div>
+      <div class="watermark-container" id="wm-hero">
+        <div
+          class="watermark-item"
+          style="top: 15%; left: 10%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 60%; right: 15%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 30%; left: 70%; font-size: 160px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 20%; left: 20%; font-size: 220px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 25%; font-size: 190px"
+        >
+          106
+        </div>
+      </div>
 
       <div class="absolute inset-0 opacity-50 z-0">
+        <!-- REEMPLAZAR CON IMAGEN DE PORTADA -->
         <img
           src="img/portada.jpg"
           class="w-full h-full object-cover object-center"
@@ -1275,6 +1301,7 @@
         <div
           class="hidden md:block relative h-full flex items-end justify-center"
         >
+          <!-- REEMPLAZAR CON FOTO DEL CANDIDATO -->
           <img
             src="img/diego-hero.png"
             class="max-h-[85vh] object-contain drop-shadow-2xl z-10"
@@ -1290,7 +1317,32 @@
       id="logros"
       class="py-20 bg-white relative section-light overflow-hidden"
     >
-      <div class="watermark-container" id="wm-logros"></div>
+      <div class="watermark-container" id="wm-logros">
+        <div
+          class="watermark-item"
+          style="top: 10%; right: 8%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 15%; left: 8%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 40%; left: 5%; font-size: 160px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 30%; right: 10%; font-size: 220px"
+        >
+          106
+        </div>
+      </div>
       <div class="container mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
           <h2
@@ -1370,11 +1422,37 @@
       id="historia"
       class="py-20 bg-gradient-to-br from-tierra to-negro text-white relative section-dark"
     >
-      <div class="watermark-container" id="wm-historia"></div>
+      <div class="watermark-container" id="wm-historia">
+        <div
+          class="watermark-item"
+          style="top: 20%; left: 12%; font-size: 190px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 20%; right: 12%; font-size: 210px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 60%; left: 8%; font-size: 170px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 5%; font-size: 200px"
+        >
+          106
+        </div>
+      </div>
       <div
         class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center"
       >
         <div>
+          <!-- REEMPLAZAR CON IMAGEN DE HISTORIA -->
           <img
             src="img/historia.jpg"
             class="rounded-3xl shadow-2xl rotate-2 border-4 border-white/20 hover:rotate-0 transition duration-500 w-full"
@@ -1407,12 +1485,46 @@
       </div>
     </section>
 
-    <!-- PROPUESTAS (CLARO/ARENA) - ACTUALIZADAS -->
+    <!-- PROPUESTAS (CLARO/ARENA) - TEXTO VISIBLE -->
     <section
       id="propuestas"
       class="py-20 bg-arena relative section-light overflow-hidden"
     >
-      <div class="watermark-container" id="wm-propuestas"></div>
+      <div class="watermark-container" id="wm-propuestas">
+        <div class="watermark-item" style="top: 8%; left: 8%; font-size: 200px">
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 20%; right: 12%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 40%; left: 15%; font-size: 220px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 50%; right: 20%; font-size: 190px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 18%; left: 12%; font-size: 210px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 30%; right: 15%; font-size: 170px"
+        >
+          106
+        </div>
+      </div>
       <div class="container mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
           <span
@@ -1427,194 +1539,191 @@
         </div>
 
         <!-- LEY PAPATÓN COLOMBIA -->
-        <div class="mb-16 md:mb-20 ley-papaton">
-          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
-            <div class="relative p-1 fondo-ley-4 rounded-2xl">
-              <div class="ley-badge color-ley-4">LEY PAPATÓN</div>
-              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
-                <div class="contenido-propuesta">
-                  <div class="mb-6 md:mb-8">
-                    <p
-                      class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-4 pl-4"
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-naranja">LEY PAPATÓN</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-orange-500 pl-4"
+                  >
+                    Del PAPATÓN que empezamos en la calle… a la ley que salva a
+                    100.000 familias paperas para siempre
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-orange-50 p-4 md:p-6 rounded-xl border border-orange-200"
+                  >
+                    <h4
+                      class="font-black text-lg md:text-xl mb-3 md:mb-4 text-orange-600"
                     >
-                      Del PAPATÓN que empezamos en la calle… a la ley que salva
-                      a 100.000 familias paperas para siempre
+                      ¿Por qué es necesaria esta ley?
+                    </h4>
+                    <div class="space-y-3">
+                      <p class="text-gray-700">
+                        <strong
+                          >Colombia produce más de 2,7 millones de toneladas de
+                          papa al año</strong
+                        >
+                        con 100.000 familias campesinas.
+                      </p>
+                      <p class="text-gray-700">
+                        El
+                        <strong
+                          >95 % son pequeños y medianos productores</strong
+                        >
+                        con menos de 5 hectáreas.
+                      </p>
+                      <p class="text-gray-700">
+                        Cada año de sobreproducción o de importaciones masivas
+                        <strong
+                          >pierden entre $11 y $15 millones por hectárea</strong
+                        >.
+                      </p>
+                      <p class="text-gray-700">
+                        Colombia importa
+                        <strong
+                          >90.000 toneladas al año de papa precocida
+                          congelada</strong
+                        >
+                        (principalmente Bélgica) mientras nuestros paperos botan
+                        la cosecha o la venden regalada.
+                      </p>
+                      <p class="text-gray-700">
+                        El Estado gasta más de
+                        <strong>$350.000 millones al año</strong> comprando esa
+                        papa importada para el ICBF, el PAE, las cárceles y los
+                        batallones.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="bg-orange-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-orange-600"
+                    >
+                      ¿Qué cambia esta ley?
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El Estado crea la empresa pública
+                          <strong>PAPATÓN COLOMBIA</strong> (100 % estatal, no
+                          privatizable por 25 años)
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Compra directamente el
+                          <strong>25 % de la producción nacional</strong> a
+                          pequeños y medianos productores
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong>Precio justo:</strong> costo de producción +
+                          40 % de ganancia |
+                          <strong>Pago en máximo 5 días</strong> | Sin
+                          intermediarios
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Construye
+                          <strong>dos plantas modernas</strong> (Boyacá y
+                          Nariño) y
+                          <strong>20 centros de acopio</strong> manejados por
+                          los propios paperos
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El ICBF, PAE, cárceles, hospitales y batallones
+                          <strong
+                            >compran obligatoriamente PAPATÓN COLOMBIA</strong
+                          >
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Los supermercados que compren PAPATÓN tienen
+                          <strong>beneficios fiscales</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Los paperos manejan la empresa:
+                          <strong>60 % de la junta directiva</strong> son
+                          productores elegidos por ellos
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-gradient-to-r from-orange-500 to-red-500 text-white p-5 md:p-6 rounded-xl text-center"
+                  >
+                    <h4 class="font-black text-xl md:text-2xl mb-3">
+                      RESULTADO:
+                    </h4>
+                    <p class="text-lg md:text-xl font-bold mb-2">
+                      Ningún papelero vuelve a perder su cosecha.
+                    </p>
+                    <p class="text-lg md:text-xl font-bold">
+                      La plata se queda en Colombia. La papa importada se queda
+                      en Europa.
                     </p>
                   </div>
 
-                  <div class="space-y-5 md:space-y-6">
-                    <div
-                      class="bg-orange-50 p-4 md:p-6 rounded-xl border borde-ley-4/30"
+                  <div class="text-center pt-4 md:pt-6">
+                    <button
+                      onclick="descargarLey('papaton')"
+                      class="descargar-ley-btn color-ley-4 hover:scale-105 transition duration-300"
                     >
-                      <h4
-                        class="font-black text-lg md:text-xl mb-3 md:mb-4 texto-ley-4"
-                      >
-                        ¿Por qué es necesaria esta ley?
-                      </h4>
-                      <div class="space-y-3">
-                        <p class="text-gray-700">
-                          <strong
-                            >Colombia produce más de 2,7 millones de toneladas
-                            de papa al año</strong
-                          >
-                          con 100.000 familias campesinas.
-                        </p>
-                        <p class="text-gray-700">
-                          El
-                          <strong
-                            >95 % son pequeños y medianos productores</strong
-                          >
-                          con menos de 5 hectáreas.
-                        </p>
-                        <p class="text-gray-700">
-                          Cada año de sobreproducción o de importaciones masivas
-                          <strong
-                            >pierden entre $11 y $15 millones por
-                            hectárea</strong
-                          >.
-                        </p>
-                        <p class="text-gray-700">
-                          Colombia importa
-                          <strong
-                            >90.000 toneladas al año de papa precocida
-                            congelada</strong
-                          >
-                          (principalmente Bélgica) mientras nuestros paperos
-                          botan la cosecha o la venden regalada.
-                        </p>
-                        <p class="text-gray-700">
-                          El Estado gasta más de
-                          <strong>$350.000 millones al año</strong> comprando
-                          esa papa importada para el ICBF, el PAE, las cárceles
-                          y los batallones.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="fondo-ley-4 p-5 md:p-6 rounded-xl">
-                      <h4
-                        class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-4"
-                      >
-                        ¿Qué cambia esta ley?
-                      </h4>
-                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-orange-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            El Estado crea la empresa pública
-                            <strong>PAPATÓN COLOMBIA</strong> (100 % estatal, no
-                            privatizable por 25 años)
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-orange-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Compra directamente el
-                            <strong>25 % de la producción nacional</strong> a
-                            pequeños y medianos productores
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-orange-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            <strong>Precio justo:</strong> costo de producción +
-                            40 % de ganancia |
-                            <strong>Pago en máximo 5 días</strong> | Sin
-                            intermediarios
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-orange-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Construye
-                            <strong>dos plantas modernas</strong> (Boyacá y
-                            Nariño) y
-                            <strong>20 centros de acopio</strong> manejados por
-                            los propios paperos
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-orange-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            El ICBF, PAE, cárceles, hospitales y batallones
-                            <strong
-                              >compran obligatoriamente PAPATÓN COLOMBIA</strong
-                            >
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-orange-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Los supermercados que compren PAPATÓN tienen
-                            <strong>beneficios fiscales</strong>
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-orange-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Los paperos manejan la empresa:
-                            <strong>60 % de la junta directiva</strong> son
-                            productores elegidos por ellos
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      class="bg-gradient-to-r from-orange-500 to-red-500 text-white p-5 md:p-6 rounded-xl text-center"
-                    >
-                      <h4 class="font-black text-xl md:text-2xl mb-3">
-                        RESULTADO:
-                      </h4>
-                      <p class="text-lg md:text-xl font-bold mb-2">
-                        Ningún papelero vuelve a perder su cosecha.
-                      </p>
-                      <p class="text-lg md:text-xl font-bold">
-                        La plata se queda en Colombia. La papa importada se
-                        queda en Europa.
-                      </p>
-                    </div>
-
-                    <div class="text-center pt-4 md:pt-6">
-                      <button
-                        onclick="descargarLey('papaton')"
-                        class="descargar-ley-btn color-ley-4 hover:scale-105 transition duration-300"
-                      >
-                        <i class="fa-solid fa-download"></i> DESCARGAR LEY
-                        PAPATÓN (PDF)
-                      </button>
-                      <p class="text-gray-600 text-sm mt-2">
-                        Borrador completo de la ley listo para implementar
-                      </p>
-                    </div>
+                      <i class="fa-solid fa-download"></i> DESCARGAR LEY PAPATÓN
+                      (PDF)
+                    </button>
+                    <p class="text-gray-600 text-sm mt-2">
+                      Borrador completo de la ley listo para implementar
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1623,225 +1732,220 @@
         </div>
 
         <!-- LEY VALENTINA -->
-        <div class="mb-16 md:mb-20 ley-valentina">
-          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
-            <div class="relative p-1 fondo-ley-5 rounded-2xl">
-              <div class="ley-badge color-ley-5">LEY VALENTINA</div>
-              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
-                <div class="contenido-propuesta">
-                  <div class="mb-6 md:mb-8">
-                    <p
-                      class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-5 pl-4"
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-azul">LEY VALENTINA</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-blue-500 pl-4"
+                  >
+                    Por mi hermana Valentina y por todos los valentinos de
+                    Colombia
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-blue-50 p-4 md:p-6 rounded-xl border border-blue-200"
+                  >
+                    <h4
+                      class="font-black text-lg md:text-xl mb-3 md:mb-4 text-blue-600"
                     >
-                      Por mi hermana Valentina y por todos los valentinos de
-                      Colombia
+                      ¿Por qué es necesaria esta ley?
+                    </h4>
+                    <div class="space-y-3">
+                      <p class="text-gray-700">
+                        Mi hermana Valentina tiene una enfermedad huérfana y
+                        congénita que le genera discapacidad múltiple.
+                      </p>
+                      <p class="text-gray-700">
+                        <strong
+                          >Como ella, en Colombia hay más de 300.000 niños y
+                          adolescentes</strong
+                        >
+                        que viven con:
+                      </p>
+                      <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Discapacidad (cualquier tipo)</li>
+                        <li>Enfermedades huérfanas o raras</li>
+                        <li>Enfermedades congénitas o genéticas</li>
+                        <li>Cáncer infantil</li>
+                        <li>Fibrosis quística</li>
+                        <li>Enfermedades crónicas complejas o terminales</li>
+                      </ul>
+                      <p class="text-gray-700 font-bold mt-3">
+                        Hoy, la única forma de que reciban lo que necesitan es
+                        la acción de tutela.
+                      </p>
+                      <div class="bg-red-50 p-3 rounded-lg mt-3">
+                        <p class="text-gray-700">
+                          <strong>El 78 %</strong> de las familias no saben que
+                          pueden poner una tutela o no tienen cómo hacerlo.
+                        </p>
+                        <p class="text-gray-700">
+                          <strong>El 68 %</strong> de las tutelas por salud son
+                          de niños con estas condiciones.
+                        </p>
+                        <p class="text-gray-700">
+                          <strong>El 41 %</strong> son negadas en primera
+                          instancia y muchas familias desisten por cansancio o
+                          desconocimiento.
+                        </p>
+                      </div>
+                      <p class="text-gray-700 font-bold">
+                        La Corte Constitucional ya lo ordenó: el Estado debe
+                        garantizar atención integral sin necesidad de tutela.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="bg-blue-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-blue-600"
+                    >
+                      ¿Qué cambia esta ley?
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Desde el diagnóstico, el niño recibe en
+                          <strong>máximo 15 días el Carnet VALENTINA</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Con solo presentar el carnet se activa automáticamente
+                          y de por vida:
+                        </p>
+                      </div>
+                      <div class="col-span-2">
+                        <div class="grid md:grid-cols-2 gap-3 mt-2">
+                          <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-pills text-blue-500 mt-1"></i>
+                            <p class="text-gray-800">
+                              Todos los medicamentos y tratamientos (POS y no
+                              POS)
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-hands-helping text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Terapias ilimitadas (física, ocupacional,
+                              lenguaje, psicología, hidro, equino, etc.)
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-wheelchair text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Ayudas técnicas sin límite (sillas, audífonos,
+                              comunicadores, ventiladores, etc.)
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-ambulance text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Transporte médico gratuito puerta a puerta
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-graduation-cap text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Educación inclusiva con profesor sombra
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-home-heart text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Cuidados paliativos en casa si los necesita
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Prioridad absoluta en todos los programas sociales
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Si la EPS niega o atrasa, paga
+                          <strong>150 salarios mínimos de multa</strong> y el
+                          Fondo VALENTINA cubre de inmediato
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Queda <strong>prohibido exigir tutela</strong> para
+                          cualquiera de estos derechos
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-5 md:p-6 rounded-xl text-center"
+                  >
+                    <h4 class="font-black text-xl md:text-2xl mb-3">
+                      RESULTADO:
+                    </h4>
+                    <p class="text-lg md:text-xl font-bold mb-2">
+                      Ningún niño con discapacidad o enfermedad grave vuelve a
+                      sufrir por una tutela.
+                    </p>
+                    <p class="text-lg md:text-xl font-bold">
+                      Ninguna mamá vuelve a llorar porque no sabe cómo pelear
+                      por su hijo.
                     </p>
                   </div>
 
-                  <div class="space-y-5 md:space-y-6">
-                    <div
-                      class="bg-blue-50 p-4 md:p-6 rounded-xl border borde-ley-5/30"
+                  <div class="text-center pt-4 md:pt-6">
+                    <button
+                      onclick="descargarLey('valentina')"
+                      class="descargar-ley-btn color-ley-5 hover:scale-105 transition duration-300"
                     >
-                      <h4
-                        class="font-black text-lg md:text-xl mb-3 md:mb-4 texto-ley-5"
-                      >
-                        ¿Por qué es necesaria esta ley?
-                      </h4>
-                      <div class="space-y-3">
-                        <p class="text-gray-700">
-                          Mi hermana Valentina tiene una enfermedad huérfana y
-                          congénita que le genera discapacidad múltiple.
-                        </p>
-                        <p class="text-gray-700">
-                          <strong
-                            >Como ella, en Colombia hay más de 300.000 niños y
-                            adolescentes</strong
-                          >
-                          que viven con:
-                        </p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-1">
-                          <li>Discapacidad (cualquier tipo)</li>
-                          <li>Enfermedades huérfanas o raras</li>
-                          <li>Enfermedades congénitas o genéticas</li>
-                          <li>Cáncer infantil</li>
-                          <li>Fibrosis quística</li>
-                          <li>Enfermedades crónicas complejas o terminales</li>
-                        </ul>
-                        <p class="text-gray-700 font-bold mt-3">
-                          Hoy, la única forma de que reciban lo que necesitan es
-                          la acción de tutela.
-                        </p>
-                        <div class="bg-red-50 p-3 rounded-lg mt-3">
-                          <p class="text-gray-700">
-                            <strong>El 78 %</strong> de las familias no saben
-                            que pueden poner una tutela o no tienen cómo
-                            hacerlo.
-                          </p>
-                          <p class="text-gray-700">
-                            <strong>El 68 %</strong> de las tutelas por salud
-                            son de niños con estas condiciones.
-                          </p>
-                          <p class="text-gray-700">
-                            <strong>El 41 %</strong> son negadas en primera
-                            instancia y muchas familias desisten por cansancio o
-                            desconocimiento.
-                          </p>
-                        </div>
-                        <p class="text-gray-700 font-bold">
-                          La Corte Constitucional ya lo ordenó: el Estado debe
-                          garantizar atención integral sin necesidad de tutela.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="fondo-ley-5 p-5 md:p-6 rounded-xl">
-                      <h4
-                        class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-5"
-                      >
-                        ¿Qué cambia esta ley?
-                      </h4>
-                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Desde el diagnóstico, el niño recibe en
-                            <strong>máximo 15 días el Carnet VALENTINA</strong>
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Con solo presentar el carnet se activa
-                            automáticamente y de por vida:
-                          </p>
-                        </div>
-                        <div class="col-span-2">
-                          <div class="grid md:grid-cols-2 gap-3 mt-2">
-                            <div class="flex items-start gap-2">
-                              <i
-                                class="fa-solid fa-pills text-blue-500 mt-1"
-                              ></i>
-                              <p class="text-gray-800">
-                                Todos los medicamentos y tratamientos (POS y no
-                                POS)
-                              </p>
-                            </div>
-                            <div class="flex items-start gap-2">
-                              <i
-                                class="fa-solid fa-hands-helping text-blue-500 mt-1"
-                              ></i>
-                              <p class="text-gray-800">
-                                Terapias ilimitadas (física, ocupacional,
-                                lenguaje, psicología, hidro, equino, etc.)
-                              </p>
-                            </div>
-                            <div class="flex items-start gap-2">
-                              <i
-                                class="fa-solid fa-wheelchair text-blue-500 mt-1"
-                              ></i>
-                              <p class="text-gray-800">
-                                Ayudas técnicas sin límite (sillas, audífonos,
-                                comunicadores, ventiladores, etc.)
-                              </p>
-                            </div>
-                            <div class="flex items-start gap-2">
-                              <i
-                                class="fa-solid fa-ambulance text-blue-500 mt-1"
-                              ></i>
-                              <p class="text-gray-800">
-                                Transporte médico gratuito puerta a puerta
-                              </p>
-                            </div>
-                            <div class="flex items-start gap-2">
-                              <i
-                                class="fa-solid fa-graduation-cap text-blue-500 mt-1"
-                              ></i>
-                              <p class="text-gray-800">
-                                Educación inclusiva con profesor sombra
-                              </p>
-                            </div>
-                            <div class="flex items-start gap-2">
-                              <i
-                                class="fa-solid fa-home-heart text-blue-500 mt-1"
-                              ></i>
-                              <p class="text-gray-800">
-                                Cuidados paliativos en casa si los necesita
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Prioridad absoluta en todos los programas sociales
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Si la EPS niega o atrasa, paga
-                            <strong>150 salarios mínimos de multa</strong> y el
-                            Fondo VALENTINA cubre de inmediato
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-500 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Queda <strong>prohibido exigir tutela</strong> para
-                            cualquiera de estos derechos
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-5 md:p-6 rounded-xl text-center"
-                    >
-                      <h4 class="font-black text-xl md:text-2xl mb-3">
-                        RESULTADO:
-                      </h4>
-                      <p class="text-lg md:text-xl font-bold mb-2">
-                        Ningún niño con discapacidad o enfermedad grave vuelve a
-                        sufrir por una tutela.
-                      </p>
-                      <p class="text-lg md:text-xl font-bold">
-                        Ninguna mamá vuelve a llorar porque no sabe cómo pelear
-                        por su hijo.
-                      </p>
-                    </div>
-
-                    <div class="text-center pt-4 md:pt-6">
-                      <button
-                        onclick="descargarLey('valentina')"
-                        class="descargar-ley-btn color-ley-5 hover:scale-105 transition duration-300"
-                      >
-                        <i class="fa-solid fa-download"></i> DESCARGAR LEY
-                        VALENTINA (PDF)
-                      </button>
-                      <p class="text-gray-600 text-sm mt-2">
-                        Borrador completo de la ley listo para implementar
-                      </p>
-                    </div>
+                      <i class="fa-solid fa-download"></i> DESCARGAR LEY
+                      VALENTINA (PDF)
+                    </button>
+                    <p class="text-gray-600 text-sm mt-2">
+                      Borrador completo de la ley listo para implementar
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1850,147 +1954,144 @@
         </div>
 
         <!-- LEY SALVACIÓN -->
-        <div class="mb-16 md:mb-20 ley-salvacion">
-          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
-            <div class="relative p-1 fondo-ley-1 rounded-2xl">
-              <div class="ley-badge color-ley-1">LEY SALVACIÓN</div>
-              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
-                <div class="contenido-propuesta">
-                  <div class="mb-6 md:mb-8">
-                    <p
-                      class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-1 pl-4"
-                    >
-                      Cuando el campo se esté muriendo, Bogotá lo rescata
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-verde">LEY SALVACIÓN</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-green-500 pl-4"
+                  >
+                    Cuando el campo se esté muriendo, Bogotá lo rescata
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200"
+                  >
+                    <p class="text-negro font-bold mb-3 md:mb-4 text-lg">
+                      Imagínate la escena que yo veo cada semana:
+                    </p>
+                    <p class="text-gray-700">
+                      Un campesino de 60 años, manos partidas de tanto trabajo,
+                      sube a su camión viejo con 20 bultos de papa que cuidó día
+                      y noche. Llega a la plaza y le ofrecen $180.000 por todo.
+                      No le alcanza ni para la gasolina de regreso.
                     </p>
                   </div>
 
-                  <div class="space-y-5 md:space-y-6">
-                    <div
-                      class="bg-gray-50 p-4 md:p-6 rounded-xl border borde-ley-1/30"
-                    >
-                      <p class="text-negro font-bold mb-3 md:mb-4 text-lg">
-                        Imagínate la escena que yo veo cada semana:
-                      </p>
-                      <p class="text-gray-700">
-                        Un campesino de 60 años, manos partidas de tanto
-                        trabajo, sube a su camión viejo con 20 bultos de papa
-                        que cuidó día y noche. Llega a la plaza y le ofrecen
-                        $180.000 por todo. No le alcanza ni para la gasolina de
-                        regreso.
-                      </p>
-                    </div>
+                  <p
+                    class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-green-50 rounded-lg"
+                  >
+                    Eso no es un negocio. Eso es un crimen. Yo no vine a la
+                    política a hacerme el de la vista gorda. Vine a cambiarlo
+                    todo.
+                  </p>
 
-                    <p
-                      class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-verde/5 rounded-lg"
+                  <div class="bg-green-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-green-600"
                     >
-                      Eso no es un negocio. Eso es un crimen. Yo no vine a la
-                      política a hacerme el de la vista gorda. Vine a cambiarlo
-                      todo.
-                    </p>
-
-                    <div class="fondo-ley-1 p-5 md:p-6 rounded-xl">
-                      <h4
-                        class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-1"
-                      >
-                        Con la Ley Salvación:
-                      </h4>
-                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-verde text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            <strong>Mínimo seis veces al año</strong> Bogotá
-                            abre un parque o centro de acopio masivo en una
-                            localidad distinta
-                          </p>
+                      Con la Ley Salvación:
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
                         </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-verde text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            El campesino llega directo con su camión lleno de lo
-                            que esté perdiendo esa semana
-                          </p>
+                        <p class="text-gray-800">
+                          <strong>Mínimo seis veces al año</strong> Bogotá abre
+                          un parque o centro de acopio masivo en una localidad
+                          distinta
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
                         </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-verde text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            El Distrito pone <strong>TODO gratis</strong>:
-                            espacio, seguridad 24 horas, baños, energía,
-                            publicidad masiva
-                          </p>
+                        <p class="text-gray-800">
+                          El campesino llega directo con su camión lleno de lo
+                          que esté perdiendo esa semana
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
                         </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-verde text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Tú compras directo de su mano a la tuya, sin
-                            intermediarios, sin revendedores
-                          </p>
+                        <p class="text-gray-800">
+                          El Distrito pone <strong>TODO gratis</strong>:
+                          espacio, seguridad 24 horas, baños, energía,
+                          publicidad masiva
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
                         </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-verde text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            El productor se devuelve a su finca con la dignidad
-                            recuperada y la cosecha salvada
-                          </p>
+                        <p class="text-gray-800">
+                          Tú compras directo de su mano a la tuya, sin
+                          intermediarios, sin revendedores
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
                         </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-verde text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Los especuladores que han vivido del pueblo... se
-                            quedan sin negocio
-                          </p>
+                        <p class="text-gray-800">
+                          El productor se devuelve a su finca con la dignidad
+                          recuperada y la cosecha salvada
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
                         </div>
+                        <p class="text-gray-800">
+                          Los especuladores que han vivido del pueblo... se
+                          quedan sin negocio
+                        </p>
                       </div>
                     </div>
+                  </div>
 
-                    <div
-                      class="bg-red-50 border border-red-200 p-4 md:p-5 rounded-xl"
-                    >
-                      <p class="text-red-800 font-bold text-center">
-                        Esto no es un evento. Esto es el comienzo del fin de la
-                        intermediación abusiva en Colombia.
-                      </p>
-                      <p class="text-red-800 font-bold text-center mt-2">
-                        Primera ley que radico el día 1 en el Congreso.
-                      </p>
-                    </div>
-
-                    <p class="text-gray-700 text-lg text-center font-medium">
-                      No es un favor que le hacemos al campo. Es la deuda
-                      histórica que Bogotá le tiene a quien nos da de comer
-                      todos los días.
+                  <div
+                    class="bg-red-50 border border-red-200 p-4 md:p-5 rounded-xl"
+                  >
+                    <p class="text-red-800 font-bold text-center">
+                      Esto no es un evento. Esto es el comienzo del fin de la
+                      intermediación abusiva en Colombia.
                     </p>
+                    <p class="text-red-800 font-bold text-center mt-2">
+                      Primera ley que radico el día 1 en el Congreso.
+                    </p>
+                  </div>
 
-                    <div class="text-center pt-4 md:pt-6">
-                      <div
-                        class="inline-block bg-verde text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
-                      >
-                        <i class="fa-solid fa-law mr-2"></i> PROYECTO COMPLETO
-                        LISTO
-                      </div>
+                  <p class="text-gray-700 text-lg text-center font-medium">
+                    No es un favor que le hacemos al campo. Es la deuda
+                    histórica que Bogotá le tiene a quien nos da de comer todos
+                    los días.
+                  </p>
+
+                  <div class="text-center pt-4 md:pt-6">
+                    <div
+                      class="inline-block bg-green-500 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
+                    >
+                      <i class="fa-solid fa-law mr-2"></i> PROYECTO COMPLETO
+                      LISTO
                     </div>
                   </div>
                 </div>
@@ -2000,153 +2101,150 @@
         </div>
 
         <!-- LEY 100% LECHE COLOMBIANA -->
-        <div class="mb-16 md:mb-20 ley-leche">
-          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
-            <div class="relative p-1 fondo-ley-2 rounded-2xl">
-              <div class="ley-badge color-ley-2">LEY LECHE 100%</div>
-              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
-                <div class="contenido-propuesta">
-                  <div class="mb-6 md:mb-8">
-                    <p
-                      class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-2 pl-4"
-                    >
-                      Ni un litro botado. Ni un lechero quebrado nunca más
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-indigo">LEY LECHE 100%</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-indigo-500 pl-4"
+                  >
+                    Ni un litro botado. Ni un lechero quebrado nunca más
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-blue-50 p-4 md:p-6 rounded-xl border border-blue-200"
+                  >
+                    <p class="text-gray-700">
+                      <strong class="text-blue-600"
+                        >320.000 familias campesinas</strong
+                      >
+                      viven de la leche. Hoy botan más de
+                      <strong class="text-blue-600"
+                        >50.000 litros diarios</strong
+                      >
+                      porque el precio no alcanza ni para pagar el transporte.
+                    </p>
+                    <p class="text-gray-700 mt-3">
+                      Mientras tanto, en 2025 ya entramos más de
+                      <strong class="text-blue-600"
+                        >54.000 toneladas de lácteos importados</strong
+                      >
+                      (proyectando 72.000 toneladas al cierre del año, 33.000 de
+                      ellas leche en polvo).
                     </p>
                   </div>
 
-                  <div class="space-y-5 md:space-y-6">
-                    <div
-                      class="bg-blue-50 p-4 md:p-6 rounded-xl border borde-ley-2/30"
-                    >
-                      <p class="text-gray-700">
-                        <strong class="texto-ley-2"
-                          >320.000 familias campesinas</strong
-                        >
-                        viven de la leche. Hoy botan más de
-                        <strong class="texto-ley-2"
-                          >50.000 litros diarios</strong
-                        >
-                        porque el precio no alcanza ni para pagar el transporte.
-                      </p>
-                      <p class="text-gray-700 mt-3">
-                        Mientras tanto, en 2025 ya entramos más de
-                        <strong class="texto-ley-2"
-                          >54.000 toneladas de lácteos importados</strong
-                        >
-                        (proyectando 72.000 toneladas al cierre del año, 33.000
-                        de ellas leche en polvo).
-                      </p>
-                    </div>
+                  <p
+                    class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-blue-50 rounded-lg"
+                  >
+                    Yo he estado en esas fincas. He visto al papá lechero abrir
+                    la válvula y dejar correr la leche con lágrimas en los ojos.
+                    Esto se acabó.
+                  </p>
 
+                  <div class="bg-blue-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-blue-600"
+                    >
+                      Con la Ley 100% Leche Colombiana:
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El Estado compra directo al pequeño y mediano lechero
+                          <strong>toda la leche que no pueda vender</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Pagamos <strong>rápido y sin intermediarios</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Construimos una red nacional de plantas de
+                          <strong>leche en polvo 100% colombiana</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Esa leche va
+                          <strong
+                            >obligatoria a colegios, cárceles, hospitales,
+                            batallones</strong
+                          >
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El excedente se vende al pueblo en grandes almacenes
+                          de cadena
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Los lecheros reciben
+                          <strong
+                            >créditos sin interés, subsidios y bonos por
+                            calidad</strong
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center py-4 md:py-6">
                     <p
-                      class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-blue-500/5 rounded-lg"
+                      class="text-2xl md:text-3xl font-black text-blue-600 mb-3"
                     >
-                      Yo he estado en esas fincas. He visto al papá lechero
-                      abrir la válvula y dejar correr la leche con lágrimas en
-                      los ojos. Esto se acabó.
+                      Tu hijo va a tomar leche de vacas colombianas criadas por
+                      familias colombianas.
                     </p>
+                    <p class="text-lg md:text-xl text-gray-800 font-bold">
+                      Soberanía alimentaria de verdad.
+                    </p>
+                  </div>
 
-                    <div class="fondo-ley-2 p-5 md:p-6 rounded-xl">
-                      <h4
-                        class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-2"
-                      >
-                        Con la Ley 100% Leche Colombiana:
-                      </h4>
-                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            El Estado compra directo al pequeño y mediano
-                            lechero
-                            <strong>toda la leche que no pueda vender</strong>
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Pagamos <strong>rápido y sin intermediarios</strong>
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Construimos una red nacional de plantas de
-                            <strong>leche en polvo 100% colombiana</strong>
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Esa leche va
-                            <strong
-                              >obligatoria a colegios, cárceles, hospitales,
-                              batallones</strong
-                            >
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            El excedente se vende al pueblo en grandes almacenes
-                            de cadena
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-blue-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Los lecheros reciben
-                            <strong
-                              >créditos sin interés, subsidios y bonos por
-                              calidad</strong
-                            >
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="text-center py-4 md:py-6">
-                      <p
-                        class="text-2xl md:text-3xl font-black texto-ley-2 mb-3"
-                      >
-                        Tu hijo va a tomar leche de vacas colombianas criadas
-                        por familias colombianas.
-                      </p>
-                      <p class="text-lg md:text-xl text-gray-800 font-bold">
-                        Soberanía alimentaria de verdad.
-                      </p>
-                    </div>
-
-                    <div class="text-center pt-4 md:pt-6">
-                      <div
-                        class="inline-block color-ley-2 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
-                      >
-                        <i class="fa-solid fa-cow mr-2"></i> PROYECTO COMPLETO
-                        LISTO
-                      </div>
+                  <div class="text-center pt-4 md:pt-6">
+                    <div
+                      class="inline-block bg-blue-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
+                    >
+                      <i class="fa-solid fa-cow mr-2"></i> PROYECTO COMPLETO
+                      LISTO
                     </div>
                   </div>
                 </div>
@@ -2156,151 +2254,146 @@
         </div>
 
         <!-- LEY NO MÁS ACOSO DIGITAL -->
-        <div class="mb-16 md:mb-20 ley-acoso">
-          <div class="propuesta-card tarjeta-propuesta shadow-2xl">
-            <div class="relative p-1 fondo-ley-3 rounded-2xl">
-              <div class="ley-badge color-ley-3">LEY NO MÁS ACOSO</div>
-              <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
-                <div class="contenido-propuesta">
-                  <div class="mb-6 md:mb-8">
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-morada">LEY NO MÁS ACOSO</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-purple-500 pl-4"
+                  >
+                    Tu celular vuelve a ser tuyo. De una vez por todas, sin
+                    trucos
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-purple-50 p-4 md:p-6 rounded-xl border border-purple-200"
+                  >
                     <p
-                      class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 borde-ley-3 pl-4"
+                      class="text-xl md:text-2xl font-bold text-purple-600 mb-3"
                     >
-                      Tu celular vuelve a ser tuyo. De una vez por todas, sin
-                      trucos
+                      ¿Cuántas veces te ha pasado?
+                    </p>
+                    <p class="text-gray-700">
+                      Estás en la caja de un almacén, con la fila atrás y los
+                      niños esperando. Para que te den la factura te obligan a
+                      firmar o tocar una pantalla donde, escondido, dice "acepto
+                      recibir publicidad". Si no lo aceptas, no te venden.
+                    </p>
+                    <p class="text-gray-700 mt-3">
+                      Al día siguiente empiezan: 6 a.m. ofreciéndote crédito, 10
+                      p.m. amenazándote por una deuda, WhatsApp cada 5 minutos
+                      con "promociones".
                     </p>
                   </div>
 
-                  <div class="space-y-5 md:space-y-6">
-                    <div
-                      class="bg-purple-50 p-4 md:p-6 rounded-xl border borde-ley-3/30"
-                    >
-                      <p class="text-xl md:text-2xl font-bold texto-ley-3 mb-3">
-                        ¿Cuántas veces te ha pasado?
-                      </p>
-                      <p class="text-gray-700">
-                        Estás en la caja de un almacén, con la fila atrás y los
-                        niños esperando. Para que te den la factura te obligan a
-                        firmar o tocar una pantalla donde, escondido, dice
-                        "acepto recibir publicidad". Si no lo aceptas, no te
-                        venden.
-                      </p>
-                      <p class="text-gray-700 mt-3">
-                        Al día siguiente empiezan: 6 a.m. ofreciéndote crédito,
-                        10 p.m. amenazándote por una deuda, WhatsApp cada 5
-                        minutos con "promociones".
-                      </p>
-                    </div>
+                  <p
+                    class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-purple-50 rounded-lg"
+                  >
+                    Te inscribes en "Dejen de Fregar" y siguen igual. Porque la
+                    ley actual es puro papel. Yo estoy hasta aquí. Y tú también.
+                  </p>
 
+                  <div class="bg-purple-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-purple-600"
+                    >
+                      Con la Ley No Más Acoso Digital:
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong
+                            >Prohibido obligarte a aceptar publicidad</strong
+                          >
+                          para comprar cualquier cosa o recibir factura
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Las casillas estarán
+                          <strong>siempre desmarcadas</strong>. Si la empresa
+                          las pre-marca, multa millonaria automática
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong>Registro Nacional Único</strong>: te inscribes
+                          una sola vez y quedas blindado para siempre
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong>Cobranza solo en horario laboral</strong>.
+                          Prohibido noches, domingos y festivos
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Si después de inscribirte te joden →
+                          <strong>indemnización automática a tu cuenta</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Empresas que no cumplan pagan multas que
+                          <strong>les cierren el call center</strong>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center py-4 md:py-6">
                     <p
-                      class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-purple-500/5 rounded-lg"
+                      class="text-2xl md:text-3xl font-black text-purple-600 mb-3"
                     >
-                      Te inscribes en "Dejen de Fregar" y siguen igual. Porque
-                      la ley actual es puro papel. Yo estoy hasta aquí. Y tú
-                      también.
+                      Tu celular deja de ser un enemigo y vuelve a ser tuyo
                     </p>
+                    <p class="text-lg md:text-xl text-gray-800 font-bold">
+                      Para hablar con tu familia, no para que te vendan como
+                      ganado.
+                    </p>
+                  </div>
 
-                    <div class="fondo-ley-3 p-5 md:p-6 rounded-xl">
-                      <h4
-                        class="font-black text-lg md:text-xl mb-4 md:mb-5 texto-ley-3"
-                      >
-                        Con la Ley No Más Acoso Digital:
-                      </h4>
-                      <div class="grid md:grid-cols-2 gap-4 md:gap-5">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-purple-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            <strong
-                              >Prohibido obligarte a aceptar publicidad</strong
-                            >
-                            para comprar cualquier cosa o recibir factura
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-purple-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Las casillas estarán
-                            <strong>siempre desmarcadas</strong>. Si la empresa
-                            las pre-marca, multa millonaria automática
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-purple-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            <strong>Registro Nacional Único</strong>: te
-                            inscribes una sola vez y quedas blindado para
-                            siempre
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-purple-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            <strong>Cobranza solo en horario laboral</strong>.
-                            Prohibido noches, domingos y festivos
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-purple-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Si después de inscribirte te joden →
-                            <strong
-                              >indemnización automática a tu cuenta</strong
-                            >
-                          </p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="bg-purple-600 text-white rounded-full p-2 mt-1"
-                          >
-                            <i class="fa-solid fa-check text-sm"></i>
-                          </div>
-                          <p class="text-gray-800">
-                            Empresas que no cumplan pagan multas que
-                            <strong>les cierren el call center</strong>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="text-center py-4 md:py-6">
-                      <p
-                        class="text-2xl md:text-3xl font-black texto-ley-3 mb-3"
-                      >
-                        Tu celular deja de ser un enemigo y vuelve a ser tuyo
-                      </p>
-                      <p class="text-lg md:text-xl text-gray-800 font-bold">
-                        Para hablar con tu familia, no para que te vendan como
-                        ganado.
-                      </p>
-                    </div>
-
-                    <div class="text-center pt-4 md:pt-6">
-                      <div
-                        class="inline-block color-ley-3 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
-                      >
-                        <i class="fa-solid fa-shield-alt mr-2"></i> PROYECTO
-                        COMPLETO LISTO
-                      </div>
+                  <div class="text-center pt-4 md:pt-6">
+                    <div
+                      class="inline-block bg-purple-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
+                    >
+                      <i class="fa-solid fa-shield-alt mr-2"></i> PROYECTO
+                      COMPLETO LISTO
                     </div>
                   </div>
                 </div>
@@ -2314,6 +2407,26 @@
           <div
             class="bg-gradient-to-br from-verde to-tierra rounded-3xl p-8 md:p-12 lg:p-16 text-white text-center relative overflow-hidden section-dark-bg"
           >
+            <div class="watermark-container">
+              <div
+                class="watermark-item"
+                style="top: 20%; left: 10%; font-size: 200px"
+              >
+                106
+              </div>
+              <div
+                class="watermark-item"
+                style="top: 60%; right: 15%; font-size: 180px"
+              >
+                106
+              </div>
+              <div
+                class="watermark-item"
+                style="bottom: 30%; left: 20%; font-size: 220px"
+              >
+                106
+              </div>
+            </div>
             <div class="relative z-10">
               <h3
                 class="font-titulo font-black text-2xl md:text-4xl lg:text-5xl mb-6 md:mb-8"
@@ -2375,6 +2488,32 @@
       id="testimonios"
       class="py-12 md:py-24 bg-negro relative overflow-hidden section-dark-bg"
     >
+      <div class="watermark-container">
+        <div
+          class="watermark-item"
+          style="top: 18%; left: 12%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 18%; right: 12%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 50%; left: 8%; font-size: 160px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 5%; font-size: 190px"
+        >
+          106
+        </div>
+      </div>
       <div class="container mx-auto px-4 md:px-6 relative z-10">
         <div class="text-center mb-8 md:mb-16">
           <div
@@ -2405,6 +2544,7 @@
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
                   style="min-height: 400px"
                 >
+                  <!-- REEMPLAZAR CON VIDEO 1 -->
                   <video
                     class="w-full h-full object-cover"
                     autoplay
@@ -2477,6 +2617,7 @@
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
                   style="min-height: 400px"
                 >
+                  <!-- REEMPLAZAR CON VIDEO 2 -->
                   <video
                     class="w-full h-full object-cover"
                     autoplay
@@ -2549,6 +2690,7 @@
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
                   style="min-height: 400px"
                 >
+                  <!-- REEMPLAZAR CON VIDEO 3 -->
                   <video
                     class="w-full h-full object-cover"
                     autoplay
@@ -2637,7 +2779,32 @@
 
     <!-- REELS HORIZONTALES (CLARO) -->
     <section id="multimedia" class="py-20 bg-white relative section-light">
-      <div class="watermark-container" id="wm-reels"></div>
+      <div class="watermark-container" id="wm-reels">
+        <div
+          class="watermark-item"
+          style="top: 22%; left: 15%; font-size: 190px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 22%; right: 10%; font-size: 210px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 45%; right: 18%; font-size: 170px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 35%; left: 8%; font-size: 200px"
+        >
+          106
+        </div>
+      </div>
       <div class="container mx-auto px-0 relative z-10">
         <div class="text-center mb-10 px-4">
           <h2 class="font-titulo font-black text-4xl text-negro">
@@ -2656,6 +2823,7 @@
             target="_blank"
             class="reel-card group"
           >
+            <!-- REEMPLAZAR CON IMAGEN REEL 1 -->
             <img src="img/video1.jpg" loading="lazy" alt="Reel 1" />
             <div
               class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full"
@@ -2677,6 +2845,7 @@
             target="_blank"
             class="reel-card group"
           >
+            <!-- REEMPLAZAR CON IMAGEN REEL 2 -->
             <img src="img/video2.jpg" loading="lazy" alt="Reel 2" />
             <div
               class="absolute top-4 right-4 bg-black text-white text-xs font-bold px-3 py-1 rounded-full border border-gray-700"
@@ -2698,6 +2867,7 @@
             target="_blank"
             class="reel-card group"
           >
+            <!-- REEMPLAZAR CON IMAGEN REEL 3 -->
             <img src="img/video3.jpg" loading="lazy" alt="Reel 3" />
             <div
               class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full"
@@ -2719,6 +2889,7 @@
             target="_blank"
             class="reel-card group"
           >
+            <!-- REEMPLAZAR CON IMAGEN REEL 4 -->
             <img src="img/video4.jpg" loading="lazy" alt="Reel 4" />
             <div
               class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full"
@@ -2740,7 +2911,32 @@
 
     <!-- CONTACTO (OSCURO) -->
     <section id="contacto" class="py-20 bg-negro relative section-dark">
-      <div class="watermark-container" id="wm-contacto"></div>
+      <div class="watermark-container" id="wm-contacto">
+        <div
+          class="watermark-item"
+          style="top: 22%; left: 12%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 22%; right: 15%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 50%; left: 8%; font-size: 220px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 8%; font-size: 190px"
+        >
+          106
+        </div>
+      </div>
       <div class="container mx-auto px-4 relative z-10 max-w-4xl">
         <div
           class="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl"
@@ -2837,7 +3033,26 @@
     <footer
       class="bg-negro text-white py-12 border-t border-gray-800 section-dark relative overflow-hidden"
     >
-      <div class="watermark-container" id="wm-footer"></div>
+      <div class="watermark-container" id="wm-footer">
+        <div
+          class="watermark-item"
+          style="top: 35%; left: 12%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 35%; right: 12%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 60%; right: 8%; font-size: 160px"
+        >
+          106
+        </div>
+      </div>
       <div
         class="container mx-auto px-4 relative z-10 text-center md:text-left"
       >
@@ -2874,16 +3089,28 @@
           <div>
             <h4 class="font-bold text-girasol mb-4">SÍGUENOS</h4>
             <div class="flex gap-4 justify-center md:justify-start">
-              <a href="#" class="text-2xl hover:text-girasol"
+              <a
+                href="https://www.instagram.com/soycampesinocol/"
+                target="_blank"
+                class="text-2xl hover:text-girasol"
                 ><i class="fa-brands fa-instagram"></i
               ></a>
-              <a href="#" class="text-2xl hover:text-girasol"
+              <a
+                href="https://www.tiktok.com/@soycampesinocol"
+                target="_blank"
+                class="text-2xl hover:text-girasol"
                 ><i class="fa-brands fa-tiktok"></i
               ></a>
-              <a href="#" class="text-2xl hover:text-girasol"
+              <a
+                href="https://www.facebook.com/soycampesinocol"
+                target="_blank"
+                class="text-2xl hover:text-girasol"
                 ><i class="fa-brands fa-facebook"></i
               ></a>
-              <a href="#" class="text-2xl hover:text-girasol"
+              <a
+                href="https://www.youtube.com/c/SoyCampesinooficial"
+                target="_blank"
+                class="text-2xl hover:text-girasol"
                 ><i class="fa-brands fa-youtube"></i
               ></a>
             </div>
@@ -2930,48 +3157,41 @@
           acoso: "Ley No Más Acoso Digital",
         };
 
-        const pdfUrls = {
-          papaton: "pdf/ley-papaton-colombia.pdf",
-          valentina: "pdf/ley-valentina.pdf",
-          salvacion: "pdf/ley-salvacion.pdf",
-          leche: "pdf/ley-leche-100-colombiana.pdf",
-          acoso: "pdf/ley-no-mas-acoso-digital.pdf",
-        };
-
         Swal.fire({
           title: "¡Descarga iniciada!",
           html: `
-            <div class="text-left">
-              <p class="mb-3">El borrador completo de <strong>${
-                leyNombres[tipo]
-              }</strong> está siendo descargado.</p>
-              <p class="mb-2"><strong>📋 Contenido del PDF:</strong></p>
-              <ul class="list-disc pl-5 text-left" style="font-size: ${
-                isMobileDevice ? "14px" : "16px"
-              }">
-                <li>Texto completo de la ley</li>
-                <li>Exposición de motivos</li>
-                <li>Artículos detallados</li>
-                <li>Planes de implementación</li>
-                <li>Presupuesto estimado</li>
-              </ul>
-              <p class="mt-3 text-sm">Si la descarga no inicia automáticamente, revisa la carpeta de descargas de tu dispositivo.</p>
-            </div>
-          `,
+                    <div class="text-left">
+                        <p class="mb-3">El borrador completo de <strong>${
+                          leyNombres[tipo]
+                        }</strong> está siendo descargado.</p>
+                        <p class="mb-2"><strong>📋 Contenido del PDF:</strong></p>
+                        <ul class="list-disc pl-5 text-left" style="font-size: ${
+                          isMobileDevice ? "14px" : "16px"
+                        }">
+                            <li>Texto completo de la ley</li>
+                            <li>Exposición de motivos</li>
+                            <li>Artículos detallados</li>
+                            <li>Planes de implementación</li>
+                            <li>Presupuesto estimado</li>
+                        </ul>
+                        <p class="mt-3 text-sm">Si la descarga no inicia automáticamente, revisa la carpeta de descargas de tu dispositivo.</p>
+                    </div>
+                `,
           icon: "success",
           confirmButtonColor: "#009440",
           confirmButtonText: "¡Entendido!",
           width: isMobileDevice ? "90%" : "500px",
         });
 
-        // Crear enlace de descarga
-        const link = document.createElement("a");
-        link.href = pdfUrls[tipo];
-        link.download = `${leyNombres[tipo]}.pdf`;
-        link.target = "_blank";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Simulación de descarga
+        console.log(`Descargando ley: ${leyNombres[tipo]}`);
+
+        setTimeout(() => {
+          const link = document.createElement("a");
+          link.href = "#";
+          link.download = `${leyNombres[tipo]}.pdf`;
+          link.click();
+        }, 1000);
       }
 
       // === PRELOADER ===
@@ -2998,7 +3218,6 @@
 
             // Inicializar animaciones después del preloader
             initAnimations();
-            generateWatermarks();
           }, 500);
         }, 1500);
       });
@@ -3037,7 +3256,7 @@
         });
       });
 
-      // === CARRUSEL TESTIMONIOS ===
+      // === CARRUSEL TESTIMONIOS RESPONSIVO ===
       let currentTestimonio = 0;
       const testimonios = document.querySelectorAll(
         ".carousel-slide-testimonios"
@@ -3079,47 +3298,7 @@
         setInterval(nextTestimonio, 6000);
       }
 
-      // === MARCA DE AGUA INYECTADA ===
-      function generateWatermarks() {
-        const sections = [
-          "wm-hero",
-          "wm-logros",
-          "wm-propuestas",
-          "wm-historia",
-          "wm-reels",
-          "wm-contacto",
-          "wm-footer",
-        ];
-
-        sections.forEach((id) => {
-          const container = document.getElementById(id);
-          if (!container) return;
-
-          container.innerHTML = "";
-
-          for (let i = 0; i < 12; i++) {
-            const el = document.createElement("div");
-            el.classList.add("watermark-item");
-            el.textContent = "106";
-
-            const top = Math.floor(Math.random() * 100);
-            const left = Math.floor(Math.random() * 100);
-            const size = Math.floor(Math.random() * (160 - 80) + 80);
-            const delay = Math.random() * 5;
-            const rotation = Math.floor(Math.random() * 360);
-
-            el.style.top = `${top}%`;
-            el.style.left = `${left}%`;
-            el.style.fontSize = `${size}px`;
-            el.style.animationDelay = `-${delay}s`;
-            el.style.transform = `rotate(${rotation}deg)`;
-
-            container.appendChild(el);
-          }
-        });
-      }
-
-      // === CONTADOR ANIMADO ===
+      // === CONTADOR ANIMADO RESPONSIVO ===
       const counters = document.querySelectorAll(".counter");
       const speed = 200;
 
@@ -3156,7 +3335,7 @@
 
       counters.forEach((counter) => observer.observe(counter));
 
-      // === FORMULARIO FIREBASE ===
+      // === FORMULARIO FIREBASE RESPONSIVO ===
       document
         .getElementById("contactForm")
         .addEventListener("submit", async (e) => {
@@ -3180,6 +3359,7 @@
             return;
           }
 
+          // Validar teléfono
           const phoneRegex = /^[0-9\s\-\+\(\)]{7,15}$/;
           if (!phoneRegex.test(telefono)) {
             Swal.fire({
@@ -3194,6 +3374,14 @@
           }
 
           try {
+            console.log("Enviando datos a Firebase:", {
+              nombre,
+              apellido,
+              telefono,
+              localidad,
+              ayuda,
+            });
+
             const volunteerData = {
               nombre: nombre,
               apellido: apellido,
@@ -3215,18 +3403,18 @@
             Swal.fire({
               title: "¡Registro Exitoso! 🎉",
               html: `
-              <div style="text-align: left; font-size: ${
-                isMobileDevice ? "14px" : "16px"
-              }">
-                <p><strong>Nombre:</strong> ${nombre} ${apellido}</p>
-                <p><strong>Teléfono:</strong> ${telefono}</p>
-                <p><strong>Localidad:</strong> ${localidad}</p>
-                <p><strong>Ayuda:</strong> ${ayuda}</p>
-              </div>
-              <p style="margin-top: 15px; font-size: ${
-                isMobileDevice ? "14px" : "16px"
-              }">¡Gracias por unirte al movimiento! Pronto nos pondremos en contacto contigo.</p>
-            `,
+                    <div style="text-align: left; font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">
+                        <p><strong>Nombre:</strong> ${nombre} ${apellido}</p>
+                        <p><strong>Teléfono:</strong> ${telefono}</p>
+                        <p><strong>Localidad:</strong> ${localidad}</p>
+                        <p><strong>Ayuda:</strong> ${ayuda}</p>
+                    </div>
+                    <p style="margin-top: 15px; font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">¡Gracias por unirte al movimiento! Pronto nos pondremos en contacto contigo.</p>
+                `,
               icon: "success",
               confirmButtonColor: "#009440",
               confirmButtonText: "¡Entendido!",
@@ -3240,13 +3428,13 @@
             Swal.fire({
               title: "Error en el registro",
               html: `
-              <p style="font-size: ${
-                isMobileDevice ? "14px" : "16px"
-              }">Hubo un problema al registrar tu información.</p>
-              <p style="margin-top: 10px; font-size: ${
-                isMobileDevice ? "14px" : "16px"
-              }">Por favor intenta de nuevo o contacta al soporte.</p>
-            `,
+                    <p style="font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">Hubo un problema al registrar tu información.</p>
+                    <p style="margin-top: 10px; font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">Por favor intenta de nuevo o contacta al soporte.</p>
+                `,
               icon: "error",
               confirmButtonColor: "#009440",
               confirmButtonText: "Reintentar",
@@ -3255,48 +3443,42 @@
           }
         });
 
-      // === GSAP ANIMATIONS ===
+      // === GSAP SCROLL ANIMATIONS RESPONSIVAS ===
       function initAnimations() {
-        if (
-          typeof gsap !== "undefined" &&
-          typeof ScrollTrigger !== "undefined"
-        ) {
-          gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger);
 
-          if (!isMobileDevice || isTablet) {
-            // Animaciones para secciones
-            gsap.utils.toArray("section").forEach((section) => {
-              gsap.from(section, {
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 80%",
-                  end: "top 20%",
-                  scrub: 1,
-                  markers: false,
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-              });
+        if (!isMobileDevice || isTablet) {
+          gsap.utils.toArray("section").forEach((section) => {
+            gsap.from(section, {
+              scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false,
+              },
+              opacity: 0,
+              y: 50,
+              duration: 1,
             });
+          });
 
-            // Animaciones para propuestas
-            gsap.utils.toArray(".propuesta-card").forEach((card, index) => {
-              gsap.from(card, {
-                scrollTrigger: {
-                  trigger: card,
-                  start: "top 85%",
-                  end: "top 15%",
-                  scrub: 1,
-                  markers: false,
-                },
-                opacity: 0,
-                y: 80,
-                duration: 1.2,
-                delay: index * 0.1,
-              });
+          // Animación específica para propuestas
+          gsap.utils.toArray(".propuesta-card").forEach((card, index) => {
+            gsap.from(card, {
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                end: "top 15%",
+                scrub: 1,
+                markers: false,
+              },
+              opacity: 0,
+              y: 80,
+              duration: 1.2,
+              delay: index * 0.1,
             });
-          }
+          });
         }
       }
 
@@ -3312,12 +3494,13 @@
         }
       }
 
-      // Ejecutar ajustes
+      // Ejecutar al cargar y al cambiar tamaño/orientación
       adjustHeroForMobile();
       window.addEventListener("resize", adjustHeroForMobile);
       window.addEventListener("orientationchange", () => {
         setTimeout(() => {
           adjustHeroForMobile();
+          // Forzar redibujado en iOS
           if (isIOS) {
             document.body.style.display = "none";
             setTimeout(() => {
@@ -3337,6 +3520,7 @@
           navbar.classList.add("shadow-xl");
           navbar.classList.remove("shadow-lg");
 
+          // Ocultar/mostrar navbar en móviles
           if (isMobileDevice) {
             if (currentScroll > lastScroll && currentScroll > 100) {
               navbar.style.transform = "translateY(-100%)";
@@ -3355,27 +3539,75 @@
         lastScroll = currentScroll;
       });
 
-      // === DETECCIÓN DE MODO OSCURO/CLARO ===
-      function detectColorScheme() {
-        const darkModeMediaQuery = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        );
+      // === OPTIMIZACIONES TÁCTILES ===
+      document
+        .querySelectorAll("button, a.btn, .ley-btn, .descargar-ley-btn")
+        .forEach((element) => {
+          element.classList.add("touch-target");
+          element.style.cursor = "pointer";
 
-        function updateForColorScheme(e) {
-          if (e.matches) {
-            document.body.classList.add("dark-mode-detected");
-            console.log("Modo oscuro detectado");
-          } else {
-            document.body.classList.remove("dark-mode-detected");
-            console.log("Modo claro detectado");
+          // Prevenir zoom en doble tap en iOS
+          if (isIOS) {
+            element.addEventListener(
+              "touchstart",
+              function () {
+                this.style.fontSize = "16px";
+              },
+              { passive: true }
+            );
           }
-        }
+        });
 
-        updateForColorScheme(darkModeMediaQuery);
-        darkModeMediaQuery.addEventListener("change", updateForColorScheme);
+      // === PREVENIR ZOOM EN INPUTS EN iOS ===
+      if (isIOS) {
+        document.addEventListener("touchstart", function () {}, {
+          passive: true,
+        });
+
+        document.querySelectorAll("input, select, textarea").forEach((el) => {
+          el.addEventListener("focus", () => {
+            el.style.fontSize = "16px";
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 100);
+          });
+
+          el.addEventListener("blur", () => {
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 100);
+          });
+        });
       }
 
-      // === SMOOTH SCROLL ===
+      // === LAZY LOADING PARA IMÁGENES ===
+      if ("loading" in HTMLImageElement.prototype) {
+        document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+          img.loading = "lazy";
+        });
+      } else {
+        // Polyfill para lazy loading
+        const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+        let lazyImageObserver = new IntersectionObserver(function (
+          entries,
+          observer
+        ) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              let lazyImage = entry.target;
+              lazyImage.src = lazyImage.dataset.src;
+              lazyImage.classList.remove("lazy");
+              lazyImageObserver.unobserve(lazyImage);
+            }
+          });
+        });
+
+        lazyImages.forEach(function (lazyImage) {
+          lazyImageObserver.observe(lazyImage);
+        });
+      }
+
+      // === SMOOTH SCROLL PARA ANCHORS (MEJORADO PARA MÓVILES) ===
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const targetId = this.getAttribute("href");
@@ -3385,13 +3617,14 @@
           if (targetElement) {
             e.preventDefault();
 
-            // Cerrar menú móvil
+            // Cerrar menú móvil si está abierto
             const mobileMenu = document.getElementById("mobile-menu");
             if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
               mobileMenu.classList.add("hidden");
               document.body.style.overflow = "auto";
             }
 
+            // Calcular offset basado en dispositivo
             const offset = isMobileDevice ? 70 : 80;
             const elementPosition = targetElement.getBoundingClientRect().top;
             const offsetPosition =
@@ -3405,67 +3638,60 @@
         });
       });
 
+      // === INICIALIZACIÓN ADICIONAL PARA MÓVILES ===
+      if (isMobileDevice) {
+        document.body.style.webkitTapHighlightColor = "transparent";
+
+        // Deshabilitar transformaciones hover en móviles
+        document
+          .querySelectorAll(".hover\\:scale-105, .hover\\:scale-110")
+          .forEach((el) => {
+            el.style.transform = "none";
+          });
+
+        // Mejorar scroll en iOS
+        if (isIOS) {
+          document.body.style.webkitOverflowScrolling = "touch";
+        }
+      }
+
+      // === DETECCIÓN DE MODO OSCURO/CLARO ===
+      function detectColorScheme() {
+        const darkModeMediaQuery = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        );
+
+        function updateForColorScheme(e) {
+          if (e.matches) {
+            // Modo oscuro detectado
+            document.body.classList.add("dark-mode-detected");
+          } else {
+            // Modo claro detectado
+            document.body.classList.remove("dark-mode-detected");
+          }
+        }
+
+        // Ejecutar al cargar
+        updateForColorScheme(darkModeMediaQuery);
+
+        // Escuchar cambios
+        darkModeMediaQuery.addEventListener("change", updateForColorScheme);
+      }
+
       // === INICIALIZAR TODO ===
       document.addEventListener("DOMContentLoaded", () => {
         adjustHeroForMobile();
         detectColorScheme();
 
-        // Optimizaciones táctiles
-        document
-          .querySelectorAll("button, a.btn, .ley-btn, .descargar-ley-btn")
-          .forEach((element) => {
-            element.classList.add("touch-target");
-            element.style.cursor = "pointer";
-
-            if (isIOS) {
-              element.addEventListener(
-                "touchstart",
-                function () {
-                  this.style.fontSize = "16px";
-                },
-                { passive: true }
-              );
-            }
-          });
-
-        // Prevenir zoom en iOS
-        if (isIOS) {
-          document.addEventListener("touchstart", function () {}, {
-            passive: true,
-          });
-
-          document.querySelectorAll("input, select, textarea").forEach((el) => {
-            el.addEventListener("focus", () => {
-              el.style.fontSize = "16px";
-              setTimeout(() => {
-                window.scrollTo(0, 0);
-              }, 100);
-            });
-
-            el.addEventListener("blur", () => {
-              setTimeout(() => {
-                window.scrollTo(0, 0);
-              }, 100);
-            });
-          });
-
-          document.body.style.webkitOverflowScrolling = "touch";
-        }
-
-        // Lazy loading
-        if ("loading" in HTMLImageElement.prototype) {
-          document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
-            img.loading = "lazy";
-          });
-        }
-
+        // Forzar redibujado después de un tiempo
         setTimeout(() => {
           document.body.style.opacity = "1";
         }, 100);
       });
 
-      // Manejar evento beforeunload
+      // Manejar el evento antes de que la página se descargue
       window.addEventListener("beforeunload", () => {
+        // Limpiar cualquier estado que pueda causar problemas
         document.body.style.overflow = "auto";
       });
     </script>
