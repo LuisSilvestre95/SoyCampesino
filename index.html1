@@ -2,29 +2,38 @@
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <!-- CORREGIDO: Meta viewport optimizado para móviles -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Diego Guerrero | La Voz del Campo - Soy Campesino</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Diego Guerrero | Voto 106 - La Voz del Campo - Soy Campesino</title>
+
+    <!-- Favicon Dinámico -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥔</text></svg>"
     />
 
+    <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Iconos Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
+    <!-- Librerías JS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Configuración Firebase -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
       import {
@@ -46,44 +55,17 @@
       try {
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-
         window.firebaseDB = db;
         window.firebaseAddDoc = addDoc;
         window.firebaseCollection = collection;
-
-        console.log("✅ Firebase inicializado correctamente");
+        console.log("✅ Firebase listo");
       } catch (error) {
-        console.error("❌ Error inicializando Firebase:", error);
+        console.error("❌ Error Firebase:", error);
       }
     </script>
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              verde: "#009440",
-              tierra: "#5D4037",
-              girasol: "#FFD100",
-              arena: "#f4f1ea",
-              negro: "#1a1a1a",
-            },
-            fontFamily: {
-              titulo: ["Montserrat", "sans-serif"],
-              cuerpo: ["Open Sans", "sans-serif"],
-            },
-            screens: {
-              xs: "480px",
-              "3xl": "1920px",
-              "4xl": "2560px",
-            },
-          },
-        },
-      };
-    </script>
-
     <style>
-      /* === RESET Y BASE RESPONSIVA === */
+      /* ===== RESET Y BASE ===== */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -92,8 +74,8 @@
       }
 
       html {
-        font-size: 16px;
         scroll-behavior: smooth;
+        font-size: 16px;
         -webkit-text-size-adjust: 100%;
         -moz-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
@@ -102,17 +84,297 @@
 
       body {
         font-family: "Open Sans", sans-serif;
-        line-height: 1.6;
-        color: #1a1a1a;
-        background-color: #f4f1ea;
         overflow-x: hidden;
         width: 100%;
-        cursor: auto;
+        position: relative;
+        background: #f0e9de;
+        color: #1a1a1a;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
 
-      /* === CURSOR PAPA (SOLO DESKTOP) === */
+      /* ===== SISTEMA DE CONTRASTE MEJORADO ===== */
+      :root {
+        --color-fondo: #f0e9de;
+        --color-texto: #1a1a1a;
+        --color-botones: #009440;
+        --color-botones-texto: #ffffff;
+        --color-tarjetas: #ffffff;
+        --color-sombra: rgba(0, 0, 0, 0.1);
+        --color-marca-agua-claro: rgba(0, 148, 64, 0.15);
+        --color-marca-agua-oscuro: rgba(255, 209, 0, 0.25);
+      }
+
+      /* MODO OSCURO solo si el usuario lo prefiere */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-fondo: #1a1a1a;
+          --color-texto: #f0f0f0;
+          --color-botones: #00a74a;
+          --color-botones-texto: #ffffff;
+          --color-tarjetas: #2d2d2d;
+          --color-sombra: rgba(0, 0, 0, 0.3);
+          --color-marca-agua-claro: rgba(0, 148, 64, 0.25);
+          --color-marca-agua-oscuro: rgba(255, 209, 0, 0.3);
+        }
+
+        body {
+          background-color: var(--color-fondo) !important;
+          color: var(--color-texto) !important;
+        }
+      }
+
+      /* ===== CORRECCIÓN ESPECIAL PARA DESKTOP - FORZAR MODO CLARO PERO CON COLORES VIBRANTES ===== */
+      @media (min-width: 1024px) {
+        /* Mantener el fondo arena pero asegurar contraste */
+        body {
+          background: #f0e9de !important;
+          color: #1a1a1a !important;
+        }
+
+        /* Las tarjetas de propuestas SIEMPRE con fondo blanco y texto negro en desktop */
+        .propuesta-card-desktop {
+          background-color: #ffffff !important;
+          color: #000000 !important;
+          border: 1px solid rgba(0, 0, 0, 0.1) !important;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .propuesta-card-desktop *:not(.ley-badge, .ley-badge *, i.fa-solid) {
+          color: #000000 !important;
+        }
+
+        .propuesta-card-desktop .text-gray-700,
+        .propuesta-card-desktop .text-gray-800 {
+          color: #333333 !important;
+        }
+
+        .propuesta-card-desktop .text-red-800 {
+          color: #991b1b !important;
+        }
+
+        .propuesta-card-desktop .text-blue-600 {
+          color: #1d4ed8 !important;
+        }
+
+        .propuesta-card-desktop .text-orange-600 {
+          color: #ea580c !important;
+        }
+
+        .propuesta-card-desktop .text-green-600 {
+          color: #15803d !important;
+        }
+
+        .propuesta-card-desktop .text-purple-600 {
+          color: #7c3aed !important;
+        }
+
+        /* Fondos de secciones claras en desktop */
+        .section-light-desktop {
+          background: #ffffff !important;
+        }
+
+        /* Asegurar que el navbar sea visible */
+        nav {
+          background-color: #ffffff !important;
+          border-bottom: 4px solid #009440 !important;
+        }
+
+        nav a {
+          color: #000000 !important;
+        }
+
+        nav a:hover {
+          color: #009440 !important;
+        }
+
+        /* Mejorar formulario en modo claro */
+        #contactForm input,
+        #contactForm select,
+        #contactForm textarea {
+          background-color: rgba(0, 0, 0, 0.08) !important;
+          border-color: rgba(0, 0, 0, 0.15) !important;
+          color: #ffffff !important;
+        }
+
+        #contactForm input::placeholder,
+        #contactForm textarea::placeholder {
+          color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        #contactForm input:focus,
+        #contactForm select:focus,
+        #contactForm textarea:focus {
+          background-color: rgba(255, 255, 255, 0.2) !important;
+          border-color: #ffd100 !important;
+          box-shadow: 0 0 15px rgba(255, 209, 0, 0.4) !important;
+        }
+
+        #contactForm select option {
+          background: #1a1a1a !important;
+          color: #ffffff !important;
+        }
+      }
+
+      /* ===== MARCA DE AGUA "106" INTELIGENTE - MEJORADA ===== */
+      .watermark-106-global {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+        mix-blend-mode: multiply;
+      }
+
+      .watermark-item {
+        position: absolute;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        user-select: none;
+        animation: floatWatermark 25s ease-in-out infinite;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
+          0 0 8px rgba(255, 255, 255, 0.3);
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        opacity: 0.25;
+      }
+
+      .watermark-106-global .watermark-item {
+        color: rgba(0, 148, 64, 0.12);
+        animation: floatWatermark 30s linear infinite;
+        opacity: 0.15;
+        mix-blend-mode: multiply;
+      }
+
+      .section-dark-bg .watermark-item {
+        color: rgba(255, 209, 0, 0.15);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .section-light .watermark-item {
+        color: var(--color-marca-agua-claro);
+        text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.6),
+          0 0 12px rgba(255, 255, 255, 0.4), 0 0 20px rgba(0, 148, 64, 0.2);
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
+      }
+
+      .section-dark .watermark-item {
+        color: var(--color-marca-agua-oscuro);
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 12px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(255, 209, 0, 0.3);
+        -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.5);
+      }
+
+      @keyframes floatWatermark {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(-10deg);
+          opacity: 0.2;
+        }
+        25% {
+          transform: translate(40px, -50px) rotate(8deg);
+          opacity: 0.25;
+        }
+        50% {
+          transform: translate(-30px, 40px) rotate(-8deg);
+          opacity: 0.15;
+        }
+        75% {
+          transform: translate(50px, 30px) rotate(5deg);
+          opacity: 0.22;
+        }
+      }
+
+      /* Posiciones de las marcas de agua */
+      .watermark-106-global .watermark-item:nth-child(1) {
+        top: 5%;
+        left: 5%;
+        font-size: 180px;
+        animation-delay: 0s;
+        animation-duration: 35s;
+      }
+      .watermark-106-global .watermark-item:nth-child(2) {
+        top: 12%;
+        left: 30%;
+        font-size: 150px;
+        animation-delay: 3s;
+        animation-duration: 32s;
+      }
+      .watermark-106-global .watermark-item:nth-child(3) {
+        top: 20%;
+        left: 65%;
+        font-size: 220px;
+        animation-delay: 6s;
+        animation-duration: 38s;
+      }
+      .watermark-106-global .watermark-item:nth-child(4) {
+        top: 28%;
+        left: 15%;
+        font-size: 170px;
+        animation-delay: 9s;
+        animation-duration: 34s;
+      }
+      .watermark-106-global .watermark-item:nth-child(5) {
+        top: 35%;
+        left: 80%;
+        font-size: 200px;
+        animation-delay: 12s;
+        animation-duration: 36s;
+      }
+      .watermark-106-global .watermark-item:nth-child(6) {
+        top: 45%;
+        left: 45%;
+        font-size: 160px;
+        animation-delay: 15s;
+        animation-duration: 33s;
+      }
+      .watermark-106-global .watermark-item:nth-child(7) {
+        top: 55%;
+        left: 20%;
+        font-size: 210px;
+        animation-delay: 18s;
+        animation-duration: 37s;
+      }
+      .watermark-106-global .watermark-item:nth-child(8) {
+        top: 65%;
+        left: 70%;
+        font-size: 180px;
+        animation-delay: 21s;
+        animation-duration: 35s;
+      }
+      .watermark-106-global .watermark-item:nth-child(9) {
+        top: 75%;
+        left: 35%;
+        font-size: 240px;
+        animation-delay: 24s;
+        animation-duration: 39s;
+      }
+      .watermark-106-global .watermark-item:nth-child(10) {
+        top: 85%;
+        left: 60%;
+        font-size: 150px;
+        animation-delay: 27s;
+        animation-duration: 31s;
+      }
+
+      section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .watermark-container {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      /* ===== CURSOR PAPA PERSONALIZADO (SOLO DESKTOP) ===== */
       .potato-cursor {
         position: fixed;
         top: 0;
@@ -123,43 +385,50 @@
         transform: translate(-50%, -50%);
         filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3));
         display: none;
+        animation: bouncePotato 0.6s ease infinite alternate;
+      }
+
+      @keyframes bouncePotato {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
       }
 
       @media (min-width: 1024px) {
         .potato-cursor {
           display: block;
         }
-        
         body {
           cursor: none;
         }
       }
 
-      /* === PRELOADER OPTIMIZADO === */
+      /* ===== PRELOADER ANIMADO ===== */
       #preloader {
         position: fixed;
         inset: 0;
-        z-index: 100000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        z-index: 10000;
         background: linear-gradient(
           135deg,
           #87ceeb 0%,
           #e0f6ff 50%,
           #ffe4b5 100%
         );
-        will-change: opacity;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s;
       }
 
       #preloader.hidden {
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.5s ease-out;
       }
 
-      /* CAMPESINO 3D SIMULADO */
       .campesino-3d {
         font-size: clamp(60px, 15vw, 120px);
         margin-bottom: clamp(15px, 4vw, 30px);
@@ -186,7 +455,6 @@
         }
       }
 
-      /* BARRA DE PROGRESO */
       .progress-bar-container {
         width: min(90vw, 300px);
         height: 8px;
@@ -204,110 +472,261 @@
         transition: width 0.1s linear;
       }
 
-      /* TEXTURA GLOBAL */
-      .texture-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-        opacity: 0.4;
-        pointer-events: none;
-        z-index: -1;
+      /* ===== NAVBAR MEJORADA ===== */
+      nav {
+        background-color: #ffffff !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 4px solid #009440 !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
       }
 
-      /* === IMÁGENES Y VIDEOS 4K UHD RESPONSIVOS === */
-      .responsive-img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
+      nav a {
+        color: #000000 !important;
+        font-weight: 700 !important;
+        text-shadow: none !important;
       }
 
-      .bg-4k {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 100%;
+      nav a:hover {
+        color: #009440 !important;
       }
 
-      .video-container {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
+      nav .bg-girasol {
+        background: linear-gradient(135deg, #ffd100, #ffb300) !important;
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+        font-weight: 900 !important;
       }
 
-      .video-container video,
-      .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .video-vertical {
-        padding-bottom: 177.78%;
-      }
-
-      /* VIDEO CAROUSEL - OPTIMIZADO PARA TODAS LAS PANTALLAS */
-      .carousel-container {
-        position: relative;
-        overflow: hidden;
-        background: #000;
-        border-radius: 1.5rem;
-      }
-
-      .carousel-track {
+      /* ===== HERO SECTION MEJORADA ===== */
+      .hero-section {
+        height: 100vh;
+        min-height: 100svh;
         display: flex;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: transform;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
       }
 
-      .carousel-slide {
-        min-width: 100%;
-        flex-shrink: 0;
+      .hero-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* ===== PROPUESTAS DE LEY - TEXTO VISIBLE MEJORADO ===== */
+      .ley-content,
+      .propuesta-card,
+      .propuesta-card .bg-white {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        position: relative;
+        z-index: 10;
+      }
+
+      .propuesta-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .propuesta-card .bg-white {
+        background: #ffffff !important;
+        padding: 2rem;
+      }
+
+      /* Asegurar que TODO el texto sea visible */
+      .propuesta-card,
+      .propuesta-card *:not(.ley-badge, .ley-badge *, i.fa-solid) {
+        color: #000000 !important;
+        position: relative;
+        z-index: 10;
+      }
+
+      .propuesta-card p,
+      .propuesta-card h3,
+      .propuesta-card h4,
+      .propuesta-card li,
+      .propuesta-card span,
+      .propuesta-card div:not(.ley-badge) {
+        color: #000000 !important;
+      }
+
+      .propuesta-card .text-gray-700,
+      .propuesta-card .text-gray-800 {
+        color: #333333 !important;
+      }
+
+      .propuesta-card .text-red-800 {
+        color: #991b1b !important;
+      }
+
+      .propuesta-card .text-blue-600 {
+        color: #1d4ed8 !important;
+      }
+
+      .propuesta-card .text-orange-600 {
+        color: #ea580c !important;
+      }
+
+      .propuesta-card .text-green-600 {
+        color: #15803d !important;
+      }
+
+      .propuesta-card .text-purple-600 {
+        color: #7c3aed !important;
+      }
+
+      /* BOTONES DE LEYES VISIBLES */
+      .ley-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 50 !important;
+        padding: 12px 24px !important;
+        border-radius: 12px;
+        font-weight: 900;
+        font-family: "Montserrat", sans-serif;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+        border: 3px solid white !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: clamp(14px, 1.5vw, 16px) !important;
+        text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 8px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+        color: white !important;
+        min-width: 140px;
       }
 
-      /* PHONE FRAME - RESPONSIVE */
-      .phone-frame {
-        border: clamp(4px, 1vw, 8px) solid #1a1a1a;
-        border-radius: clamp(12px, 2vw, 20px);
-        overflow: hidden;
-        background: black;
+      /* Colores de leyes */
+      .ley-naranja {
+        background: linear-gradient(135deg, #ff6b35, #ff9e00) !important;
+      }
+      .ley-azul {
+        background: linear-gradient(135deg, #00b4d8, #0077b6) !important;
+      }
+      .ley-verde {
+        background: linear-gradient(135deg, #009440, #00732d) !important;
+      }
+      .ley-morada {
+        background: linear-gradient(135deg, #7b1fa2, #4a148c) !important;
+      }
+      .ley-indigo {
+        background: linear-gradient(135deg, #3949ab, #1a237e) !important;
+      }
+
+      .contenido-propuesta {
+        padding-top: 90px !important;
         position: relative;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        aspect-ratio: 9/19;
-        width: 100%;
-        height: auto;
-        max-height: 600px;
+        z-index: 20 !important;
       }
 
-      .phone-frame img {
+      .descargar-ley-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 30px;
+        background: linear-gradient(135deg, #009440, #00732d);
+        color: white;
+        font-weight: 900;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 20px auto;
+        text-decoration: none;
+        min-height: 50px;
+        width: 100%;
+        max-width: 350px;
+        box-shadow: 0 6px 20px rgba(0, 148, 64, 0.3);
+        position: relative;
+        z-index: 10;
+      }
+
+      .descargar-ley-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 148, 64, 0.4);
+      }
+
+      /* Colores específicos para cada ley */
+      .color-ley-1 {
+        background: linear-gradient(135deg, #009440, #00732d);
+      }
+      .color-ley-2 {
+        background: linear-gradient(135deg, #1e88e5, #0d47a1);
+      }
+      .color-ley-3 {
+        background: linear-gradient(135deg, #7b1fa2, #4a148c);
+      }
+      .color-ley-4 {
+        background: linear-gradient(135deg, #ff6b35, #ff9e00);
+      }
+      .color-ley-5 {
+        background: linear-gradient(135deg, #00b4d8, #0077b6);
+      }
+
+      /* ===== REELS HORIZONTALES (ESTILO NETFLIX/INSTAGRAM) ===== */
+      .reels-scroller {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 20px 5%;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .reels-scroller::-webkit-scrollbar {
+        display: none;
+      }
+
+      .reel-card {
+        flex: 0 0 auto;
+        width: 280px;
+        height: 500px;
+        scroll-snap-align: center;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s ease;
+        background: #000;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .reel-card:hover {
+        transform: scale(1.02);
+      }
+
+      .reel-card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;
       }
 
-      .phone-frame:hover {
-        transform: scale(1.02) translateY(-5px);
-        box-shadow: 0 20px 50px rgba(0, 148, 64, 0.4);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      .reel-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        padding: 20px;
+        color: white;
       }
 
-      /* CARRUSEL TESTIMONIOS */
+      /* ===== CARRUSEL TESTIMONIOS ===== */
       .carousel-container-testimonios {
         position: relative;
         overflow: hidden;
         border-radius: 1.5rem;
+        max-width: 400px;
+        margin: 0 auto;
       }
 
       .carousel-track-testimonios {
@@ -321,72 +740,6 @@
         padding: clamp(10px, 2vw, 20px);
       }
 
-      .phone-notch {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40%;
-        height: 15px;
-        background: #1a1a1a;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        z-index: 10;
-      }
-
-      /* BADGE REEL */
-      .badge-reel {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: linear-gradient(135deg, #ff006e, #ff3c87);
-        color: white;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: clamp(10px, 2vw, 12px);
-        font-weight: 900;
-        z-index: 15;
-        animation: pulse 2s infinite;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-      }
-
-      /* GLOW EFFECT */
-      .glow-effect {
-        box-shadow: 0 0 20px rgba(0, 148, 64, 0.3);
-      }
-
-      .glow-effect:hover {
-        box-shadow: 0 0 40px rgba(0, 148, 64, 0.6);
-      }
-
-      /* FADE IN */
-      .fade-in-up {
-        animation: fadeInUp 0.8s ease-out;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* CAROUSEL BUTTONS */
       .carousel-btn {
         position: absolute;
         top: 50%;
@@ -421,7 +774,6 @@
         right: clamp(10px, 2vw, 20px);
       }
 
-      /* CAROUSEL DOTS */
       .carousel-dots {
         display: flex;
         justify-content: center;
@@ -444,7 +796,6 @@
         background: rgba(0, 148, 64, 0.8);
         transform: scale(1.3);
       }
-
       .carousel-dot.active {
         background: #009440;
         width: clamp(24px, 4vw, 32px);
@@ -452,28 +803,56 @@
         box-shadow: 0 0 15px rgba(0, 148, 64, 0.6);
       }
 
-      /* ESTILOS PARA SELECT Y OPTION - CORREGIDOS PARA MÓVILES */
-      select,
+      /* ===== EFECTOS VISUALES ===== */
+      .glow-effect {
+        box-shadow: 0 0 20px rgba(0, 148, 64, 0.3);
+      }
+
+      .glow-effect:hover {
+        box-shadow: 0 0 40px rgba(0, 148, 64, 0.6);
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== TIPOGRAFÍA RESPONSIVA ===== */
+      h1 {
+        font-size: clamp(2rem, 7vw, 4.5rem) !important;
+        line-height: 1.2 !important;
+      }
+      h2 {
+        font-size: clamp(1.8rem, 5vw, 3.5rem) !important;
+      }
+      h3 {
+        font-size: clamp(1.3rem, 4vw, 2.5rem) !important;
+      }
+      p {
+        font-size: clamp(0.95rem, 2vw, 1.125rem) !important;
+      }
+
+      /* ===== FORMULARIOS OPTIMIZADOS ===== */
       input,
+      select,
       textarea {
+        font-size: 16px !important;
+        color: var(--color-texto) !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
         color-scheme: light dark;
-        background-color: rgba(255, 255, 255, 0.15) !important;
-        color: white !important;
-        border: 2px solid rgba(255, 209, 0, 0.6) !important;
-        width: 100%;
-        padding: 16px !important; /* Aumentado para móviles */
-        font-size: 16px !important; /* Tamaño fijo para evitar zoom en iOS */
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        border-radius: 12px !important;
-      }
-
-      select option {
-        background-color: #1a1a1a !important;
-        color: white !important;
-        padding: 16px !important;
-        font-size: 16px;
       }
 
       select {
@@ -482,185 +861,198 @@
         background-position: right 16px center;
         background-size: 20px;
         padding-right: 50px !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
       }
 
-      /* FOCUS STATES */
+      /* Mejorar apariencia del select */
+      select option {
+        background: #1a1a1a;
+        color: #ffffff;
+        padding: 10px;
+        margin: 5px 0;
+      }
+
+      select:hover {
+        border-color: #00d97e !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
+      }
+
       select:focus,
       input:focus,
       textarea:focus {
         outline: none !important;
         border-color: #ffd100 !important;
         box-shadow: 0 0 15px rgba(255, 209, 0, 0.6) !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
       }
 
-      /* === TIPOGRAFÍA RESPONSIVA === */
-      h1 {
-        font-size: clamp(2rem, 7vw, 4.5rem) !important;
-        line-height: 1.2 !important;
-      }
-
-      h2 {
-        font-size: clamp(1.8rem, 5vw, 3.5rem) !important;
-      }
-
-      h3 {
-        font-size: clamp(1.3rem, 4vw, 2.5rem) !important;
-      }
-
-      p {
-        font-size: clamp(0.95rem, 2vw, 1.125rem) !important;
-      }
-
-      /* === LAYOUT RESPONSIVO === */
-      .responsive-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-        gap: clamp(1rem, 3vw, 2rem);
-        padding: clamp(1rem, 3vw, 2rem);
-      }
-
-      /* === CORRECCIONES CRÍTICAS PARA MÓVILES === */
-      
-      /* Ajustes generales para móviles */
-      @media (max-width: 767px) {
-        /* Hero section optimizada para móviles */
+      /* ===== CORRECCIÓN ESPECÍFICA PARA EL CORTE EN MÓVIL ===== */
+      @media (max-width: 768px) {
         .hero-section {
           height: 100vh !important;
-          min-height: 100vh;
-          max-height: 100vh;
+          min-height: -webkit-fill-available !important;
           padding-top: 80px !important;
+          overflow: visible !important;
         }
-        
-        /* Asegurar que la imagen de fondo cubra bien */
-        .hero-section img {
-          object-fit: cover;
-          object-position: center 30%;
-          min-height: 100%;
-          width: 100%;
-        }
-        
-        /* Contenedor principal */
+
         .container {
           padding-left: 16px !important;
           padding-right: 16px !important;
+          max-width: 100% !important;
         }
-        
-        /* Ajustar formulario */
-        #contactForm {
-          padding: 20px !important;
-        }
-        
-        /* Grid en móviles más compacto */
-        .grid-cols-2 {
-          grid-template-columns: repeat(2, 1fr) !important;
-          gap: 12px !important;
-        }
-        
-        /* Menú móvil mejorado */
-        #mobile-menu {
-          max-height: 80vh;
-          overflow-y: auto;
-          -webkit-overflow-scrolling: touch;
-        }
-        
-        /* Ajustar videos verticales */
-        .aspect-\[9\/16\] {
-          aspect-ratio: 9/16 !important;
-          min-height: 500px;
-        }
-        
-        /* Remover hover effects en móviles */
-        .hover\:scale-105,
-        .hover\:scale-110 {
-          transform: none !important;
-        }
-        
-        /* Ajustar padding de secciones */
-        section {
-          padding-top: 40px !important;
+
+        /* Evitar que el contenido se corte */
+        .hero-section .container {
+          height: auto !important;
+          min-height: auto !important;
           padding-bottom: 40px !important;
         }
-        
-        /* Safe area para iPhone */
+
+        /* Asegurar que el texto sea legible en móvil */
+        .hero-section h1 {
+          font-size: 2.5rem !important;
+          line-height: 1.1 !important;
+          margin-bottom: 1rem !important;
+        }
+
+        .hero-section p {
+          font-size: 1rem !important;
+          line-height: 1.4 !important;
+        }
+
+        /* Espaciado mejorado para móviles */
+        .hero-section .space-y-6 > * + * {
+          margin-top: 1.5rem !important;
+        }
+
+        /* Asegurar que las cards de propuestas no se corten */
+        .propuesta-card {
+          margin-left: -16px !important;
+          margin-right: -16px !important;
+          width: calc(100% + 32px) !important;
+          border-radius: 0 !important;
+          border-left: none !important;
+          border-right: none !important;
+        }
+
+        .propuesta-card .bg-white {
+          padding: 1.5rem !important;
+        }
+
+        .contenido-propuesta {
+          padding-top: 70px !important;
+        }
+
+        .ley-badge {
+          top: 15px;
+          right: 15px;
+          padding: 10px 18px;
+          font-size: 13px;
+          min-width: 120px;
+          transform: none !important;
+        }
+
+        .grid-cols-2,
+        .md\:grid-cols-2 {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+        }
+
+        .reel-card {
+          width: 85vw;
+          height: 65vh;
+        }
+
+        .reels-scroller {
+          padding: 10px 20px;
+          gap: 15px;
+        }
+
+        .watermark-item {
+          font-size: 100px !important;
+          opacity: 0.15 !important;
+        }
+
+        .descargar-ley-btn,
+        .ley-btn {
+          padding: 14px 24px;
+          font-size: 14px;
+          min-height: 48px;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        /* Safe areas para iOS */
         @supports (padding: max(0px)) {
           .hero-section {
             padding-top: max(80px, env(safe-area-inset-top)) !important;
+            padding-bottom: env(safe-area-inset-bottom) !important;
+          }
+
+          .container {
+            padding-left: max(16px, env(safe-area-inset-left)) !important;
+            padding-right: max(16px, env(safe-area-inset-right)) !important;
           }
         }
       }
 
-      /* Tabletas (768px - 1024px) */
-      @media (max-width: 1024px) {
-        .phone-frame {
-          max-height: 500px;
-        }
-      }
-
-      /* Móviles grandes (480px - 768px) */
-      @media (max-width: 768px) {
-        .hero-section {
-          height: 100vh !important;
-        }
-
-        .carousel-btn {
-          width: 40px;
-          height: 40px;
-          font-size: 18px;
-        }
-
-        .badge-reel {
-          padding: 5px 10px;
-          font-size: 11px;
-          top: 12px;
-          right: 12px;
-        }
-        
-        /* Logros en móviles */
-        .text-center.p-4 {
-          padding: 20px !important;
-        }
-        
-        .counter {
-          font-size: 2.2rem !important;
-        }
-      }
-
-      /* Móviles pequeños (hasta 480px) */
       @media (max-width: 480px) {
-        .hero-section {
-          height: 100vh !important;
-        }
-
-        .campesino-3d {
-          font-size: 70px;
-        }
-
-        button,
-        .btn {
-          min-height: 50px;
-          min-width: 50px;
-          padding: 12px 24px;
-          font-size: 15px;
-        }
-        
-        /* Grid de logros en móviles pequeños */
-        .grid-cols-2 {
-          grid-template-columns: 1fr !important;
-          gap: 16px !important;
-        }
-        
-        /* Ajustar tipografía en móviles pequeños */
         h1 {
           font-size: 2rem !important;
           line-height: 1.1 !important;
         }
-        
         h2 {
           font-size: 1.6rem !important;
         }
-        
-        p {
+
+        .ley-badge {
+          top: 12px;
+          right: 12px;
+          padding: 8px 14px;
+          font-size: 12px;
+          min-width: 110px;
+        }
+
+        .contenido-propuesta {
+          padding-top: 60px !important;
+        }
+
+        .propuesta-card .bg-white {
+          padding: 1rem !important;
+        }
+
+        button,
+        .btn,
+        .ley-btn {
+          min-height: 48px;
+          min-width: 48px;
+          padding: 12px 18px !important;
+          font-size: 14px !important;
+        }
+
+        /* Texto más grande para mejor legibilidad en móviles pequeños */
+        .propuesta-card p,
+        .propuesta-card li {
           font-size: 0.9rem !important;
+          line-height: 1.5 !important;
+        }
+      }
+
+      /* Tabletas (768px - 1024px) */
+      @media (min-width: 768px) and (max-width: 1024px) {
+        .reel-card {
+          width: clamp(300px, 45vw, 400px);
+        }
+
+        .hero-section {
+          height: 90vh !important;
+        }
+
+        .propuesta-card {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          width: 100% !important;
         }
       }
 
@@ -670,50 +1062,211 @@
           max-width: 1920px;
           margin: 0 auto;
         }
-
         .container {
           max-width: 1800px !important;
         }
-
         .hero-section {
           height: 80vh !important;
         }
       }
 
-      /* UltraWide (21:9) */
-      @media (min-width: 2000px) and (max-aspect-ratio: 21/9) {
-        .hero-section {
-          height: 50vh !important;
+      /* ===== MODO OSCURO MEJORADO ===== */
+      @media (prefers-color-scheme: dark) {
+        nav {
+          background-color: #1a1a1a !important;
+          border-bottom: 4px solid #00a74a !important;
+        }
+        nav a {
+          color: #ffffff !important;
+        }
+        nav a:hover {
+          color: #00a74a !important;
         }
 
-        .hero-bg {
-          object-position: center 25%;
+        .propuesta-card,
+        .propuesta-card .bg-white {
+          background-color: #2d2d2d !important;
+          color: #ffffff !important;
+          border: 1px solid #444444 !important;
+        }
+
+        .propuesta-card p,
+        .propuesta-card h3,
+        .propuesta-card h4,
+        .propuesta-card li,
+        .propuesta-card span,
+        .propuesta-card div:not(.ley-badge) {
+          color: #ffffff !important;
+        }
+
+        .propuesta-card .text-gray-700,
+        .propuesta-card .text-gray-800 {
+          color: #e0e0e0 !important;
+        }
+
+        #mobile-menu {
+          background-color: #1a1a1a !important;
+          border-bottom: 4px solid #00a74a !important;
+        }
+        #mobile-menu a {
+          color: #ffffff !important;
+          border-color: #444444 !important;
+        }
+        #mobile-menu a:hover {
+          background-color: #333333 !important;
+          color: #00a74a !important;
+        }
+
+        /* Mejorar formulario en modo oscuro */
+        #contactForm input,
+        #contactForm select,
+        #contactForm textarea {
+          background-color: rgba(255, 255, 255, 0.12) !important;
+          border-color: rgba(255, 255, 255, 0.2) !important;
+          color: #ffffff !important;
+        }
+
+        #contactForm input::placeholder,
+        #contactForm textarea::placeholder {
+          color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        #contactForm input:focus,
+        #contactForm select:focus,
+        #contactForm textarea:focus {
+          background-color: rgba(255, 255, 255, 0.15) !important;
+          border-color: #00a74a !important;
+          box-shadow: 0 0 15px rgba(0, 167, 74, 0.4) !important;
+        }
+
+        #contactForm select option {
+          background: #1a1a1a !important;
+          color: #ffffff !important;
         }
       }
 
-      /* === UTILIDADES === */
+      /* ===== UTILIDADES ===== */
       .text-balance {
         text-wrap: balance;
       }
-
-      .aspect-ratio-preserve {
-        aspect-ratio: 16/9;
-      }
-
       .touch-target {
         min-height: 44px;
         min-width: 44px;
+        padding: 12px 20px;
       }
-      
-      /* Clase para prevenir zoom en iOS */
       .prevent-zoom {
         font-size: 16px !important;
         touch-action: manipulation;
       }
+      .aspect-ratio-preserve {
+        aspect-ratio: 16/9;
+      }
+      .force-black {
+        color: #000000 !important;
+      }
+      .force-white {
+        color: #ffffff !important;
+      }
+      .force-bg-white {
+        background-color: #ffffff !important;
+      }
+      .force-bg-black {
+        background-color: #000000 !important;
+      }
+
+      /* Clase para forzar contraste solo en las cards de propuestas en desktop */
+      .desktop-force-card-contrast {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .desktop-force-card-contrast *:not(.ley-badge, .ley-badge *, i.fa-solid) {
+        color: #000000 !important;
+      }
+
+      /* Asegurar que los fondos de las cards sean opacos */
+      .bg-opaque {
+        background-color: #ffffff !important;
+      }
     </style>
+
+    <!-- Configuración Tailwind Personalizada -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              verde: "#009440",
+              verdeClaro: "#00b34d",
+              tierra: "#5D4037",
+              girasol: "#FFD100",
+              arena: "#f0e9de",
+              arenaOscura: "#e5dccd",
+              negro: "#1a1a1a",
+              grisTexto: "#333333",
+              grisTextoClaro: "#f0f0f0",
+              naranjaLey: "#FF6B35",
+              azulLey: "#1e88e5",
+              moradoLey: "#7b1fa2",
+              indigoLey: "#3949ab",
+            },
+            fontFamily: {
+              titulo: ["Montserrat", "sans-serif"],
+              cuerpo: ["Open Sans", "sans-serif"],
+            },
+            screens: {
+              xs: "380px",
+              "3xl": "1920px",
+              "4xl": "2560px",
+            },
+            zIndex: {
+              60: "60",
+              100: "100",
+              max: "9999",
+            },
+            animation: {
+              "float-slow": "float 6s ease-in-out infinite",
+              "pulse-soft": "pulse-soft 2s ease-in-out infinite",
+              "bounce-soft": "bounce-soft 2s infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              "pulse-soft": {
+                "0%, 100%": { opacity: 1 },
+                "50%": { opacity: 0.7 },
+              },
+              "bounce-soft": {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
   </head>
 
-  <body class="text-negro font-cuerpo bg-arena">
+  <body class="bg-arena text-negro font-cuerpo">
+    <!-- MARCA DE AGUA 106 GLOBAL MEJORADA -->
+    <div class="watermark-106-global">
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+      <div class="watermark-item">106</div>
+    </div>
+
     <!-- NÚMERO FLOTANTE 106 - CANDIDATO -->
     <div
       class="fixed left-4 md:left-6 top-24 md:top-32 z-40 hidden md:flex flex-col items-center gap-2 md:gap-4 animate-pulse"
@@ -730,7 +1283,7 @@
       </div>
     </div>
 
-    <!-- NÚMERO MÓVIL 106 - CANDIDATO (VERSIÓN MÓVIL) -->
+    <!-- NÚMERO MÓVIL 106 -->
     <div class="fixed top-20 right-4 z-40 md:hidden">
       <div
         class="bg-verde text-white rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shadow-2xl border-2 border-girasol glow-effect"
@@ -738,8 +1291,6 @@
         <span class="font-titulo font-black text-2xl md:text-3xl">106</span>
       </div>
     </div>
-
-    <div class="texture-overlay"></div>
 
     <!-- PRELOADER OPTIMIZADO -->
     <div id="preloader">
@@ -770,441 +1321,1398 @@
         class="container mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center"
       >
         <a href="#inicio" class="flex items-center gap-2 md:gap-3 group">
+          <!-- REEMPLAZAR CON LOGO DEL PARTIDO -->
           <img
             src="img/logo-partido.png"
-            class="h-8 md:h-12 w-auto object-contain"
-            alt="Logo"
+            class="h-10 md:h-12 w-auto object-contain"
+            alt="Logo Alianza Verde"
           />
-          <div class="leading-none border-l-2 border-gray-300 pl-2 md:pl-3">
+          <div class="leading-tight border-l-2 border-gray-300 pl-2 md:pl-3">
             <span
-              class="block font-titulo font-black text-sm md:text-xl text-verde tracking-tighter"
+              class="block font-titulo font-black text-verde text-sm md:text-lg"
               >DIEGO GUERRERO</span
             >
             <span
-              class="block text-[8px] md:text-[10px] font-bold text-tierra tracking-widest uppercase"
+              class="block text-[10px] md:text-xs font-bold text-tierra uppercase tracking-wider"
               >Soy Campesino</span
             >
           </div>
         </a>
+
+        <!-- Desktop Menu -->
         <div
-          class="hidden md:flex gap-4 md:gap-8 font-bold text-xs md:text-sm uppercase tracking-widest items-center"
+          class="hidden md:flex gap-6 font-bold text-sm uppercase items-center"
         >
-          <a
-            href="#inicio"
-            class="hover:text-verde transition hover:scale-110 inline-block"
+          <a href="#inicio" class="hover:text-verde transition hover:scale-110"
             >Inicio</a
           >
-          <a
-            href="#logros"
-            class="hover:text-verde transition hover:scale-110 inline-block"
+          <a href="#logros" class="hover:text-verde transition hover:scale-110"
             >Logros</a
           >
           <a
-            href="#historia"
-            class="hover:text-verde transition hover:scale-110 inline-block"
-            >Historia</a
-          >
-          <a
             href="#propuestas"
-            class="hover:text-verde transition hover:scale-110 inline-block"
+            class="hover:text-verde transition hover:scale-110"
             >Propuestas</a
           >
           <a
             href="#multimedia"
-            class="hover:text-verde transition hover:scale-110 inline-block"
+            class="hover:text-verde transition hover:scale-110"
             >Reels</a
           >
           <a
             href="#contacto"
-            class="bg-girasol text-negro px-4 md:px-6 py-1 md:py-2 rounded-full border-2 border-negro hover:bg-negro hover:text-girasol transition font-black shadow-[2px_2px_0px_#000] md:shadow-[4px_4px_0px_#000] text-sm"
+            class="bg-girasol text-negro px-5 py-2 rounded-full border-2 border-negro font-black shadow-[4px_4px_0px_#000] hover:translate-y-1 hover:shadow-none transition"
           >
-            <i class="fa-solid fa-pen-nib"></i> Sumarme
+            ¡Súmate!
           </a>
         </div>
+
+        <!-- Mobile Toggle -->
         <button
           onclick="toggleMenu()"
-          class="md:hidden text-verde text-2xl touch-target"
+          class="md:hidden text-verde text-2xl p-2 touch-target"
           aria-label="Menú"
         >
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
+
+      <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="hidden bg-white border-t-4 border-girasol absolute w-full shadow-2xl flex flex-col max-h-[80vh] overflow-y-auto"
+        class="hidden absolute top-full left-0 w-full bg-white border-b-4 border-girasol shadow-2xl flex flex-col max-h-[85vh] overflow-y-auto"
       >
         <a
           href="#inicio"
           onclick="toggleMenu()"
-          class="p-4 font-bold text-center border-b hover:bg-verde hover:text-white touch-target text-lg"
-          >INICIO</a
+          class="p-5 border-b font-bold text-lg hover:bg-gray-50 flex items-center gap-3"
         >
+          <i class="fa-solid fa-home text-verde"></i> Inicio
+        </a>
         <a
           href="#logros"
           onclick="toggleMenu()"
-          class="p-4 font-bold text-center border-b hover:bg-verde hover:text-white touch-target text-lg"
-          >LOGROS</a
+          class="p-5 border-b font-bold text-lg hover:bg-gray-50 flex items-center gap-3"
         >
-        <a
-          href="#historia"
-          onclick="toggleMenu()"
-          class="p-4 font-bold text-center border-b hover:bg-verde hover:text-white touch-target text-lg"
-          >HISTORIA</a
-        >
+          <i class="fa-solid fa-trophy text-verde"></i> Logros
+        </a>
         <a
           href="#propuestas"
           onclick="toggleMenu()"
-          class="p-4 font-bold text-center border-b hover:bg-verde hover:text-white touch-target text-lg"
-          >PROPUESTAS</a
+          class="p-5 border-b font-bold text-lg hover:bg-gray-50 flex items-center gap-3"
         >
+          <i class="fa-solid fa-scroll text-verde"></i> Propuestas
+        </a>
         <a
           href="#multimedia"
           onclick="toggleMenu()"
-          class="p-4 font-bold text-center border-b hover:bg-verde hover:text-white touch-target text-lg"
-          >REELS</a
+          class="p-5 border-b font-bold text-lg hover:bg-gray-50 flex items-center gap-3"
         >
+          <i class="fa-solid fa-video text-verde"></i> Reels
+        </a>
         <a
           href="#contacto"
           onclick="toggleMenu()"
-          class="p-4 font-black text-center bg-negro text-girasol touch-target text-lg"
-          >¡INSCRÍBETE!</a
+          class="p-6 bg-verde text-white font-black text-center text-xl shadow-inner"
         >
+          ¡INSCRÍBETE AHORA!
+        </a>
       </div>
     </nav>
 
-    <!-- HERO SECTION RESPONSIVA - CORREGIDA -->
+    <!-- HERO SECTION (OSCURO) -->
     <section
       id="inicio"
-      class="relative pt-16 md:pt-20 flex items-center bg-negro overflow-hidden hero-section"
-      style="height: 100vh; min-height: 100vh;"
+      class="hero-section relative bg-negro flex items-center pt-16 md:pt-20 section-dark overflow-visible"
     >
-      <div class="absolute inset-0 opacity-60">
+      <!-- MARCA DE AGUA -->
+      <div class="watermark-container" id="wm-hero">
+        <div
+          class="watermark-item"
+          style="top: 15%; left: 10%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 60%; right: 15%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 30%; left: 70%; font-size: 160px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 20%; left: 20%; font-size: 220px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 25%; font-size: 190px"
+        >
+          106
+        </div>
+      </div>
+
+      <div class="absolute inset-0 opacity-50 z-0">
+        <!-- REEMPLAZAR CON IMAGEN DE PORTADA -->
         <img
           src="img/portada.jpg"
-          class="w-full h-full object-cover object-center md:object-center md:scale-110 responsive-img"
-          alt="Campo"
-          style="object-position: center 30%;"
+          class="w-full h-full object-cover object-center"
+          alt="Fondo Campo"
+          loading="eager"
         />
       </div>
       <div
-        class="absolute inset-0 bg-gradient-to-r from-negro via-negro/60 to-transparent"
+        class="absolute inset-0 bg-gradient-to-r from-negro via-negro/80 to-transparent z-0"
       ></div>
 
       <div
-        class="container mx-auto px-4 md:px-6 relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center py-8 md:py-0 h-full"
+        class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-8 items-center h-full py-10"
       >
-        <div class="text-white pt-6 md:pt-0 fade-in-up">
+        <div class="text-white space-y-4 md:space-y-6 fade-in-up">
           <div
-            class="inline-block bg-girasol text-negro font-black px-3 md:px-4 py-1 text-xs uppercase tracking-widest mb-4 md:mb-6 rounded-sm shadow-[2px_2px_0px_#fff] md:shadow-[4px_4px_0px_#fff] transform -rotate-2"
+            class="inline-block bg-girasol text-negro font-black px-4 py-1 rounded shadow-[4px_4px_0px_#fff] transform -rotate-2"
           >
-            MOVIMIENTO SOY CAMPESINO
+            #106 ALIANZA VERDE
           </div>
           <h1
-            class="font-titulo font-black leading-[0.9] mb-4 md:mb-6 drop-shadow-lg text-balance"
+            class="font-titulo font-black text-4xl md:text-6xl lg:text-7xl leading-tight md:leading-none drop-shadow-lg"
           >
-            SEGURIDAD<br /><span
+            SEGURIDAD<br />
+            <span
               class="text-transparent bg-clip-text bg-gradient-to-r from-verde to-girasol"
               >ALIMENTARIA</span
-            ><br />PARA BOGOTÁ
+            ><br />
+            YA.
           </h1>
           <p
-            class="text-lg md:text-xl text-gray-200 mb-6 md:mb-8 max-w-lg font-light border-l-4 border-verde pl-3 md:pl-4 leading-relaxed text-balance"
+            class="text-base md:text-lg lg:text-xl text-gray-200 border-l-4 border-verde pl-4 max-w-lg font-light"
           >
-            No más precios injustos. Conectamos el campo con la ciudad para
-            eliminar intermediarios y garantizar comida digna en tu mesa.
-            Pasemos de la indignación a la Ley.
+            No más precios injustos. Conectamos el campo con Bogotá. Pasemos de
+            la indignación a la Ley.
           </p>
 
-          <!-- FRASE DE IMPACTO CON NÚMERO 106 -->
           <div
-            class="bg-gradient-to-r from-verde to-girasol p-4 md:p-6 rounded-2xl mb-6 md:mb-8 shadow-2xl border-2 border-white/30 glow-effect"
+            class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 inline-block max-w-md hover:bg-white/20 transition"
           >
-            <p class="text-xl md:text-3xl font-black text-white mb-2">
-              Voto 106 - Luchamos por el campo
-            </p>
-            <p class="text-base md:text-lg text-white/90 font-bold">
-              Por los campesinos, por ustedes, por Bogotá. Juntos sembramos
-              cambio.
-            </p>
+            <div class="flex items-center gap-4">
+              <div
+                class="bg-verde text-white w-16 h-16 rounded-full flex items-center justify-center font-black text-3xl shadow-lg border-2 border-girasol animate-pulse"
+              >
+                106
+              </div>
+              <div>
+                <p class="font-bold text-girasol">MARCA 106 EN EL TARJETÓN</p>
+                <p class="text-xs text-white">
+                  Alianza Verde - Concejo de Bogotá
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div class="flex flex-wrap gap-3 md:gap-4">
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
             <a
-              href="#contacto"
-              class="bg-verde hover:bg-white hover:text-verde text-white font-black py-3 md:py-4 px-6 md:px-8 rounded-full transition shadow-lg inline-flex items-center justify-center gap-2 text-base md:text-lg border-2 border-verde hover:border-white glow-effect touch-target w-full md:w-auto"
+              href="#propuestas"
+              class="bg-verde text-white px-8 py-4 rounded-full font-black text-lg shadow-[0_10px_20px_rgba(0,148,64,0.4)] hover:bg-white hover:text-verde transition flex items-center justify-center gap-2 touch-target"
             >
-              SÚMATE AL EQUIPO <i class="fa-solid fa-tractor"></i>
+              <i class="fa-solid fa-scroll"></i> VER LEYES
             </a>
             <a
-              href="#multimedia"
-              class="bg-transparent border-2 border-white text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-white hover:text-negro transition inline-flex items-center justify-center gap-2 text-base md:text-lg touch-target w-full md:w-auto mt-3 md:mt-0"
+              href="#contacto"
+              class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-negro transition flex items-center justify-center gap-2 touch-target"
             >
-              <i class="fa-solid fa-play"></i> VER VIDEOS
+              <i class="fa-solid fa-users"></i> SUMARME
             </a>
           </div>
         </div>
 
+        <!-- Imagen Campesino -->
         <div
-          class="hidden md:flex justify-center items-end h-[90vh] relative mt-10"
+          class="hidden md:block relative h-full flex items-end justify-center"
         >
+          <!-- REEMPLAZAR CON FOTO DEL CANDIDATO -->
           <img
             src="img/diego-hero.png"
-            class="relative z-10 w-full max-w-lg object-contain drop-shadow-2xl responsive-img"
+            class="max-h-[85vh] object-contain drop-shadow-2xl z-10"
             alt="Diego Guerrero"
+            loading="eager"
           />
-          <div
-            class="absolute bottom-12 right-6 md:bottom-20 md:right-10 bg-white p-4 md:p-8 rounded-2xl shadow-[8px_8px_0px_#009440] border-2 border-negro z-20 max-w-xs md:max-w-sm transform hover:scale-105 transition duration-300 cursor-default"
-          >
-            <p
-              class="text-xs md:text-sm font-black text-tierra uppercase mb-2 md:mb-3 flex items-center gap-2"
-            >
-              <i class="fa-solid fa-lightbulb text-girasol text-lg"></i> NUESTRA
-              LUCHA
-            </p>
-            <p
-              class="text-base md:text-lg font-black text-verde mb-1 leading-tight"
-            >
-              La papa no está cara,
-            </p>
-            <p
-              class="text-base md:text-lg font-black text-verde mb-3 leading-tight"
-            >
-              los insumos sí.
-            </p>
-            <p class="text-xs md:text-sm text-gray-700 font-bold leading-snug">
-              ¡A regular precios!
-            </p>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- LOGROS SECTION RESPONSIVA -->
+    <!-- LOGROS (CLARO) -->
     <section
       id="logros"
-      class="py-12 md:py-24 bg-white relative overflow-hidden"
+      class="py-20 bg-white relative section-light overflow-hidden"
     >
-      <div class="container mx-auto px-4 md:px-6 relative z-10">
-        <div class="text-center mb-8 md:mb-16">
-          <h2 class="font-titulo font-black mb-2 md:mb-4">
+      <div class="watermark-container" id="wm-logros">
+        <div
+          class="watermark-item"
+          style="top: 10%; right: 8%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 15%; left: 8%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 40%; left: 5%; font-size: 160px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 30%; right: 10%; font-size: 220px"
+        >
+          106
+        </div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+          <h2
+            class="font-titulo font-black text-4xl md:text-5xl text-negro mb-4"
+          >
             LOGROS <span class="text-verde">CONCRETOS</span>
           </h2>
-          <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base px-4">
-            No son promesas. Son hechos. Esto es lo que hemos construido juntos.
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            No prometemos, ya lo estamos haciendo. Resultados reales.
           </p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <!-- Card 1 -->
           <div
-            class="text-center p-4 md:p-8 bg-gradient-to-br from-verde to-verde/70 rounded-2xl shadow-xl hover:scale-105 transition duration-300 glow-effect"
+            class="p-6 bg-arena rounded-2xl shadow-lg text-center hover:-translate-y-2 transition border border-verde/20"
           >
-            <i
-              class="fa-solid fa-users text-3xl md:text-5xl text-white mb-2 md:mb-4"
-            ></i>
+            <i class="fa-solid fa-users text-4xl text-verde mb-4"></i>
             <div
-              class="counter text-3xl md:text-5xl font-black text-white"
+              class="text-4xl font-black text-negro counter"
               data-target="50"
             >
               0
             </div>
-            <p
-              class="text-white/90 font-bold mt-1 md:mt-2 text-xs md:text-base"
-            >
-              MIL CAMPESINOS
+            <p class="text-xs font-bold text-gray-500 uppercase mt-2">
+              Mil Campesinos
             </p>
           </div>
+          <!-- Card 2 -->
           <div
-            class="text-center p-4 md:p-8 bg-gradient-to-br from-girasol to-girasol/70 rounded-2xl shadow-xl hover:scale-105 transition duration-300 glow-effect"
+            class="p-6 bg-arena rounded-2xl shadow-lg text-center hover:-translate-y-2 transition border border-girasol/50"
           >
-            <i
-              class="fa-solid fa-seedling text-3xl md:text-5xl text-negro mb-2 md:mb-4"
-            ></i>
+            <i class="fa-solid fa-truck-fast text-4xl text-girasol mb-4"></i>
             <div
-              class="counter text-3xl md:text-5xl font-black text-negro"
+              class="text-4xl font-black text-negro counter"
               data-target="120"
             >
               0
             </div>
-            <p
-              class="text-negro/90 font-bold mt-1 md:mt-2 text-xs md:text-base"
-            >
-              PROYECTOS ACTIVOS
+            <p class="text-xs font-bold text-gray-500 uppercase mt-2">
+              Mercados Campesinos
             </p>
           </div>
+          <!-- Card 3 -->
           <div
-            class="text-center p-4 md:p-8 bg-gradient-to-br from-tierra to-tierra/70 rounded-2xl shadow-xl hover:scale-105 transition duration-300 glow-effect"
+            class="p-6 bg-arena rounded-2xl shadow-lg text-center hover:-translate-y-2 transition border border-tierra/30"
           >
-            <i
-              class="fa-solid fa-tractor text-3xl md:text-5xl text-girasol mb-2 md:mb-4"
-            ></i>
-            <div
-              class="counter text-3xl md:text-5xl font-black text-white"
-              data-target="8"
-            >
+            <i class="fa-solid fa-calendar-check text-4xl text-tierra mb-4"></i>
+            <div class="text-4xl font-black text-negro counter" data-target="8">
               0
             </div>
-            <p
-              class="text-white/90 font-bold mt-1 md:mt-2 text-xs md:text-base"
-            >
-              AÑOS DE LUCHA
+            <p class="text-xs font-bold text-gray-500 uppercase mt-2">
+              Años de Lucha
             </p>
           </div>
+          <!-- Card 4 -->
           <div
-            class="text-center p-4 md:p-8 bg-gradient-to-br from-negro to-gray-800 rounded-2xl shadow-xl hover:scale-105 transition duration-300 glow-effect"
+            class="p-6 bg-arena rounded-2xl shadow-lg text-center hover:-translate-y-2 transition border border-verde/20"
           >
-            <i
-              class="fa-solid fa-handshake text-3xl md:text-5xl text-girasol mb-2 md:mb-4"
-            ></i>
+            <i class="fa-solid fa-handshake text-4xl text-verdeClaro mb-4"></i>
             <div
-              class="counter text-3xl md:text-5xl font-black text-white"
+              class="text-4xl font-black text-negro counter"
               data-target="300"
             >
               0
             </div>
-            <p
-              class="text-white/90 font-bold mt-1 md:mt-2 text-xs md:text-base"
-            >
-              ALIANZAS
+            <p class="text-xs font-bold text-gray-500 uppercase mt-2">
+              Alianzas
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HISTORIA SECTION RESPONSIVA -->
+    <!-- HISTORIA (OSCURO) -->
     <section
       id="historia"
-      class="py-12 md:py-24 bg-gradient-to-br from-tierra to-negro text-white relative overflow-hidden"
+      class="py-20 bg-gradient-to-br from-tierra to-negro text-white relative section-dark"
     >
+      <div class="watermark-container" id="wm-historia">
+        <div
+          class="watermark-item"
+          style="top: 20%; left: 12%; font-size: 190px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 20%; right: 12%; font-size: 210px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 60%; left: 8%; font-size: 170px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 5%; font-size: 200px"
+        >
+          106
+        </div>
+      </div>
       <div
-        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"
-      ></div>
-      <div class="container mx-auto px-4 md:px-6 relative z-10">
-        <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div class="order-2 md:order-1">
-            <div
-              class="inline-block bg-girasol text-negro font-black px-3 md:px-4 py-1 text-xs uppercase tracking-widest mb-4 md:mb-6 rounded-sm shadow-[2px_2px_0px_#fff] md:shadow-[4px_4px_0px_#fff]"
-            >
-              MI HISTORIA
-            </div>
-            <h2 class="font-titulo font-black mb-4 md:mb-8 leading-tight">
-              DE LA TIERRA<br />A LA <span class="text-girasol">POLÍTICA</span>
-            </h2>
-            <p
-              class="text-gray-200 mb-4 md:mb-6 leading-relaxed text-sm md:text-base"
-            >
-              Nací en una vereda sin luz. Vi a mi papá vender la cosecha por
-              menos de lo que costó producirla. Vi llorar a mi mamá porque no
-              alcanzaba para el mercado.
-            </p>
-            <p
-              class="text-gray-200 mb-4 md:mb-6 leading-relaxed text-sm md:text-base"
-            >
-              Estudié con becas y préstamos. Me gradué de Trabajo Social.
-              Volví al campo. Y entendí que el problema no es técnico: es
-              político.
-            </p>
-            <p
-              class="text-gray-200 mb-6 md:mb-8 leading-relaxed font-bold text-sm md:text-base"
-            >
-              Por eso estoy acá. No vengo a prometer. Vengo a hacer lo que
-              siempre hice: trabajar.
-            </p>
-            <a
-              href="#contacto"
-              class="inline-flex items-center gap-2 bg-girasol text-negro font-black py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-white transition shadow-lg glow-effect touch-target text-sm md:text-base w-full md:w-auto justify-center"
-            >
-              <i class="fa-solid fa-heart"></i> ÚNETE A LA CAUSA
-            </a>
-          </div>
-
-          <div class="relative order-1 md:order-2 mb-8 md:mb-0">
-            <img
-              src="img/historia.jpg"
-              class="w-full h-auto rounded-3xl shadow-2xl border-4 md:border-8 border-white/20 hover:scale-105 transition duration-500 object-cover responsive-img"
-              alt="Historia Diego"
-              style="min-height: 300px; object-fit: cover;"
-            />
-            <div
-              class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-verde p-4 md:p-6 rounded-2xl shadow-2xl border-2 md:border-4 border-white max-w-[200px] md:max-w-[250px] glow-effect"
-            >
-              <p class="font-black text-xl md:text-2xl text-white mb-1 md:mb-2">
-                "La tierra no miente"
-              </p>
-              <p class="text-xs md:text-sm text-white/80">
-                Si la trabajas con amor, ella te devuelve vida.
-              </p>
-            </div>
-          </div>
+        class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <div>
+          <!-- REEMPLAZAR CON IMAGEN DE HISTORIA -->
+          <img
+            src="img/historia.jpg"
+            class="rounded-3xl shadow-2xl rotate-2 border-4 border-white/20 hover:rotate-0 transition duration-500 w-full"
+            alt="Historia"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <h2 class="font-titulo font-black text-4xl mb-6">
+            DE LA TIERRA A LA <span class="text-girasol">POLÍTICA</span>
+          </h2>
+          <p class="text-gray-300 text-lg mb-4 leading-relaxed">
+            Nací en una vereda sin luz. Vi a mi papá llorar porque la cosecha no
+            valía nada. Estudié con las uñas. Volví al campo y entendí que el
+            problema no es que no sepamos sembrar...
+          </p>
+          <p
+            class="text-white font-bold text-xl mb-8 border-l-4 border-girasol pl-4"
+          >
+            "El problema es que quienes hacen las leyes nunca han agarrado un
+            azadón."
+          </p>
+          <a
+            href="#contacto"
+            class="inline-block bg-girasol text-negro font-black px-8 py-4 rounded-full shadow-[4px_4px_0px_#fff] hover:translate-x-1 hover:shadow-none transition touch-target"
+          >
+            CONOCE MI HOJA DE VIDA
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- PROPUESTAS SECTION RESPONSIVA -->
+    <!-- PROPUESTAS (CLARO/ARENA) - TEXTO VISIBLE -->
     <section
       id="propuestas"
-      class="py-12 md:py-24 bg-gradient-to-b from-negro to-tierra relative overflow-hidden"
+      class="py-20 bg-arena relative section-light overflow-hidden"
     >
-      <div
-        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"
-      ></div>
-      <div class="container mx-auto px-4 md:px-6 relative z-10 text-white">
-        <div class="text-center mb-8 md:mb-16">
-          <div
-            class="inline-block bg-girasol text-negro font-black px-3 md:px-4 py-1 text-xs uppercase tracking-widest mb-4 md:mb-6 rounded-sm shadow-[2px_2px_0px_#fff] md:shadow-[4px_4px_0px_#fff]"
+      <div class="watermark-container" id="wm-propuestas">
+        <div class="watermark-item" style="top: 8%; left: 8%; font-size: 200px">
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 20%; right: 12%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 40%; left: 15%; font-size: 220px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 50%; right: 20%; font-size: 190px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 18%; left: 12%; font-size: 210px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 30%; right: 15%; font-size: 170px"
+        >
+          106
+        </div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+          <span
+            class="bg-girasol text-negro font-black px-4 py-1 rounded text-sm uppercase tracking-widest shadow-md"
+            >Propuestas de Ley</span
           >
-            PROPUESTAS REALES
-          </div>
-          <h2 class="font-titulo font-black mb-2 md:mb-4">
-            NO SON <span class="text-girasol">PROMESAS</span>
+          <h2
+            class="font-titulo font-black text-4xl md:text-5xl text-negro mt-4"
+          >
+            LEYES QUE <span class="text-verde">CAMBIAN VIDAS</span>
           </h2>
-          <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-base px-4">
-            Estas son las acciones concretas que implementaremos desde el primer
-            día.
-          </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-          <div
-            class="bg-white/10 backdrop-blur p-6 md:p-8 rounded-2xl border-2 border-girasol/50 hover:border-girasol hover:bg-white/20 transition glow-effect"
-          >
-            <i
-              class="fa-solid fa-handshake text-4xl md:text-5xl text-girasol mb-3 md:mb-4"
-            ></i>
-            <h3 class="font-black text-xl md:text-2xl mb-3 md:mb-4">
-              Precio Justo
-            </h3>
-            <p class="text-gray-200 text-sm md:text-base">
-              Eliminar intermediarios y garantizar que el campesino reciba el
-              70% del precio final.
-            </p>
-          </div>
+        <!-- LEY PAPATÓN COLOMBIA -->
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card desktop-force-card-contrast">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-naranja">LEY PAPATÓN</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-orange-500 pl-4"
+                  >
+                    Del PAPATÓN que empezamos en la calle… a la ley que salva a
+                    100.000 familias paperas para siempre
+                  </p>
+                </div>
 
-          <div
-            class="bg-white/10 backdrop-blur p-6 md:p-8 rounded-2xl border-2 border-girasol/50 hover:border-girasol hover:bg-white/20 transition glow-effect"
-          >
-            <i
-              class="fa-solid fa-tractor text-4xl md:text-5xl text-girasol mb-3 md:mb-4"
-            ></i>
-            <h3 class="font-black text-xl md:text-2xl mb-3 md:mb-4">
-              Tecnología
-            </h3>
-            <p class="text-gray-200 text-sm md:text-base">
-              Acceso a créditos blandos para modernizar la producción agrícola.
-            </p>
-          </div>
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-orange-50 p-4 md:p-6 rounded-xl border border-orange-200"
+                  >
+                    <h4
+                      class="font-black text-lg md:text-xl mb-3 md:mb-4 text-orange-600"
+                    >
+                      ¿Por qué es necesaria esta ley?
+                    </h4>
+                    <div class="space-y-3">
+                      <p class="text-gray-700">
+                        <strong
+                          >Colombia produce más de 2,7 millones de toneladas de
+                          papa al año</strong
+                        >
+                        con 100.000 familias campesinas.
+                      </p>
+                      <p class="text-gray-700">
+                        El
+                        <strong
+                          >95 % son pequeños y medianos productores</strong
+                        >
+                        con menos de 5 hectáreas.
+                      </p>
+                      <p class="text-gray-700">
+                        Cada año de sobreproducción o de importaciones masivas
+                        <strong
+                          >pierden entre $11 y $15 millones por hectárea</strong
+                        >.
+                      </p>
+                      <p class="text-gray-700">
+                        Colombia importa
+                        <strong
+                          >90.000 toneladas al año de papa precocida
+                          congelada</strong
+                        >
+                        (principalmente Bélgica) mientras nuestros paperos botan
+                        la cosecha o la venden regalada.
+                      </p>
+                      <p class="text-gray-700">
+                        El Estado gasta más de
+                        <strong>$350.000 millones al año</strong> comprando esa
+                        papa importada para el ICBF, el PAE, las cárceles y los
+                        batallones.
+                      </p>
+                    </div>
+                  </div>
 
+                  <div class="bg-orange-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-orange-600"
+                    >
+                      ¿Qué cambia esta ley?
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El Estado crea la empresa pública
+                          <strong>PAPATÓN COLOMBIA</strong> (100 % estatal, no
+                          privatizable por 25 años)
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Compra directamente el
+                          <strong>25 % de la producción nacional</strong> a
+                          pequeños y medianos productores
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong>Precio justo:</strong> costo de producción +
+                          40 % de ganancia |
+                          <strong>Pago en máximo 5 días</strong> | Sin
+                          intermediarios
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Construye
+                          <strong>dos plantas modernas</strong> (Boyacá y
+                          Nariño) y
+                          <strong>20 centros de acopio</strong> manejados por
+                          los propios paperos
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El ICBF, PAE, cárceles, hospitales y batallones
+                          <strong
+                            >compran obligatoriamente PAPATÓN COLOMBIA</strong
+                          >
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Los supermercados que compren PAPATÓN tienen
+                          <strong>beneficios fiscales</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-orange-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Los paperos manejan la empresa:
+                          <strong>60 % de la junta directiva</strong> son
+                          productores elegidos por ellos
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-gradient-to-r from-orange-500 to-red-500 text-white p-5 md:p-6 rounded-xl text-center"
+                  >
+                    <h4 class="font-black text-xl md:text-2xl mb-3">
+                      RESULTADO:
+                    </h4>
+                    <p class="text-lg md:text-xl font-bold mb-2">
+                      Ningún papelero vuelve a perder su cosecha.
+                    </p>
+                    <p class="text-lg md:text-xl font-bold">
+                      La plata se queda en Colombia. La papa importada se queda
+                      en Europa.
+                    </p>
+                  </div>
+
+                  <div class="text-center pt-4 md:pt-6">
+                    <button
+                      onclick="descargarLey('papaton')"
+                      class="descargar-ley-btn color-ley-4 hover:scale-105 transition duration-300"
+                    >
+                      <i class="fa-solid fa-download"></i> DESCARGAR LEY PAPATÓN
+                      (PDF)
+                    </button>
+                    <p class="text-gray-600 text-sm mt-2">
+                      Borrador completo de la ley listo para implementar
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEY VALENTINA -->
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card desktop-force-card-contrast">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-azul">LEY VALENTINA</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-blue-500 pl-4"
+                  >
+                    Por mi hermana Valentina y por todos los valentinos de
+                    Colombia
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-blue-50 p-4 md:p-6 rounded-xl border border-blue-200"
+                  >
+                    <h4
+                      class="font-black text-lg md:text-xl mb-3 md:mb-4 text-blue-600"
+                    >
+                      ¿Por qué es necesaria esta ley?
+                    </h4>
+                    <div class="space-y-3">
+                      <p class="text-gray-700">
+                        Mi hermana Valentina tiene una enfermedad huérfana y
+                        congénita que le genera discapacidad múltiple.
+                      </p>
+                      <p class="text-gray-700">
+                        <strong
+                          >Como ella, en Colombia hay más de 300.000 niños y
+                          adolescentes</strong
+                        >
+                        que viven con:
+                      </p>
+                      <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Discapacidad (cualquier tipo)</li>
+                        <li>Enfermedades huérfanas o raras</li>
+                        <li>Enfermedades congénitas o genéticas</li>
+                        <li>Cáncer infantil</li>
+                        <li>Fibrosis quística</li>
+                        <li>Enfermedades crónicas complejas o terminales</li>
+                      </ul>
+                      <p class="text-gray-700 font-bold mt-3">
+                        Hoy, la única forma de que reciban lo que necesitan es
+                        la acción de tutela.
+                      </p>
+                      <div class="bg-red-50 p-3 rounded-lg mt-3">
+                        <p class="text-gray-700">
+                          <strong>El 78 %</strong> de las familias no saben que
+                          pueden poner una tutela o no tienen cómo hacerlo.
+                        </p>
+                        <p class="text-gray-700">
+                          <strong>El 68 %</strong> de las tutelas por salud son
+                          de niños con estas condiciones.
+                        </p>
+                        <p class="text-gray-700">
+                          <strong>El 41 %</strong> son negadas en primera
+                          instancia y muchas familias desisten por cansancio o
+                          desconocimiento.
+                        </p>
+                      </div>
+                      <p class="text-gray-700 font-bold">
+                        La Corte Constitucional ya lo ordenó: el Estado debe
+                        garantizar atención integral sin necesidad de tutela.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="bg-blue-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-blue-600"
+                    >
+                      ¿Qué cambia esta ley?
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Desde el diagnóstico, el niño recibe en
+                          <strong>máximo 15 días el Carnet VALENTINA</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Con solo presentar el carnet se activa automáticamente
+                          y de por vida:
+                        </p>
+                      </div>
+                      <div class="col-span-2">
+                        <div class="grid md:grid-cols-2 gap-3 mt-2">
+                          <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-pills text-blue-500 mt-1"></i>
+                            <p class="text-gray-800">
+                              Todos los medicamentos y tratamientos (POS y no
+                              POS)
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-hands-helping text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Terapias ilimitadas (física, ocupacional,
+                              lenguaje, psicología, hidro, equino, etc.)
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-wheelchair text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Ayudas técnicas sin límite (sillas, audífonos,
+                              comunicadores, ventiladores, etc.)
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-ambulance text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Transporte médico gratuito puerta a puerta
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-graduation-cap text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Educación inclusiva con profesor sombra
+                            </p>
+                          </div>
+                          <div class="flex items-start gap-2">
+                            <i
+                              class="fa-solid fa-home-heart text-blue-500 mt-1"
+                            ></i>
+                            <p class="text-gray-800">
+                              Cuidados paliativos en casa si los necesita
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Prioridad absoluta en todos los programas sociales
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Si la EPS niega o atrasa, paga
+                          <strong>150 salarios mínimos de multa</strong> y el
+                          Fondo VALENTINA cubre de inmediato
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Queda <strong>prohibido exigir tutela</strong> para
+                          cualquiera de estos derechos
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-5 md:p-6 rounded-xl text-center"
+                  >
+                    <h4 class="font-black text-xl md:text-2xl mb-3">
+                      RESULTADO:
+                    </h4>
+                    <p class="text-lg md:text-xl font-bold mb-2">
+                      Ningún niño con discapacidad o enfermedad grave vuelve a
+                      sufrir por una tutela.
+                    </p>
+                    <p class="text-lg md:text-xl font-bold">
+                      Ninguna mamá vuelve a llorar porque no sabe cómo pelear
+                      por su hijo.
+                    </p>
+                  </div>
+
+                  <div class="text-center pt-4 md:pt-6">
+                    <button
+                      onclick="descargarLey('valentina')"
+                      class="descargar-ley-btn color-ley-5 hover:scale-105 transition duration-300"
+                    >
+                      <i class="fa-solid fa-download"></i> DESCARGAR LEY
+                      VALENTINA (PDF)
+                    </button>
+                    <p class="text-gray-600 text-sm mt-2">
+                      Borrador completo de la ley listo para implementar
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEY SALVACIÓN -->
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card desktop-force-card-contrast">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-verde">LEY SALVACIÓN</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-green-500 pl-4"
+                  >
+                    Cuando el campo se esté muriendo, Bogotá lo rescata
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200"
+                  >
+                    <p class="text-negro font-bold mb-3 md:mb-4 text-lg">
+                      Imagínate la escena que yo veo cada semana:
+                    </p>
+                    <p class="text-gray-700">
+                      Un campesino de 60 años, manos partidas de tanto trabajo,
+                      sube a su camión viejo con 20 bultos de papa que cuidó día
+                      y noche. Llega a la plaza y le ofrecen $180.000 por todo.
+                      No le alcanza ni para la gasolina de regreso.
+                    </p>
+                  </div>
+
+                  <p
+                    class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-green-50 rounded-lg"
+                  >
+                    Eso no es un negocio. Eso es un crimen. Yo no vine a la
+                    política a hacerme el de la vista gorda. Vine a cambiarlo
+                    todo.
+                  </p>
+
+                  <div class="bg-green-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-green-600"
+                    >
+                      Con la Ley Salvación:
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong>Mínimo seis veces al año</strong> Bogotá abre
+                          un parque o centro de acopio masivo en una localidad
+                          distinta
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El campesino llega directo con su camión lleno de lo
+                          que esté perdiendo esa semana
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El Distrito pone <strong>TODO gratis</strong>:
+                          espacio, seguridad 24 horas, baños, energía,
+                          publicidad masiva
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Tú compras directo de su mano a la tuya, sin
+                          intermediarios, sin revendedores
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El productor se devuelve a su finca con la dignidad
+                          recuperada y la cosecha salvada
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-green-500 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Los especuladores que han vivido del pueblo... se
+                          quedan sin negocio
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-red-50 border border-red-200 p-4 md:p-5 rounded-xl"
+                  >
+                    <p class="text-red-800 font-bold text-center">
+                      Esto no es un evento. Esto es el comienzo del fin de la
+                      intermediación abusiva en Colombia.
+                    </p>
+                    <p class="text-red-800 font-bold text-center mt-2">
+                      Primera ley que radico el día 1 en el Congreso.
+                    </p>
+                  </div>
+
+                  <p class="text-gray-700 text-lg text-center font-medium">
+                    No es un favor que le hacemos al campo. Es la deuda
+                    histórica que Bogotá le tiene a quien nos da de comer todos
+                    los días.
+                  </p>
+
+                  <div class="text-center pt-4 md:pt-6">
+                    <div
+                      class="inline-block bg-green-500 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
+                    >
+                      <i class="fa-solid fa-law mr-2"></i> PROYECTO COMPLETO
+                      LISTO
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEY 100% LECHE COLOMBIANA -->
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card desktop-force-card-contrast">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-indigo">LEY LECHE 100%</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-indigo-500 pl-4"
+                  >
+                    Ni un litro botado. Ni un lechero quebrado nunca más
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-blue-50 p-4 md:p-6 rounded-xl border border-blue-200"
+                  >
+                    <p class="text-gray-700">
+                      <strong class="text-blue-600"
+                        >320.000 familias campesinas</strong
+                      >
+                      viven de la leche. Hoy botan más de
+                      <strong class="text-blue-600"
+                        >50.000 litros diarios</strong
+                      >
+                      porque el precio no alcanza ni para pagar el transporte.
+                    </p>
+                    <p class="text-gray-700 mt-3">
+                      Mientras tanto, en 2025 ya entramos más de
+                      <strong class="text-blue-600"
+                        >54.000 toneladas de lácteos importados</strong
+                      >
+                      (proyectando 72.000 toneladas al cierre del año, 33.000 de
+                      ellas leche en polvo).
+                    </p>
+                  </div>
+
+                  <p
+                    class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-blue-50 rounded-lg"
+                  >
+                    Yo he estado en esas fincas. He visto al papá lechero abrir
+                    la válvula y dejar correr la leche con lágrimas en los ojos.
+                    Esto se acabó.
+                  </p>
+
+                  <div class="bg-blue-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-blue-600"
+                    >
+                      Con la Ley 100% Leche Colombiana:
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El Estado compra directo al pequeño y mediano lechero
+                          <strong>toda la leche que no pueda vender</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Pagamos <strong>rápido y sin intermediarios</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Construimos una red nacional de plantas de
+                          <strong>leche en polvo 100% colombiana</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Esa leche va
+                          <strong
+                            >obligatoria a colegios, cárceles, hospitales,
+                            batallones</strong
+                          >
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          El excedente se vende al pueblo en grandes almacenes
+                          de cadena
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-blue-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Los lecheros reciben
+                          <strong
+                            >créditos sin interés, subsidios y bonos por
+                            calidad</strong
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center py-4 md:py-6">
+                    <p
+                      class="text-2xl md:text-3xl font-black text-blue-600 mb-3"
+                    >
+                      Tu hijo va a tomar leche de vacas colombianas criadas por
+                      familias colombianas.
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-800 font-bold">
+                      Soberanía alimentaria de verdad.
+                    </p>
+                  </div>
+
+                  <div class="text-center pt-4 md:pt-6">
+                    <div
+                      class="inline-block bg-blue-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
+                    >
+                      <i class="fa-solid fa-cow mr-2"></i> PROYECTO COMPLETO
+                      LISTO
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEY NO MÁS ACOSO DIGITAL -->
+        <div class="mb-16 md:mb-20">
+          <div class="propuesta-card desktop-force-card-contrast">
+            <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
+              <div class="ley-badge ley-morada">LEY NO MÁS ACOSO</div>
+              <div class="contenido-propuesta">
+                <div class="mb-6 md:mb-8">
+                  <p
+                    class="text-xl md:text-2xl font-bold text-negro mb-4 md:mb-6 border-l-4 border-purple-500 pl-4"
+                  >
+                    Tu celular vuelve a ser tuyo. De una vez por todas, sin
+                    trucos
+                  </p>
+                </div>
+
+                <div class="space-y-5 md:space-y-6">
+                  <div
+                    class="bg-purple-50 p-4 md:p-6 rounded-xl border border-purple-200"
+                  >
+                    <p
+                      class="text-xl md:text-2xl font-bold text-purple-600 mb-3"
+                    >
+                      ¿Cuántas veces te ha pasado?
+                    </p>
+                    <p class="text-gray-700">
+                      Estás en la caja de un almacén, con la fila atrás y los
+                      niños esperando. Para que te den la factura te obligan a
+                      firmar o tocar una pantalla donde, escondido, dice "acepto
+                      recibir publicidad". Si no lo aceptas, no te venden.
+                    </p>
+                    <p class="text-gray-700 mt-3">
+                      Al día siguiente empiezan: 6 a.m. ofreciéndote crédito, 10
+                      p.m. amenazándote por una deuda, WhatsApp cada 5 minutos
+                      con "promociones".
+                    </p>
+                  </div>
+
+                  <p
+                    class="text-lg md:text-xl text-gray-800 font-bold text-center py-3 md:py-4 bg-purple-50 rounded-lg"
+                  >
+                    Te inscribes en "Dejen de Fregar" y siguen igual. Porque la
+                    ley actual es puro papel. Yo estoy hasta aquí. Y tú también.
+                  </p>
+
+                  <div class="bg-purple-100 p-5 md:p-6 rounded-xl">
+                    <h4
+                      class="font-black text-lg md:text-xl mb-4 md:mb-5 text-purple-600"
+                    >
+                      Con la Ley No Más Acoso Digital:
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong
+                            >Prohibido obligarte a aceptar publicidad</strong
+                          >
+                          para comprar cualquier cosa o recibir factura
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Las casillas estarán
+                          <strong>siempre desmarcadas</strong>. Si la empresa
+                          las pre-marca, multa millonaria automática
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong>Registro Nacional Único</strong>: te inscribes
+                          una sola vez y quedas blindado para siempre
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          <strong>Cobranza solo en horario laboral</strong>.
+                          Prohibido noches, domingos y festivos
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Si después de inscribirte te joden →
+                          <strong>indemnización automática a tu cuenta</strong>
+                        </p>
+                      </div>
+                      <div class="flex items-start gap-3">
+                        <div
+                          class="bg-purple-600 text-white rounded-full p-2 mt-1"
+                        >
+                          <i class="fa-solid fa-check text-sm"></i>
+                        </div>
+                        <p class="text-gray-800">
+                          Empresas que no cumplan pagan multas que
+                          <strong>les cierren el call center</strong>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center py-4 md:py-6">
+                    <p
+                      class="text-2xl md:text-3xl font-black text-purple-600 mb-3"
+                    >
+                      Tu celular deja de ser un enemigo y vuelve a ser tuyo
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-800 font-bold">
+                      Para hablar con tu familia, no para que te vendan como
+                      ganado.
+                    </p>
+                  </div>
+
+                  <div class="text-center pt-4 md:pt-6">
+                    <div
+                      class="inline-block bg-purple-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-lg"
+                    >
+                      <i class="fa-solid fa-shield-alt mr-2"></i> PROYECTO
+                      COMPLETO LISTO
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MI COMPROMISO -->
+        <div class="mt-16 md:mt-24">
           <div
-            class="bg-white/10 backdrop-blur p-6 md:p-8 rounded-2xl border-2 border-girasol/50 hover:border-girasol hover:bg-white/20 transition glow-effect"
+            class="bg-gradient-to-br from-verde to-tierra rounded-3xl p-8 md:p-12 lg:p-16 text-white text-center relative overflow-hidden section-dark-bg"
           >
-            <i
-              class="fa-solid fa-graduation-cap text-4xl md:text-5xl text-girasol mb-3 md:mb-4"
-            ></i>
-            <h3 class="font-black text-xl md:text-2xl mb-3 md:mb-4">
-              Educación
-            </h3>
-            <p class="text-gray-200 text-sm md:text-base">
-              Becas para hijos de campesinos y capacitación en nuevas técnicas.
-            </p>
+            <div class="watermark-container">
+              <div
+                class="watermark-item"
+                style="top: 20%; left: 10%; font-size: 200px"
+              >
+                106
+              </div>
+              <div
+                class="watermark-item"
+                style="top: 60%; right: 15%; font-size: 180px"
+              >
+                106
+              </div>
+              <div
+                class="watermark-item"
+                style="bottom: 30%; left: 20%; font-size: 220px"
+              >
+                106
+              </div>
+            </div>
+            <div class="relative z-10">
+              <h3
+                class="font-titulo font-black text-2xl md:text-4xl lg:text-5xl mb-6 md:mb-8"
+              >
+                MI COMPROMISO
+              </h3>
+              <div class="max-w-4xl mx-auto">
+                <p class="text-lg md:text-xl mb-6 md:mb-8 leading-relaxed">
+                  No vengo a hacer política como siempre. Vengo a cambiar lo que
+                  siempre se dijo que no se podía cambiar.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
+                  <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                    <i
+                      class="fa-solid fa-handshake text-3xl md:text-4xl text-girasol mb-4"
+                    ></i>
+                    <h4 class="font-black text-xl md:text-2xl mb-3">
+                      COMPROMISO CON EL CAMPO
+                    </h4>
+                    <p>
+                      Lucharé hasta que ningún campesino tenga que botar su
+                      cosecha ni venderla a pérdida.
+                    </p>
+                  </div>
+                  <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                    <i
+                      class="fa-solid fa-heart text-3xl md:text-4xl text-girasol mb-4"
+                    ></i>
+                    <h4 class="font-black text-xl md:text-2xl mb-3">
+                      COMPROMISO CON LA FAMILIA
+                    </h4>
+                    <p>
+                      Ninguna familia colombiana volverá a pasar hambre por los
+                      intermediarios abusivos.
+                    </p>
+                  </div>
+                </div>
+                <p
+                  class="text-2xl md:text-3xl font-black text-girasol mb-6 md:mb-8"
+                >
+                  Con el <strong class="text-white">VOTO 106</strong> cambiamos
+                  la historia.
+                </p>
+                <a
+                  href="#contacto"
+                  class="bg-girasol text-negro font-black py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-white transition shadow-lg text-lg md:text-xl inline-flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-flag"></i> ÚNETE AL CAMBIO
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1213,8 +2721,34 @@
     <!-- TESTIMONIOS SECTION RESPONSIVA -->
     <section
       id="testimonios"
-      class="py-12 md:py-24 bg-negro relative overflow-hidden"
+      class="py-12 md:py-24 bg-negro relative overflow-hidden section-dark-bg"
     >
+      <div class="watermark-container">
+        <div
+          class="watermark-item"
+          style="top: 18%; left: 12%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 18%; right: 12%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 50%; left: 8%; font-size: 160px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 5%; font-size: 190px"
+        >
+          106
+        </div>
+      </div>
       <div class="container mx-auto px-4 md:px-6 relative z-10">
         <div class="text-center mb-8 md:mb-16">
           <div
@@ -1243,8 +2777,9 @@
               <div class="carousel-slide-testimonios">
                 <div
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
-                  style="min-height: 500px;"
+                  style="min-height: 400px"
                 >
+                  <!-- REEMPLAZAR CON VIDEO 1 -->
                   <video
                     class="w-full h-full object-cover"
                     autoplay
@@ -1252,7 +2787,7 @@
                     loop
                     playsinline
                     preload="metadata"
-                    style="object-fit: cover;"
+                    style="object-fit: cover"
                   >
                     <source src="img/testimonio1.mp4" type="video/mp4" />
                     <img
@@ -1285,7 +2820,7 @@
                     <p
                       class="text-sm md:text-base font-bold leading-tight mb-2 md:mb-3"
                     >
-                      "Diego no solo habla del campo, vive el campo. Sus
+                      "Andrés no solo habla del campo, vive el campo. Sus
                       propuestas son reales porque las conoce desde adentro."
                     </p>
                     <div class="flex gap-1">
@@ -1315,8 +2850,9 @@
               <div class="carousel-slide-testimonios">
                 <div
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
-                  style="min-height: 500px;"
+                  style="min-height: 400px"
                 >
+                  <!-- REEMPLAZAR CON VIDEO 2 -->
                   <video
                     class="w-full h-full object-cover"
                     autoplay
@@ -1324,7 +2860,7 @@
                     loop
                     playsinline
                     preload="metadata"
-                    style="object-fit: cover;"
+                    style="object-fit: cover"
                   >
                     <source src="img/testimonio2.mp4" type="video/mp4" />
                     <img
@@ -1357,7 +2893,7 @@
                     <p
                       class="text-sm md:text-base font-bold leading-tight mb-2 md:mb-3"
                     >
-                      "Con Diego hemos logrado vender sin intermediarios.
+                      "Con Andrés hemos logrado vender sin intermediarios.
                       Nuestras ganancias aumentaron un 40%."
                     </p>
                     <div class="flex gap-1">
@@ -1387,8 +2923,9 @@
               <div class="carousel-slide-testimonios">
                 <div
                   class="relative w-full aspect-[9/16] bg-black rounded-3xl overflow-hidden group"
-                  style="min-height: 500px;"
+                  style="min-height: 400px"
                 >
+                  <!-- REEMPLAZAR CON VIDEO 3 -->
                   <video
                     class="w-full h-full object-cover"
                     autoplay
@@ -1396,7 +2933,7 @@
                     loop
                     playsinline
                     preload="metadata"
-                    style="object-fit: cover;"
+                    style="object-fit: cover"
                   >
                     <source src="img/testimonio3.mp4" type="video/mp4" />
                     <img
@@ -1429,7 +2966,7 @@
                     <p
                       class="text-sm md:text-base font-bold leading-tight mb-2 md:mb-3"
                     >
-                      "Diego nos enseñó a organizarnos como gremio. Ahora
+                      "Andrés nos enseñó a organizarnos como gremio. Ahora
                       tenemos voz en las decisiones."
                     </p>
                     <div class="flex gap-1">
@@ -1475,464 +3012,459 @@
       </div>
     </section>
 
-    <!-- MULTIMEDIA SECTION (REELS VIRALES) RESPONSIVA -->
-    <section
-      id="multimedia"
-      class="py-12 md:py-24 bg-arena relative overflow-hidden"
-    >
-      <div class="container mx-auto px-4 md:px-6">
-        <div class="text-center mb-8 md:mb-16">
-          <div
-            class="inline-block bg-girasol text-negro font-black px-3 md:px-4 py-1 text-xs uppercase tracking-widest mb-2 md:mb-4 rounded-sm shadow-[2px_2px_0px_#000] md:shadow-[4px_4px_0px_#000]"
-          >
-            🎬 REELS VIRALES
-          </div>
-          <h2 class="font-titulo font-black text-negro mb-2 md:mb-4">
+    <!-- REELS HORIZONTALES (CLARO) -->
+    <section id="multimedia" class="py-20 bg-white relative section-light">
+      <div class="watermark-container" id="wm-reels">
+        <div
+          class="watermark-item"
+          style="top: 22%; left: 15%; font-size: 190px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 22%; right: 10%; font-size: 210px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 45%; right: 18%; font-size: 170px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 35%; left: 8%; font-size: 200px"
+        >
+          106
+        </div>
+      </div>
+      <div class="container mx-auto px-0 relative z-10">
+        <div class="text-center mb-10 px-4">
+          <h2 class="font-titulo font-black text-4xl text-negro">
             LA VERDAD <span class="text-verde">SIN FILTROS</span>
           </h2>
-          <p
-            class="text-gray-600 mt-2 max-w-2xl mx-auto text-sm md:text-base px-4"
-          >
-            Mira lo que pasa en el campo real. Videos que explotan en redes
-            sociales.
+          <p class="text-gray-500 mt-2">
+            <i class="fa-solid fa-hand-pointer animate-bounce"></i> Desliza para
+            ver más
           </p>
         </div>
 
-        <div class="mb-8 md:mb-12">
-          <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-              <!-- SLIDE 1 - INSTAGRAM -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.instagram.com/soycampesinocol/"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video1.jpg"
-                      class="w-full h-full object-cover"
-                      alt="Instagram Reel"
-                    />
-                    <div class="badge-reel">
-                      <i class="fa-brands fa-instagram"></i> INSTAGRAM
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        Denuncia Papa
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        La verdad del campo en 15 segundos
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-              <!-- SLIDE 2 - TIKTOK -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.tiktok.com/@soycampesinocol?lang=es"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video2.jpg"
-                      class="w-full h-full object-cover"
-                      alt="TikTok Reel"
-                    />
-                    <div
-                      class="badge-reel"
-                      style="background: linear-gradient(135deg, #000, #25f4ee)"
-                    >
-                      <i class="fa-brands fa-tiktok"></i> TIKTOK
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        Respuesta Ministro
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        Cuando el campo se hace escuchar
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-              <!-- SLIDE 3 - FACEBOOK -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.facebook.com/soycampesinocol/"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video3.jpg"
-                      class="w-full h-full object-cover"
-                      alt="Facebook Video"
-                    />
-                    <div
-                      class="badge-reel"
-                      style="
-                        background: linear-gradient(135deg, #1877f2, #0a66c2);
-                      "
-                    >
-                      <i class="fa-brands fa-facebook"></i> FACEBOOK
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        En Corabastos
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        Donde se reúne el campo colombiano
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-              <!-- SLIDE 4 - YOUTUBE -->
-              <div class="carousel-slide">
-                <div class="relative bg-black">
-                  <a
-                    href="https://www.youtube.com/c/SoyCampesinooficial"
-                    target="_blank"
-                    class="block phone-frame hover:opacity-90 transition group"
-                  >
-                    <div class="phone-notch"></div>
-                    <img
-                      src="img/video4.jpg"
-                      class="w-full h-full object-cover"
-                      alt="YouTube Video"
-                    />
-                    <div
-                      class="badge-reel"
-                      style="
-                        background: linear-gradient(135deg, #ff0000, #cc0000);
-                      "
-                    >
-                      <i class="fa-brands fa-youtube"></i> YOUTUBE
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 md:p-6 group-hover:from-verde/50"
-                    >
-                      <p class="text-white text-xl md:text-2xl font-black">
-                        Mi Historia
-                      </p>
-                      <p class="text-white/70 text-xs md:text-sm">
-                        Del campo al Congreso
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
+        <div class="reels-scroller">
+          <!-- Reel 1 -->
+          <a
+            href="https://www.instagram.com/soycampesinocol/"
+            target="_blank"
+            class="reel-card group"
+          >
+            <!-- REEMPLAZAR CON IMAGEN REEL 1 -->
+            <img src="img/video1.jpg" loading="lazy" alt="Reel 1" />
+            <div
+              class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full"
+            >
+              <i class="fa-brands fa-instagram"></i> INSTAGRAM
             </div>
-
-            <button class="carousel-btn prev" onclick="prevSlide()">
-              <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next" onclick="nextSlide()">
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
-          </div>
-
-          <div class="carousel-dots" id="carouselDots">
-            <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-            <div class="carousel-dot" onclick="goToSlide(1)"></div>
-            <div class="carousel-dot" onclick="goToSlide(2)"></div>
-            <div class="carousel-dot" onclick="goToSlide(3)"></div>
-          </div>
+            <div class="reel-overlay">
+              <div
+                class="bg-white/20 backdrop-blur w-12 h-12 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition"
+              >
+                <i class="fa-solid fa-play text-white ml-1"></i>
+              </div>
+              <h3 class="font-bold text-lg">Denuncia Papa</h3>
+            </div>
+          </a>
+          <!-- Reel 2 -->
+          <a
+            href="https://www.tiktok.com/@soycampesinocol"
+            target="_blank"
+            class="reel-card group"
+          >
+            <!-- REEMPLAZAR CON IMAGEN REEL 2 -->
+            <img src="img/video2.jpg" loading="lazy" alt="Reel 2" />
+            <div
+              class="absolute top-4 right-4 bg-black text-white text-xs font-bold px-3 py-1 rounded-full border border-gray-700"
+            >
+              <i class="fa-brands fa-tiktok"></i> TIKTOK
+            </div>
+            <div class="reel-overlay">
+              <div
+                class="bg-white/20 backdrop-blur w-12 h-12 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition"
+              >
+                <i class="fa-solid fa-play text-white ml-1"></i>
+              </div>
+              <h3 class="font-bold text-lg">Respuesta Ministro</h3>
+            </div>
+          </a>
+          <!-- Reel 3 -->
+          <a
+            href="https://www.facebook.com/soycampesinocol"
+            target="_blank"
+            class="reel-card group"
+          >
+            <!-- REEMPLAZAR CON IMAGEN REEL 3 -->
+            <img src="img/video3.jpg" loading="lazy" alt="Reel 3" />
+            <div
+              class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full"
+            >
+              <i class="fa-brands fa-facebook"></i> FACEBOOK
+            </div>
+            <div class="reel-overlay">
+              <div
+                class="bg-white/20 backdrop-blur w-12 h-12 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition"
+              >
+                <i class="fa-solid fa-play text-white ml-1"></i>
+              </div>
+              <h3 class="font-bold text-lg">En Corabastos</h3>
+            </div>
+          </a>
+          <!-- Reel 4 -->
+          <a
+            href="https://www.youtube.com/c/SoyCampesinooficial"
+            target="_blank"
+            class="reel-card group"
+          >
+            <!-- REEMPLAZAR CON IMAGEN REEL 4 -->
+            <img src="img/video4.jpg" loading="lazy" alt="Reel 4" />
+            <div
+              class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full"
+            >
+              <i class="fa-brands fa-youtube"></i> YOUTUBE
+            </div>
+            <div class="reel-overlay">
+              <div
+                class="bg-white/20 backdrop-blur w-12 h-12 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition"
+              >
+                <i class="fa-solid fa-play text-white ml-1"></i>
+              </div>
+              <h3 class="font-bold text-lg">Mi Historia</h3>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- CONTACTO SECTION RESPONSIVA - FORMULARIO CORREGIDO -->
-    <section
-      id="contacto"
-      class="py-12 md:py-24 bg-gradient-to-b from-tierra to-negro relative overflow-hidden"
-    >
-      <div
-        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"
-      ></div>
-      <div class="container mx-auto px-4 md:px-6 relative z-10">
-        <div class="text-center mb-8 md:mb-16">
-          <div
-            class="inline-block bg-girasol text-negro font-black px-3 md:px-4 py-1 text-xs uppercase tracking-widest mb-4 md:mb-6 rounded-sm shadow-[2px_2px_0px_#fff] md:shadow-[4px_4px_0px_#fff]"
-          >
-            ¡TE NECESITAMOS!
-          </div>
-          <h2 class="font-titulo font-black text-white mb-2 md:mb-4">
-            ÚNETE AL <span class="text-girasol">MOVIMIENTO</span>
-          </h2>
-          <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-base px-4">
-            Regístrate como voluntario y sé parte del cambio que el campo
-            necesita.
-          </p>
-        </div>
-
+    <!-- CONTACTO (OSCURO) -->
+    <section id="contacto" class="py-20 bg-negro relative section-dark">
+      <div class="watermark-container" id="wm-contacto">
         <div
-          class="max-w-2xl mx-auto bg-white/10 backdrop-blur p-6 md:p-12 rounded-3xl border-2 border-girasol/50"
+          class="watermark-item"
+          style="top: 22%; left: 12%; font-size: 200px"
         >
-          <form id="contactForm" class="space-y-4 md:space-y-6">
-            <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-              <div>
-                <label
-                  class="block text-white font-bold mb-2 text-sm md:text-base"
-                  >Nombre *</label
-                >
-                <input
-                  type="text"
-                  id="nombre"
-                  required
-                  class="w-full px-4 py-3 md:px-4 md:py-3 rounded-lg bg-white/20 border-2 border-girasol/50 text-white placeholder-gray-300 focus:outline-none focus:border-girasol text-base prevent-zoom"
-                  placeholder="Tu nombre"
-                />
-              </div>
-              <div>
-                <label
-                  class="block text-white font-bold mb-2 text-sm md:text-base"
-                  >Apellido *</label
-                >
-                <input
-                  type="text"
-                  id="apellido"
-                  required
-                  class="w-full px-4 py-3 md:px-4 md:py-3 rounded-lg bg-white/20 border-2 border-girasol/50 text-white placeholder-gray-300 focus:outline-none focus:border-girasol text-base prevent-zoom"
-                  placeholder="Tu apellido"
-                />
-              </div>
-            </div>
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 22%; right: 15%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 50%; left: 8%; font-size: 220px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 40%; right: 8%; font-size: 190px"
+        >
+          106
+        </div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10 max-w-4xl">
+        <div
+          class="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl"
+        >
+          <div class="text-center mb-10">
+            <h2 class="font-titulo font-black text-4xl text-white mb-2">
+              ¡TE NECESITAMOS!
+            </h2>
+            <p class="text-girasol font-bold text-xl">
+              Únete al ejército del campo. Voto 106.
+            </p>
+          </div>
 
-            <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-              <div>
-                <label
-                  class="block text-white font-bold mb-2 text-sm md:text-base"
-                  >Teléfono *</label
-                >
-                <input
-                  type="tel"
-                  id="telefono"
-                  required
-                  class="w-full px-4 py-3 md:px-4 md:py-3 rounded-lg bg-white/20 border-2 border-girasol/50 text-white placeholder-gray-300 focus:outline-none focus:border-girasol text-base prevent-zoom"
-                  placeholder="Tu teléfono"
-                  inputmode="tel"
-                />
-              </div>
-              <div>
-                <label
-                  class="block text-white font-bold mb-2 text-sm md:text-base"
-                  >Localidad *</label
-                >
-                <select
-                  id="localidad"
-                  required
-                  class="w-full px-4 py-3 md:px-4 md:py-3 rounded-lg bg-white/20 border-2 border-girasol/50 text-white focus:outline-none focus:border-girasol text-base prevent-zoom"
-                >
-                  <option value="">Selecciona tu localidad</option>
-                  <option value="Usaquén">Usaquén</option>
-                  <option value="Chapinero">Chapinero</option>
-                  <option value="Santa Fe">Santa Fe</option>
-                  <option value="San Cristóbal">San Cristóbal</option>
-                  <option value="Usme">Usme</option>
-                  <option value="Tunjuelito">Tunjuelito</option>
-                  <option value="Bosa">Bosa</option>
-                  <option value="Kennedy">Kennedy</option>
-                  <option value="Fontibón">Fontibón</option>
-                  <option value="Engativá">Engativá</option>
-                  <option value="Suba">Suba</option>
-                  <option value="Barrios Unidos">Barrios Unidos</option>
-                  <option value="Teusaquillo">Teusaquillo</option>
-                  <option value="Los Mártires">Los Mártires</option>
-                  <option value="Antonio Nariño">Antonio Nariño</option>
-                  <option value="Puente Aranda">Puente Aranda</option>
-                  <option value="La Candelaria">La Candelaria</option>
-                  <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
-                  <option value="Ciudad Bolívar">Ciudad Bolívar</option>
-                  <option value="Sumapaz">Sumapaz</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label
-                class="block text-white font-bold mb-2 text-sm md:text-base"
-                >¿Cómo te gustaría ayudar? *</label
-              >
-              <select
-                id="ayuda"
+          <form id="contactForm" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                id="nombre"
+                placeholder="Nombre"
                 required
-                class="w-full px-4 py-3 md:px-4 md:py-3 rounded-lg bg-white/20 border-2 border-girasol/50 text-white focus:outline-none focus:border-girasol text-base prevent-zoom"
+                class="w-full bg-white/20 border border-white/30 rounded-xl px-4 py-4 text-white placeholder-gray-300 focus:outline-none focus:border-girasol focus:bg-white/30 transition prevent-zoom"
+              />
+              <input
+                type="text"
+                id="apellido"
+                placeholder="Apellido"
+                required
+                class="w-full bg-white/20 border border-white/30 rounded-xl px-4 py-4 text-white placeholder-gray-300 focus:outline-none focus:border-girasol focus:bg-white/30 transition prevent-zoom"
+              />
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <input
+                type="tel"
+                id="telefono"
+                placeholder="WhatsApp (Celular)"
+                required
+                class="w-full bg-white/20 border border-white/30 rounded-xl px-4 py-4 text-white placeholder-gray-300 focus:outline-none focus:border-girasol focus:bg-white/30 transition prevent-zoom"
+                inputmode="tel"
+              />
+              <select
+                id="localidad"
+                required
+                class="w-full bg-white/20 border border-white/30 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-girasol focus:bg-white/30 transition prevent-zoom"
               >
-                <option value="">Selecciona una opción</option>
-                <option value="Voluntario">Voluntario en terreno</option>
-                <option value="Redes Sociales">Redes Sociales</option>
-                <option value="Eventos">Organizar eventos</option>
-                <option value="Donaciones">Hacer donaciones</option>
-                <option value="Otro">Otro</option>
+                <option value="" class="text-negro">
+                  Selecciona tu Localidad
+                </option>
+                <option value="Usaquén" class="text-negro">Usaquén</option>
+                <option value="Chapinero" class="text-negro">Chapinero</option>
+                <option value="Santa Fe" class="text-negro">Santa Fe</option>
+                <option value="San Cristóbal" class="text-negro">
+                  San Cristóbal
+                </option>
+                <option value="Usme" class="text-negro">Usme</option>
+                <option value="Tunjuelito" class="text-negro">
+                  Tunjuelito
+                </option>
+                <option value="Bosa" class="text-negro">Bosa</option>
+                <option value="Kennedy" class="text-negro">Kennedy</option>
+                <option value="Fontibón" class="text-negro">Fontibón</option>
+                <option value="Engativá" class="text-negro">Engativá</option>
+                <option value="Suba" class="text-negro">Suba</option>
+                <option value="Barrios Unidos" class="text-negro">
+                  Barrios Unidos
+                </option>
+                <option value="Teusaquillo" class="text-negro">
+                  Teusaquillo
+                </option>
+                <option value="Los Mártires" class="text-negro">
+                  Los Mártires
+                </option>
+                <option value="Antonio Nariño" class="text-negro">
+                  Antonio Nariño
+                </option>
+                <option value="Puente Aranda" class="text-negro">
+                  Puente Aranda
+                </option>
+                <option value="La Candelaria" class="text-negro">
+                  La Candelaria
+                </option>
+                <option value="Rafael Uribe Uribe" class="text-negro">
+                  Rafael Uribe Uribe
+                </option>
+                <option value="Ciudad Bolívar" class="text-negro">
+                  Ciudad Bolívar
+                </option>
+                <option value="Sumapaz" class="text-negro">Sumapaz</option>
               </select>
             </div>
 
-            <div
-              class="bg-white/10 p-4 rounded-lg border-l-4 border-girasol"
+            <select
+              id="ayuda"
+              required
+              class="w-full bg-white/20 border border-white/30 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-girasol focus:bg-white/30 transition prevent-zoom"
             >
-              <p class="text-sm text-gray-300">
-                <i class="fa-solid fa-lock text-girasol mr-2"></i>
-                Tus datos están blindados y protegidos. Solo usaremos tu
-                información para coordinar actividades del movimiento.
-              </p>
-            </div>
+              <option value="" class="text-negro">¿Cómo quieres ayudar?</option>
+              <option value="Voluntario" class="text-negro">
+                Quiero ser Voluntario (Calle)
+              </option>
+              <option value="Digital" class="text-negro">
+                Voluntario Digital (Redes)
+              </option>
+              <option value="Testigo" class="text-negro">
+                Testigo Electoral
+              </option>
+              <option value="Votante" class="text-negro">
+                Solo quiero votar por ti
+              </option>
+            </select>
 
             <button
               type="submit"
-              class="w-full bg-gradient-to-r from-verde to-girasol text-negro font-black py-4 px-6 md:px-8 rounded-full hover:shadow-2xl transition shadow-lg glow-effect text-base md:text-lg touch-target"
-              style="min-height: 55px;"
+              class="w-full bg-gradient-to-r from-verde to-girasol text-negro font-black text-xl py-5 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition transform touch-target duration-300"
             >
-              REGISTRARME AHORA <i class="fa-solid fa-arrow-right ml-2"></i>
+              <i class="fa-solid fa-rocket mr-2"></i>REGISTRARME AHORA<i
+                class="fa-solid fa-arrow-right ml-2"
+              ></i>
             </button>
+            <p class="text-center text-gray-300 text-xs mt-4">
+              <i class="fa-solid fa-shield-halved text-girasol mr-1"></i> Tus
+              datos están 100% protegidos y seguros con nosotros.
+            </p>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER RESPONSIVO -->
-    <footer class="bg-negro text-white py-8 md:py-12 relative overflow-hidden">
+    <!-- FOOTER -->
+    <footer
+      class="bg-negro text-white py-12 border-t border-gray-800 section-dark relative overflow-hidden"
+    >
+      <div class="watermark-container" id="wm-footer">
+        <div
+          class="watermark-item"
+          style="top: 35%; left: 12%; font-size: 180px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="bottom: 35%; right: 12%; font-size: 200px"
+        >
+          106
+        </div>
+        <div
+          class="watermark-item"
+          style="top: 60%; right: 8%; font-size: 160px"
+        >
+          106
+        </div>
+      </div>
       <div
-        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"
-      ></div>
-      <div class="container mx-auto px-4 md:px-6 relative z-10">
-        <div class="grid md:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
+        class="container mx-auto px-4 relative z-10 text-center md:text-left"
+      >
+        <div class="grid md:grid-cols-4 gap-8">
           <div>
-            <img
-              src="img/logo-partido.png"
-              class="h-12 md:h-16 w-auto mb-3 md:mb-4"
-              alt="Logo"
-            />
-            <p class="text-gray-300 text-xs md:text-sm">
-              Movimiento Soy Campesino - Del campo a la política.
+            <div
+              class="w-16 h-16 bg-verde rounded-full flex items-center justify-center text-white font-black text-2xl border-2 border-girasol mb-4 mx-auto md:mx-0"
+            >
+              106
+            </div>
+            <p class="text-gray-400 text-sm">
+              El campo no se detiene. Nosotros tampoco.
             </p>
           </div>
           <div>
-            <h4
-              class="font-black text-girasol mb-3 md:mb-4 text-sm md:text-base"
-            >
-              NAVEGACIÓN
-            </h4>
-            <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-300">
+            <h4 class="font-bold text-girasol mb-4">MAPA</h4>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li><a href="#inicio" class="hover:text-white">Inicio</a></li>
               <li>
-                <a href="#inicio" class="hover:text-girasol transition"
-                  >Inicio</a
-                >
+                <a href="#propuestas" class="hover:text-white">Propuestas</a>
               </li>
+              <li><a href="#contacto" class="hover:text-white">Súmate</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-girasol mb-4">LEGAL</h4>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li><a href="#" class="hover:text-white">Transparencia</a></li>
               <li>
-                <a href="#historia" class="hover:text-girasol transition"
-                  >Historia</a
-                >
-              </li>
-              <li>
-                <a href="#propuestas" class="hover:text-girasol transition"
-                  >Propuestas</a
-                >
-              </li>
-              <li>
-                <a href="#contacto" class="hover:text-girasol transition"
-                  >Contacto</a
-                >
+                <a href="#" class="hover:text-white">Política de Datos</a>
               </li>
             </ul>
           </div>
           <div>
-            <h4
-              class="font-black text-girasol mb-3 md:mb-4 text-sm md:text-base"
-            >
-              REDES SOCIALES
-            </h4>
-            <div class="flex gap-3 md:gap-4">
+            <h4 class="font-bold text-girasol mb-4">SÍGUENOS</h4>
+            <div class="flex gap-4 justify-center md:justify-start">
               <a
                 href="https://www.instagram.com/soycampesinocol/"
                 target="_blank"
-                class="text-xl md:text-2xl hover:text-girasol transition"
-              >
-                <i class="fa-brands fa-instagram"></i>
-              </a>
+                class="text-2xl hover:text-girasol"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
               <a
-                href="https://www.tiktok.com/@soycampesinocol?lang=es"
+                href="https://www.tiktok.com/@soycampesinocol"
                 target="_blank"
-                class="text-xl md:text-2xl hover:text-girasol transition"
-              >
-                <i class="fa-brands fa-tiktok"></i>
-              </a>
+                class="text-2xl hover:text-girasol"
+                ><i class="fa-brands fa-tiktok"></i
+              ></a>
               <a
-                href="https://www.facebook.com/soycampesinocol/"
+                href="https://www.facebook.com/soycampesinocol"
                 target="_blank"
-                class="text-xl md:text-2xl hover:text-girasol transition"
-              >
-                <i class="fa-brands fa-facebook"></i>
-              </a>
+                class="text-2xl hover:text-girasol"
+                ><i class="fa-brands fa-facebook"></i
+              ></a>
               <a
                 href="https://www.youtube.com/c/SoyCampesinooficial"
                 target="_blank"
-                class="text-xl md:text-2xl hover:text-girasol transition"
-              >
-                <i class="fa-brands fa-youtube"></i>
-              </a>
+                class="text-2xl hover:text-girasol"
+                ><i class="fa-brands fa-youtube"></i
+              ></a>
             </div>
           </div>
-          <div>
-            <h4
-              class="font-black text-girasol mb-3 md:mb-4 text-sm md:text-base"
-            >
-              CONTACTO
-            </h4>
-            <p class="text-xs md:text-sm text-gray-300">
-              <i class="fa-solid fa-phone text-girasol mr-2"></i>
-              <a
-                href="https://wa.me/573001234567"
-                target="_blank"
-                class="hover:text-girasol transition"
-                >+57 300 123 4567</a
-              >
-            </p>
-          </div>
         </div>
-
         <div
-          class="border-t border-gray-700 pt-6 md:pt-8 text-center text-xs md:text-sm text-gray-400"
+          class="mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500"
         >
-          <p>
-            &copy; 2025 Movimiento Soy Campesino. Voto 106 - Luchamos por el
-            campo. Todos los derechos reservados.
-          </p>
+          &copy; 2025 Diego Guerrero - Soy Campesino. Desarrollado con 🥔 y ❤️.
         </div>
       </div>
     </footer>
 
-    <!-- BOTÓN FLOTANTE WHATSAPP RESPONSIVO -->
+    <!-- WHATSAPP FLOATING -->
     <a
-      href="https://wa.me/573001234567"
+      href="https://wa.me/573209948187"
       target="_blank"
-      class="fixed bottom-4 md:bottom-6 right-4 md:right-6 z-40 bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shadow-2xl transition transform hover:scale-110 animate-bounce touch-target"
-      style="z-index: 9998;"
+      class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition animate-bounce touch-target"
       aria-label="WhatsApp"
     >
-      <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i>
+      <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- SCRIPTS COMPLETOS CON CORRECCIONES PARA MÓVILES -->
+    <!-- SCRIPTS COMPLETOS -->
     <script>
       // === DETECCIÓN DE DISPOSITIVO ===
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const isMobileDevice =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      const isIOS =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const isTablet = /iPad|Android(?!.*Mobile)|Tablet|Silk/i.test(
+        navigator.userAgent
+      );
+      const isDesktop = !isMobileDevice && !isTablet;
+
+      // === FUNCIÓN PARA DESCARGAR LEYES ===
+      function descargarLey(tipo) {
+        const leyNombres = {
+          papaton: "Ley Papatón Colombia",
+          valentina: "Ley Valentina",
+          salvacion: "Ley Salvación",
+          leche: "Ley 100% Leche Colombiana",
+          acoso: "Ley No Más Acoso Digital",
+        };
+
+        Swal.fire({
+          title: "¡Descarga iniciada!",
+          html: `
+                    <div class="text-left">
+                        <p class="mb-3">El borrador completo de <strong>${
+                          leyNombres[tipo]
+                        }</strong> está siendo descargado.</p>
+                        <p class="mb-2"><strong>📋 Contenido del PDF:</strong></p>
+                        <ul class="list-disc pl-5 text-left" style="font-size: ${
+                          isMobileDevice ? "14px" : "16px"
+                        }">
+                            <li>Texto completo de la ley</li>
+                            <li>Exposición de motivos</li>
+                            <li>Artículos detallados</li>
+                            <li>Planes de implementación</li>
+                            <li>Presupuesto estimado</li>
+                        </ul>
+                        <p class="mt-3 text-sm">Si la descarga no inicia automáticamente, revisa la carpeta de descargas de tu dispositivo.</p>
+                    </div>
+                `,
+          icon: "success",
+          confirmButtonColor: "#009440",
+          confirmButtonText: "¡Entendido!",
+          width: isMobileDevice ? "90%" : "500px",
+        });
+
+        // Simulación de descarga
+        console.log(`Descargando ley: ${leyNombres[tipo]}`);
+
+        setTimeout(() => {
+          const link = document.createElement("a");
+          link.href = "#";
+          link.download = `${leyNombres[tipo]}.pdf`;
+          link.click();
+        }, 1000);
+      }
 
       // === PRELOADER ===
       window.addEventListener("load", () => {
@@ -1951,36 +3483,37 @@
           progressBar.style.width = "100%";
           setTimeout(() => {
             preloader.classList.add("hidden");
-            // Forzar redibujado en iOS
             if (isIOS) {
-              document.body.style.overflow = 'auto';
-              document.body.style.height = 'auto';
+              document.body.style.overflow = "auto";
+              document.body.style.height = "auto";
             }
+
+            // Inicializar animaciones después del preloader
+            initAnimations();
           }, 500);
         }, 1500);
       });
 
       // === CURSOR PAPA (SOLO DESKTOP) ===
       const cursor = document.querySelector(".potato-cursor");
-      if (cursor && !isMobileDevice) {
+      if (cursor && isDesktop) {
         document.addEventListener("mousemove", (e) => {
           cursor.style.left = e.clientX + "px";
           cursor.style.top = e.clientY + "px";
         });
       } else if (cursor) {
-        cursor.style.display = 'none';
+        cursor.style.display = "none";
       }
 
       // === MENU MÓVIL RESPONSIVO ===
       function toggleMenu() {
         const menu = document.getElementById("mobile-menu");
         const isHidden = menu.classList.contains("hidden");
-        
+
         if (isHidden) {
           menu.classList.remove("hidden");
           document.body.style.overflow = "hidden";
-          // Asegurar que el menú sea táctil
-          menu.style.webkitOverflowScrolling = 'touch';
+          menu.style.webkitOverflowScrolling = "touch";
         } else {
           menu.classList.add("hidden");
           document.body.style.overflow = "auto";
@@ -1994,45 +3527,6 @@
           document.body.style.overflow = "auto";
         });
       });
-
-      // === CARRUSEL REELS RESPONSIVO ===
-      let currentSlide = 0;
-      const slides = document.querySelectorAll(".carousel-slide");
-      const totalSlides = slides.length;
-
-      function updateCarousel() {
-        const track = document.getElementById("carouselTrack");
-        if (track) {
-          track.style.transform = `translateX(-${currentSlide * 100}%)`;
-          document
-            .querySelectorAll("#carouselDots .carousel-dot")
-            .forEach((dot, index) => {
-              dot.classList.toggle("active", index === currentSlide);
-            });
-        }
-      }
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-      }
-
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-      }
-
-      function goToSlide(index) {
-        if (index >= 0 && index < totalSlides) {
-          currentSlide = index;
-          updateCarousel();
-        }
-      }
-
-      // Auto-play solo en desktop
-      if (!isMobileDevice) {
-        setInterval(nextSlide, 6000);
-      }
 
       // === CARRUSEL TESTIMONIOS RESPONSIVO ===
       let currentTestimonio = 0;
@@ -2071,8 +3565,8 @@
         }
       }
 
-      // Auto-play solo en desktop
-      if (!isMobileDevice) {
+      // Auto-play solo en desktop y tablet
+      if (isDesktop || isTablet) {
         setInterval(nextTestimonio, 6000);
       }
 
@@ -2098,7 +3592,8 @@
       };
 
       const observerOptions = {
-        threshold: 0.3, // Reducido para móviles
+        threshold: 0.3,
+        rootMargin: "0px 0px -50px 0px",
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -2118,14 +3613,12 @@
         .addEventListener("submit", async (e) => {
           e.preventDefault();
 
-          // Capturar valores del formulario
           const nombre = document.getElementById("nombre").value.trim();
           const apellido = document.getElementById("apellido").value.trim();
           const telefono = document.getElementById("telefono").value.trim();
           const localidad = document.getElementById("localidad").value;
           const ayuda = document.getElementById("ayuda").value;
 
-          // Validación básica
           if (!nombre || !apellido || !telefono || !localidad || !ayuda) {
             Swal.fire({
               title: "¡Completa todos los campos!",
@@ -2133,6 +3626,21 @@
               icon: "warning",
               confirmButtonColor: "#009440",
               confirmButtonText: "Entendido",
+              width: isMobileDevice ? "90%" : "500px",
+            });
+            return;
+          }
+
+          // Validar teléfono
+          const phoneRegex = /^[0-9\s\-\+\(\)]{7,15}$/;
+          if (!phoneRegex.test(telefono)) {
+            Swal.fire({
+              title: "Teléfono inválido",
+              text: "Por favor ingresa un número de teléfono válido.",
+              icon: "error",
+              confirmButtonColor: "#009440",
+              confirmButtonText: "Entendido",
+              width: isMobileDevice ? "90%" : "500px",
             });
             return;
           }
@@ -2146,7 +3654,6 @@
               ayuda,
             });
 
-            // Crear objeto con los datos
             const volunteerData = {
               nombre: nombre,
               apellido: apellido,
@@ -2158,7 +3665,6 @@
               estado: "pendiente",
             };
 
-            // Guardar en Firestore
             const docRef = await window.firebaseAddDoc(
               window.firebaseCollection(window.firebaseDB, "voluntarios"),
               volunteerData
@@ -2166,25 +3672,27 @@
 
             console.log("✅ Documento guardado con ID:", docRef.id);
 
-            // Mostrar confirmación responsive
             Swal.fire({
               title: "¡Registro Exitoso! 🎉",
               html: `
-            <div style="text-align: left; font-size: ${isMobileDevice ? '14px' : '16px'}">
-              <p><strong>Nombre:</strong> ${nombre} ${apellido}</p>
-              <p><strong>Teléfono:</strong> ${telefono}</p>
-              <p><strong>Localidad:</strong> ${localidad}</p>
-              <p><strong>Ayuda:</strong> ${ayuda}</p>
-            </div>
-            <p style="margin-top: 15px; font-size: ${isMobileDevice ? '14px' : '16px'}">¡Gracias por unirte al movimiento! Pronto nos pondremos en contacto contigo.</p>
-          `,
+                    <div style="text-align: left; font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">
+                        <p><strong>Nombre:</strong> ${nombre} ${apellido}</p>
+                        <p><strong>Teléfono:</strong> ${telefono}</p>
+                        <p><strong>Localidad:</strong> ${localidad}</p>
+                        <p><strong>Ayuda:</strong> ${ayuda}</p>
+                    </div>
+                    <p style="margin-top: 15px; font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">¡Gracias por unirte al movimiento! Pronto nos pondremos en contacto contigo.</p>
+                `,
               icon: "success",
               confirmButtonColor: "#009440",
               confirmButtonText: "¡Entendido!",
               width: isMobileDevice ? "90%" : "500px",
             });
 
-            // Resetear formulario
             document.getElementById("contactForm").reset();
           } catch (error) {
             console.error("❌ Error detallado:", error);
@@ -2192,45 +3700,72 @@
             Swal.fire({
               title: "Error en el registro",
               html: `
-            <p>Hubo un problema al registrar tu información.</p>
-            <p style="margin-top: 10px">Por favor intenta de nuevo o contacta al soporte.</p>
-          `,
+                    <p style="font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">Hubo un problema al registrar tu información.</p>
+                    <p style="margin-top: 10px; font-size: ${
+                      isMobileDevice ? "14px" : "16px"
+                    }">Por favor intenta de nuevo o contacta al soporte.</p>
+                `,
               icon: "error",
               confirmButtonColor: "#009440",
               confirmButtonText: "Reintentar",
+              width: isMobileDevice ? "90%" : "500px",
             });
           }
         });
 
       // === GSAP SCROLL ANIMATIONS RESPONSIVAS ===
-      gsap.registerPlugin(ScrollTrigger);
+      function initAnimations() {
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!isMobileDevice && window.innerWidth >= 768) {
-        gsap.utils.toArray("section").forEach((section) => {
-          gsap.from(section, {
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: 1,
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1,
+        if (isDesktop || isTablet) {
+          gsap.utils.toArray("section").forEach((section) => {
+            gsap.from(section, {
+              scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false,
+              },
+              opacity: 0,
+              y: 50,
+              duration: 1,
+            });
           });
-        });
+
+          // Animación específica para propuestas
+          gsap.utils.toArray(".propuesta-card").forEach((card, index) => {
+            gsap.from(card, {
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                end: "top 15%",
+                scrub: 1,
+                markers: false,
+              },
+              opacity: 0,
+              y: 80,
+              duration: 1.2,
+              delay: index * 0.1,
+            });
+          });
+        }
       }
 
       // === AJUSTES DE HERO PARA MÓVILES ===
       function adjustHeroForMobile() {
         const heroSection = document.querySelector(".hero-section");
         if (heroSection && isMobileDevice) {
-          // Ajustar altura dinámicamente
+          // Calcular altura disponible
           const vh = window.innerHeight * 0.01;
-          heroSection.style.height = `calc(${vh * 100}px)`;
-          
-          // Safe area para iOS
-          if (CSS.supports('padding-top: env(safe-area-inset-top)')) {
+          document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+          heroSection.style.height = "calc(var(--vh, 1vh) * 100)";
+          heroSection.style.minHeight = "-webkit-fill-available";
+
+          if (CSS.supports("padding-top: env(safe-area-inset-top)")) {
             heroSection.style.paddingTop = `calc(80px + env(safe-area-inset-top))`;
           }
         }
@@ -2238,36 +3773,98 @@
 
       // Ejecutar al cargar y al cambiar tamaño/orientación
       adjustHeroForMobile();
-      window.addEventListener('resize', adjustHeroForMobile);
-      window.addEventListener('orientationchange', () => {
-        setTimeout(adjustHeroForMobile, 100);
+      window.addEventListener("resize", adjustHeroForMobile);
+      window.addEventListener("orientationchange", () => {
+        setTimeout(() => {
+          adjustHeroForMobile();
+          // Forzar redibujado en iOS
+          if (isIOS) {
+            document.body.style.display = "none";
+            setTimeout(() => {
+              document.body.style.display = "block";
+            }, 50);
+          }
+        }, 300);
       });
 
       // === NAVBAR SCROLL EFFECT ===
+      let lastScroll = 0;
       window.addEventListener("scroll", () => {
         const navbar = document.getElementById("navbar");
-        if (window.scrollY > 100) {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > 100) {
           navbar.classList.add("shadow-xl");
           navbar.classList.remove("shadow-lg");
+
+          // Ocultar/mostrar navbar en móviles
+          if (isMobileDevice) {
+            if (currentScroll > lastScroll && currentScroll > 100) {
+              navbar.style.transform = "translateY(-100%)";
+              navbar.style.transition = "transform 0.3s ease";
+            } else {
+              navbar.style.transform = "translateY(0)";
+              navbar.style.transition = "transform 0.3s ease";
+            }
+          }
         } else {
           navbar.classList.remove("shadow-xl");
           navbar.classList.add("shadow-lg");
+          if (isMobileDevice) {
+            navbar.style.transform = "translateY(0)";
+          }
         }
+
+        lastScroll = currentScroll;
       });
 
+      // === FORZAR CONTRASTE SOLO EN LAS CARDS DE PROPUESTAS EN DESKTOP ===
+      function forceCardContrastForDesktop() {
+        if (isDesktop) {
+          // Solo aplicar contraste forzado a las cards de propuestas
+          document.querySelectorAll(".propuesta-card").forEach((card) => {
+            card.classList.add("desktop-force-card-contrast");
+          });
+        }
+      }
+
       // === OPTIMIZACIONES TÁCTILES ===
-      document.querySelectorAll("button, a, input, select").forEach((element) => {
-        element.classList.add("touch-target");
-      });
+      document
+        .querySelectorAll("button, a.btn, .ley-btn, .descargar-ley-btn")
+        .forEach((element) => {
+          element.classList.add("touch-target");
+          element.style.cursor = "pointer";
+
+          // Prevenir zoom en doble tap en iOS
+          if (isIOS) {
+            element.addEventListener(
+              "touchstart",
+              function () {
+                this.style.fontSize = "16px";
+              },
+              { passive: true }
+            );
+          }
+        });
 
       // === PREVENIR ZOOM EN INPUTS EN iOS ===
       if (isIOS) {
-        document.addEventListener('touchstart', function() {}, {passive: true});
-        
-        // Forzar tamaño de fuente en inputs
-        document.querySelectorAll('input, select, textarea').forEach(el => {
-          el.addEventListener('focus', () => {
-            el.style.fontSize = '16px';
+        document.addEventListener("touchstart", function () {}, {
+          passive: true,
+        });
+
+        document.querySelectorAll("input, select, textarea").forEach((el) => {
+          el.addEventListener("focus", () => {
+            el.style.fontSize = "16px";
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 100);
+          });
+
+          el.addEventListener("blur", () => {
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 100);
           });
         });
       }
@@ -2277,47 +3874,116 @@
         document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
           img.loading = "lazy";
         });
+      } else {
+        // Polyfill para lazy loading
+        const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+        let lazyImageObserver = new IntersectionObserver(function (
+          entries,
+          observer
+        ) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              let lazyImage = entry.target;
+              lazyImage.src = lazyImage.dataset.src;
+              lazyImage.classList.remove("lazy");
+              lazyImageObserver.unobserve(lazyImage);
+            }
+          });
+        });
+
+        lazyImages.forEach(function (lazyImage) {
+          lazyImageObserver.observe(lazyImage);
+        });
       }
 
       // === SMOOTH SCROLL PARA ANCHORS (MEJORADO PARA MÓVILES) ===
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
-          e.preventDefault();
           const targetId = this.getAttribute("href");
           if (targetId === "#") return;
 
           const targetElement = document.querySelector(targetId);
           if (targetElement) {
-            // Ajustar offset para navbar móvil
+            e.preventDefault();
+
+            // Cerrar menú móvil si está abierto
+            const mobileMenu = document.getElementById("mobile-menu");
+            if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
+              document.body.style.overflow = "auto";
+            }
+
+            // Calcular offset basado en dispositivo
             const offset = isMobileDevice ? 70 : 80;
-            
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - offset;
+
             window.scrollTo({
-              top: targetElement.offsetTop - offset,
+              top: offsetPosition,
               behavior: "smooth",
             });
-            
-            // Cerrar menú móvil si está abierto
-            if (isMobileDevice) {
-              const menu = document.getElementById("mobile-menu");
-              if (!menu.classList.contains("hidden")) {
-                menu.classList.add("hidden");
-                document.body.style.overflow = "auto";
-              }
-            }
           }
         });
       });
 
       // === INICIALIZACIÓN ADICIONAL PARA MÓVILES ===
       if (isMobileDevice) {
-        // Mejorar rendimiento táctil
-        document.body.style.webkitTapHighlightColor = 'transparent';
-        
-        // Deshabilitar efectos hover en móviles
-        document.querySelectorAll('.hover\\:scale-105, .hover\\:scale-110').forEach(el => {
-          el.style.transform = 'none';
-        });
+        document.body.style.webkitTapHighlightColor = "transparent";
+
+        // Deshabilitar transformaciones hover en móviles
+        document
+          .querySelectorAll(".hover\\:scale-105, .hover\\:scale-110")
+          .forEach((el) => {
+            el.style.transform = "none";
+          });
+
+        // Mejorar scroll en iOS
+        if (isIOS) {
+          document.body.style.webkitOverflowScrolling = "touch";
+        }
       }
+
+      // === DETECCIÓN DE MODO OSCURO/CLARO ===
+      function detectColorScheme() {
+        const darkModeMediaQuery = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        );
+
+        function updateForColorScheme(e) {
+          if (e.matches) {
+            // Modo oscuro detectado
+            document.body.classList.add("dark-mode-detected");
+          } else {
+            // Modo claro detectado
+            document.body.classList.remove("dark-mode-detected");
+          }
+        }
+
+        // Ejecutar al cargar
+        updateForColorScheme(darkModeMediaQuery);
+
+        // Escuchar cambios
+        darkModeMediaQuery.addEventListener("change", updateForColorScheme);
+      }
+
+      // === INICIALIZAR TODO ===
+      document.addEventListener("DOMContentLoaded", () => {
+        adjustHeroForMobile();
+        detectColorScheme();
+        forceCardContrastForDesktop();
+
+        // Forzar redibujado después de un tiempo
+        setTimeout(() => {
+          document.body.style.opacity = "1";
+        }, 100);
+      });
+
+      // Manejar el evento antes de que la página se descargue
+      window.addEventListener("beforeunload", () => {
+        // Limpiar cualquier estado que pueda causar problemas
+        document.body.style.overflow = "auto";
+      });
     </script>
   </body>
 </html>
