@@ -353,6 +353,74 @@
         animation-delay: 24s;
         animation-duration: 39s;
       }
+
+      /* Mejora de visibilidad y dinamismo para móviles y modos (claro/oscuro) */
+      @keyframes pulseWatermark {
+        0% {
+          transform: scale(1) translateZ(0);
+        }
+        50% {
+          transform: scale(1.04) translateZ(0);
+        }
+        100% {
+          transform: scale(1) translateZ(0);
+        }
+      }
+
+      /* Estado por defecto mejorado */
+      .watermark-item {
+        will-change: transform, opacity, filter;
+        transition: opacity 0.6s ease, filter 0.6s ease, text-shadow 0.6s ease;
+      }
+
+      /* Resaltar según modo detectado por JS (claro/oscuro) */
+      .dark-mode-detected .watermark-106-global .watermark-item {
+        color: var(--color-marca-agua-oscuro);
+        opacity: 0.32;
+        mix-blend-mode: screen;
+        text-shadow: 0 6px 18px rgba(0, 0, 0, 0.55),
+          0 0 24px rgba(255, 209, 0, 0.25);
+        -webkit-text-stroke: 0.8px rgba(0, 0, 0, 0.45);
+        animation-duration: 28s;
+      }
+
+      :not(.dark-mode-detected) .watermark-106-global .watermark-item {
+        color: var(--color-marca-agua-claro);
+        opacity: 0.28;
+        mix-blend-mode: multiply;
+        text-shadow: 0 4px 12px rgba(255, 255, 255, 0.35),
+          0 0 18px rgba(0, 148, 64, 0.15);
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.28);
+      }
+
+      /* Móvil: más presencia y sutil pulso para dar dinamismo sin tapar contenido */
+      @media (max-width: 767px) {
+        .watermark-106-global {
+          z-index: 0;
+          mix-blend-mode: normal;
+        }
+
+        .watermark-106-global .watermark-item {
+          opacity: 0.36 !important;
+          filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.45));
+          animation-name: floatWatermark, pulseWatermark;
+          animation-duration: 28s, 6s;
+          animation-timing-function: linear, ease-in-out;
+          animation-iteration-count: infinite, infinite;
+          animation-delay: 0s, 1s;
+          pointer-events: none;
+        }
+
+        /* Aumentar tamaños en pantallas muy pequeñas para visibilidad */
+        .watermark-106-global .watermark-item {
+          font-size: clamp(90px, 12vw, 240px) !important;
+        }
+      }
+
+      /* Evitar que marque de agua compita con elementos interactivos */
+      .watermark-106-global * {
+        pointer-events: none;
+      }
       .watermark-106-global .watermark-item:nth-child(10) {
         top: 85%;
         left: 60%;
@@ -3278,6 +3346,7 @@
               <option value="Testigo" class="text-negro">
                 Testigo Electoral
               </option>
+              <option value="Donación" class="text-negro">Donación</option>
               <option value="Votante" class="text-negro">
                 Solo quiero votar por ti
               </option>
@@ -3943,6 +4012,32 @@
           document.body.style.webkitOverflowScrolling = "touch";
         }
       }
+
+      // Expandir el select de localidades en escritorio para mostrar más opciones
+      (function enhanceLocalidadSelect() {
+        const localidadSelect = document.getElementById("localidad");
+        if (!localidadSelect) return;
+
+        localidadSelect.addEventListener("focus", function () {
+          if (!isMobileDevice) {
+            this.dataset.originalSize = this.size || 1;
+            this.size = Math.min(this.options.length, 12);
+          }
+        });
+
+        localidadSelect.addEventListener("blur", function () {
+          if (!isMobileDevice) {
+            this.size = this.dataset.originalSize || 1;
+          }
+        });
+
+        // Cerrar la lista cuando el usuario selecciona una opción (desktop)
+        localidadSelect.addEventListener("change", function () {
+          if (!isMobileDevice) {
+            this.size = this.dataset.originalSize || 1;
+          }
+        });
+      })();
 
       // === DETECCIÓN DE MODO OSCURO/CLARO ===
       function detectColorScheme() {
