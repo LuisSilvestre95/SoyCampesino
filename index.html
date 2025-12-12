@@ -95,7 +95,7 @@
         -moz-osx-font-smoothing: grayscale;
       }
 
-      /* ===== SISTEMA DE CONTRASTE PERFECTO ===== */
+      /* ===== SISTEMA DE CONTRASTE MEJORADO ===== */
       :root {
         --color-fondo: #f0e9de;
         --color-texto: #1a1a1a;
@@ -103,10 +103,11 @@
         --color-botones-texto: #ffffff;
         --color-tarjetas: #ffffff;
         --color-sombra: rgba(0, 0, 0, 0.1);
-        --color-marca-agua-claro: rgba(0, 148, 64, 0.25);
-        --color-marca-agua-oscuro: rgba(255, 209, 0, 0.3);
+        --color-marca-agua-claro: rgba(0, 148, 64, 0.15);
+        --color-marca-agua-oscuro: rgba(255, 209, 0, 0.25);
       }
 
+      /* MODO OSCURO solo si el usuario lo prefiere */
       @media (prefers-color-scheme: dark) {
         :root {
           --color-fondo: #1a1a1a;
@@ -115,13 +116,78 @@
           --color-botones-texto: #ffffff;
           --color-tarjetas: #2d2d2d;
           --color-sombra: rgba(0, 0, 0, 0.3);
-          --color-marca-agua-claro: rgba(0, 148, 64, 0.3);
-          --color-marca-agua-oscuro: rgba(255, 209, 0, 0.35);
+          --color-marca-agua-claro: rgba(0, 148, 64, 0.25);
+          --color-marca-agua-oscuro: rgba(255, 209, 0, 0.3);
         }
 
         body {
           background-color: var(--color-fondo) !important;
           color: var(--color-texto) !important;
+        }
+      }
+
+      /* ===== CORRECCIÓN ESPECIAL PARA DESKTOP - FORZAR MODO CLARO PERO CON COLORES VIBRANTES ===== */
+      @media (min-width: 1024px) {
+        /* Mantener el fondo arena pero asegurar contraste */
+        body {
+          background: #f0e9de !important;
+          color: #1a1a1a !important;
+        }
+        
+        /* Las tarjetas de propuestas SIEMPRE con fondo blanco y texto negro en desktop */
+        .propuesta-card-desktop {
+          background-color: #ffffff !important;
+          color: #000000 !important;
+          border: 1px solid rgba(0, 0, 0, 0.1) !important;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+        
+        .propuesta-card-desktop *:not(.ley-badge, .ley-badge *, i.fa-solid) {
+          color: #000000 !important;
+        }
+        
+        .propuesta-card-desktop .text-gray-700,
+        .propuesta-card-desktop .text-gray-800 {
+          color: #333333 !important;
+        }
+        
+        .propuesta-card-desktop .text-red-800 {
+          color: #991b1b !important;
+        }
+        
+        .propuesta-card-desktop .text-blue-600 {
+          color: #1d4ed8 !important;
+        }
+        
+        .propuesta-card-desktop .text-orange-600 {
+          color: #ea580c !important;
+        }
+        
+        .propuesta-card-desktop .text-green-600 {
+          color: #15803d !important;
+        }
+        
+        .propuesta-card-desktop .text-purple-600 {
+          color: #7c3aed !important;
+        }
+        
+        /* Fondos de secciones claras en desktop */
+        .section-light-desktop {
+          background: #ffffff !important;
+        }
+        
+        /* Asegurar que el navbar sea visible */
+        nav {
+          background-color: #ffffff !important;
+          border-bottom: 4px solid #009440 !important;
+        }
+        
+        nav a {
+          color: #000000 !important;
+        }
+        
+        nav a:hover {
+          color: #009440 !important;
         }
       }
 
@@ -151,28 +217,28 @@
       }
 
       .watermark-106-global .watermark-item {
-        color: rgba(0, 148, 64, 0.15);
+        color: rgba(0, 148, 64, 0.12);
         animation: floatWatermark 30s linear infinite;
-        opacity: 0.2;
+        opacity: 0.15;
         mix-blend-mode: multiply;
       }
 
       .section-dark-bg .watermark-item {
-        color: rgba(255, 209, 0, 0.18);
+        color: rgba(255, 209, 0, 0.15);
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 0, 0, 0.3);
       }
 
       .section-light .watermark-item {
         color: var(--color-marca-agua-claro);
         text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.6),
-          0 0 12px rgba(255, 255, 255, 0.4), 0 0 20px rgba(0, 148, 64, 0.3);
+          0 0 12px rgba(255, 255, 255, 0.4), 0 0 20px rgba(0, 148, 64, 0.2);
         -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
       }
 
       .section-dark .watermark-item {
         color: var(--color-marca-agua-oscuro);
         text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 12px rgba(0, 0, 0, 0.5),
-          0 0 20px rgba(255, 209, 0, 0.4);
+          0 0 20px rgba(255, 209, 0, 0.3);
         -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.5);
       }
 
@@ -180,19 +246,19 @@
         0%,
         100% {
           transform: translate(0, 0) rotate(-10deg);
-          opacity: 0.25;
+          opacity: 0.2;
         }
         25% {
           transform: translate(40px, -50px) rotate(8deg);
-          opacity: 0.3;
+          opacity: 0.25;
         }
         50% {
           transform: translate(-30px, 40px) rotate(-8deg);
-          opacity: 0.2;
+          opacity: 0.15;
         }
         75% {
           transform: translate(50px, 30px) rotate(5deg);
-          opacity: 0.28;
+          opacity: 0.22;
         }
       }
 
@@ -419,33 +485,11 @@
         z-index: 10;
       }
 
-      /* ===== PROPUESTAS DE LEY - TEXTO VISIBLE ===== */
-      .ley-content {
-        position: relative;
-        z-index: 10 !important;
+      /* ===== PROPUESTAS DE LEY - TEXTO VISIBLE MEJORADO ===== */
+      .ley-content,
+      .propuesta-card,
+      .propuesta-card .bg-white {
         background-color: #ffffff !important;
-        color: #000000 !important;
-        padding: 2rem !important;
-        border-radius: 1rem;
-        margin-top: 90px;
-      }
-
-      .ley-papaton .bg-white,
-      .ley-valentina .bg-white,
-      .ley-salvacion .bg-white,
-      .ley-leche .bg-white,
-      .ley-acoso .bg-white {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        position: relative;
-        z-index: 10;
-      }
-
-      .ley-papaton .bg-white *,
-      .ley-valentina .bg-white *,
-      .ley-salvacion .bg-white *,
-      .ley-leche .bg-white *,
-      .ley-acoso .bg-white * {
         color: #000000 !important;
         position: relative;
         z-index: 10;
@@ -458,11 +502,20 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         margin-bottom: 3rem;
         background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
       }
 
       .propuesta-card .bg-white {
         background: #ffffff !important;
         padding: 2rem;
+      }
+
+      /* Asegurar que TODO el texto sea visible */
+      .propuesta-card,
+      .propuesta-card *:not(.ley-badge, .ley-badge *, i.fa-solid) {
+        color: #000000 !important;
+        position: relative;
+        z-index: 10;
       }
 
       .propuesta-card p,
@@ -472,8 +525,31 @@
       .propuesta-card span,
       .propuesta-card div:not(.ley-badge) {
         color: #000000 !important;
-        position: relative;
-        z-index: 10;
+      }
+
+      .propuesta-card .text-gray-700,
+      .propuesta-card .text-gray-800 {
+        color: #333333 !important;
+      }
+
+      .propuesta-card .text-red-800 {
+        color: #991b1b !important;
+      }
+
+      .propuesta-card .text-blue-600 {
+        color: #1d4ed8 !important;
+      }
+
+      .propuesta-card .text-orange-600 {
+        color: #ea580c !important;
+      }
+
+      .propuesta-card .text-green-600 {
+        color: #15803d !important;
+      }
+
+      .propuesta-card .text-purple-600 {
+        color: #7c3aed !important;
       }
 
       /* BOTONES DE LEYES VISIBLES */
@@ -499,6 +575,7 @@
         gap: 8px;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
         color: white !important;
+        min-width: 140px;
       }
 
       /* Colores de leyes */
@@ -767,23 +844,57 @@
         box-shadow: 0 0 15px rgba(255, 209, 0, 0.6) !important;
       }
 
-      /* ===== OPTIMIZACIÓN MÓVIL COMPLETA ===== */
+      /* ===== CORRECCIÓN ESPECÍFICA PARA EL CORTE EN MÓVIL ===== */
       @media (max-width: 768px) {
         .hero-section {
           height: 100vh !important;
-          min-height: -webkit-fill-available;
+          min-height: -webkit-fill-available !important;
           padding-top: 80px !important;
+          overflow: visible !important;
         }
 
         .container {
           padding-left: 16px !important;
           padding-right: 16px !important;
+          max-width: 100% !important;
         }
 
-        .grid-cols-2,
-        .md\:grid-cols-2 {
-          grid-template-columns: 1fr !important;
-          gap: 16px !important;
+        /* Evitar que el contenido se corte */
+        .hero-section .container {
+          height: auto !important;
+          min-height: auto !important;
+          padding-bottom: 40px !important;
+        }
+
+        /* Asegurar que el texto sea legible en móvil */
+        .hero-section h1 {
+          font-size: 2.5rem !important;
+          line-height: 1.1 !important;
+          margin-bottom: 1rem !important;
+        }
+
+        .hero-section p {
+          font-size: 1rem !important;
+          line-height: 1.4 !important;
+        }
+
+        /* Espaciado mejorado para móviles */
+        .hero-section .space-y-6 > * + * {
+          margin-top: 1.5rem !important;
+        }
+
+        /* Asegurar que las cards de propuestas no se corten */
+        .propuesta-card {
+          margin-left: -16px !important;
+          margin-right: -16px !important;
+          width: calc(100% + 32px) !important;
+          border-radius: 0 !important;
+          border-left: none !important;
+          border-right: none !important;
+        }
+
+        .propuesta-card .bg-white {
+          padding: 1.5rem !important;
         }
 
         .contenido-propuesta {
@@ -796,10 +907,13 @@
           padding: 10px 18px;
           font-size: 13px;
           min-width: 120px;
+          transform: none !important;
         }
 
-        .propuesta-card .bg-white {
-          padding: 1.5rem !important;
+        .grid-cols-2,
+        .md\:grid-cols-2 {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
         }
 
         .reel-card {
@@ -814,7 +928,7 @@
 
         .watermark-item {
           font-size: 100px !important;
-          opacity: 0.2 !important;
+          opacity: 0.15 !important;
         }
 
         .descargar-ley-btn,
@@ -822,12 +936,20 @@
           padding: 14px 24px;
           font-size: 14px;
           min-height: 48px;
+          width: 100% !important;
+          max-width: 100% !important;
         }
 
         /* Safe areas para iOS */
         @supports (padding: max(0px)) {
           .hero-section {
             padding-top: max(80px, env(safe-area-inset-top)) !important;
+            padding-bottom: env(safe-area-inset-bottom) !important;
+          }
+          
+          .container {
+            padding-left: max(16px, env(safe-area-inset-left)) !important;
+            padding-right: max(16px, env(safe-area-inset-right)) !important;
           }
         }
       }
@@ -840,6 +962,7 @@
         h2 {
           font-size: 1.6rem !important;
         }
+        
         .ley-badge {
           top: 12px;
           right: 12px;
@@ -847,12 +970,15 @@
           font-size: 12px;
           min-width: 110px;
         }
+        
         .contenido-propuesta {
           padding-top: 60px !important;
         }
+        
         .propuesta-card .bg-white {
           padding: 1rem !important;
         }
+        
         button,
         .btn,
         .ley-btn {
@@ -861,12 +987,29 @@
           padding: 12px 18px !important;
           font-size: 14px !important;
         }
+        
+        /* Texto más grande para mejor legibilidad en móviles pequeños */
+        .propuesta-card p,
+        .propuesta-card li {
+          font-size: 0.9rem !important;
+          line-height: 1.5 !important;
+        }
       }
 
       /* Tabletas (768px - 1024px) */
       @media (min-width: 768px) and (max-width: 1024px) {
         .reel-card {
           width: clamp(300px, 45vw, 400px);
+        }
+        
+        .hero-section {
+          height: 90vh !important;
+        }
+        
+        .propuesta-card {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          width: 100% !important;
         }
       }
 
@@ -913,6 +1056,11 @@
           color: #ffffff !important;
         }
 
+        .propuesta-card .text-gray-700,
+        .propuesta-card .text-gray-800 {
+          color: #e0e0e0 !important;
+        }
+
         #mobile-menu {
           background-color: #1a1a1a !important;
           border-bottom: 4px solid #00a74a !important;
@@ -954,6 +1102,23 @@
       }
       .force-bg-black {
         background-color: #000000 !important;
+      }
+      
+      /* Clase para forzar contraste solo en las cards de propuestas en desktop */
+      .desktop-force-card-contrast {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+      }
+      
+      .desktop-force-card-contrast *:not(.ley-badge, .ley-badge *, i.fa-solid) {
+        color: #000000 !important;
+      }
+      
+      /* Asegurar que los fondos de las cards sean opacos */
+      .bg-opaque {
+        background-color: #ffffff !important;
       }
     </style>
 
@@ -1188,7 +1353,7 @@
     <!-- HERO SECTION (OSCURO) -->
     <section
       id="inicio"
-      class="hero-section relative bg-negro flex items-center pt-16 section-dark overflow-hidden"
+      class="hero-section relative bg-negro flex items-center pt-16 md:pt-20 section-dark overflow-visible"
     >
       <!-- MARCA DE AGUA -->
       <div class="watermark-container" id="wm-hero">
@@ -1240,14 +1405,14 @@
       <div
         class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-8 items-center h-full py-10"
       >
-        <div class="text-white space-y-6 fade-in-up">
+        <div class="text-white space-y-4 md:space-y-6 fade-in-up">
           <div
             class="inline-block bg-girasol text-negro font-black px-4 py-1 rounded shadow-[4px_4px_0px_#fff] transform -rotate-2"
           >
             #106 ALIANZA VERDE
           </div>
           <h1
-            class="font-titulo font-black text-5xl md:text-7xl leading-none drop-shadow-lg"
+            class="font-titulo font-black text-4xl md:text-6xl lg:text-7xl leading-tight md:leading-none drop-shadow-lg"
           >
             SEGURIDAD<br />
             <span
@@ -1257,7 +1422,7 @@
             YA.
           </h1>
           <p
-            class="text-lg md:text-xl text-gray-200 border-l-4 border-verde pl-4 max-w-lg font-light"
+            class="text-base md:text-lg lg:text-xl text-gray-200 border-l-4 border-verde pl-4 max-w-lg font-light"
           >
             No más precios injustos. Conectamos el campo con Bogotá. Pasemos de
             la indignación a la Ley.
@@ -1540,7 +1705,7 @@
 
         <!-- LEY PAPATÓN COLOMBIA -->
         <div class="mb-16 md:mb-20">
-          <div class="propuesta-card">
+          <div class="propuesta-card desktop-force-card-contrast">
             <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
               <div class="ley-badge ley-naranja">LEY PAPATÓN</div>
               <div class="contenido-propuesta">
@@ -1733,7 +1898,7 @@
 
         <!-- LEY VALENTINA -->
         <div class="mb-16 md:mb-20">
-          <div class="propuesta-card">
+          <div class="propuesta-card desktop-force-card-contrast">
             <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
               <div class="ley-badge ley-azul">LEY VALENTINA</div>
               <div class="contenido-propuesta">
@@ -1955,7 +2120,7 @@
 
         <!-- LEY SALVACIÓN -->
         <div class="mb-16 md:mb-20">
-          <div class="propuesta-card">
+          <div class="propuesta-card desktop-force-card-contrast">
             <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
               <div class="ley-badge ley-verde">LEY SALVACIÓN</div>
               <div class="contenido-propuesta">
@@ -2102,7 +2267,7 @@
 
         <!-- LEY 100% LECHE COLOMBIANA -->
         <div class="mb-16 md:mb-20">
-          <div class="propuesta-card">
+          <div class="propuesta-card desktop-force-card-contrast">
             <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
               <div class="ley-badge ley-indigo">LEY LECHE 100%</div>
               <div class="contenido-propuesta">
@@ -2255,7 +2420,7 @@
 
         <!-- LEY NO MÁS ACOSO DIGITAL -->
         <div class="mb-16 md:mb-20">
-          <div class="propuesta-card">
+          <div class="propuesta-card desktop-force-card-contrast">
             <div class="relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl">
               <div class="ley-badge ley-morada">LEY NO MÁS ACOSO</div>
               <div class="contenido-propuesta">
@@ -3146,6 +3311,7 @@
       const isTablet = /iPad|Android(?!.*Mobile)|Tablet|Silk/i.test(
         navigator.userAgent
       );
+      const isDesktop = !isMobileDevice && !isTablet;
 
       // === FUNCIÓN PARA DESCARGAR LEYES ===
       function descargarLey(tipo) {
@@ -3224,7 +3390,7 @@
 
       // === CURSOR PAPA (SOLO DESKTOP) ===
       const cursor = document.querySelector(".potato-cursor");
-      if (cursor && !isMobileDevice && !isTablet) {
+      if (cursor && isDesktop) {
         document.addEventListener("mousemove", (e) => {
           cursor.style.left = e.clientX + "px";
           cursor.style.top = e.clientY + "px";
@@ -3294,7 +3460,7 @@
       }
 
       // Auto-play solo en desktop y tablet
-      if (!isMobileDevice || isTablet) {
+      if (isDesktop || isTablet) {
         setInterval(nextTestimonio, 6000);
       }
 
@@ -3447,7 +3613,7 @@
       function initAnimations() {
         gsap.registerPlugin(ScrollTrigger);
 
-        if (!isMobileDevice || isTablet) {
+        if (isDesktop || isTablet) {
           gsap.utils.toArray("section").forEach((section) => {
             gsap.from(section, {
               scrollTrigger: {
@@ -3486,7 +3652,12 @@
       function adjustHeroForMobile() {
         const heroSection = document.querySelector(".hero-section");
         if (heroSection && isMobileDevice) {
-          heroSection.style.height = `${window.innerHeight}px`;
+          // Calcular altura disponible
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty("--vh", `${vh}px`);
+          
+          heroSection.style.height = "calc(var(--vh, 1vh) * 100)";
+          heroSection.style.minHeight = "-webkit-fill-available";
 
           if (CSS.supports("padding-top: env(safe-area-inset-top)")) {
             heroSection.style.paddingTop = `calc(80px + env(safe-area-inset-top))`;
@@ -3524,8 +3695,10 @@
           if (isMobileDevice) {
             if (currentScroll > lastScroll && currentScroll > 100) {
               navbar.style.transform = "translateY(-100%)";
+              navbar.style.transition = "transform 0.3s ease";
             } else {
               navbar.style.transform = "translateY(0)";
+              navbar.style.transition = "transform 0.3s ease";
             }
           }
         } else {
@@ -3538,6 +3711,16 @@
 
         lastScroll = currentScroll;
       });
+
+      // === FORZAR CONTRASTE SOLO EN LAS CARDS DE PROPUESTAS EN DESKTOP ===
+      function forceCardContrastForDesktop() {
+        if (isDesktop) {
+          // Solo aplicar contraste forzado a las cards de propuestas
+          document.querySelectorAll('.propuesta-card').forEach(card => {
+            card.classList.add('desktop-force-card-contrast');
+          });
+        }
+      }
 
       // === OPTIMIZACIONES TÁCTILES ===
       document
@@ -3682,6 +3865,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         adjustHeroForMobile();
         detectColorScheme();
+        forceCardContrastForDesktop();
 
         // Forzar redibujado después de un tiempo
         setTimeout(() => {
