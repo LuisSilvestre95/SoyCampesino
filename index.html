@@ -133,7 +133,7 @@
           background: #f0e9de !important;
           color: #1a1a1a !important;
         }
-        
+
         /* Las tarjetas de propuestas SIEMPRE con fondo blanco y texto negro en desktop */
         .propuesta-card-desktop {
           background-color: #ffffff !important;
@@ -141,53 +141,80 @@
           border: 1px solid rgba(0, 0, 0, 0.1) !important;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
         }
-        
+
         .propuesta-card-desktop *:not(.ley-badge, .ley-badge *, i.fa-solid) {
           color: #000000 !important;
         }
-        
+
         .propuesta-card-desktop .text-gray-700,
         .propuesta-card-desktop .text-gray-800 {
           color: #333333 !important;
         }
-        
+
         .propuesta-card-desktop .text-red-800 {
           color: #991b1b !important;
         }
-        
+
         .propuesta-card-desktop .text-blue-600 {
           color: #1d4ed8 !important;
         }
-        
+
         .propuesta-card-desktop .text-orange-600 {
           color: #ea580c !important;
         }
-        
+
         .propuesta-card-desktop .text-green-600 {
           color: #15803d !important;
         }
-        
+
         .propuesta-card-desktop .text-purple-600 {
           color: #7c3aed !important;
         }
-        
+
         /* Fondos de secciones claras en desktop */
         .section-light-desktop {
           background: #ffffff !important;
         }
-        
+
         /* Asegurar que el navbar sea visible */
         nav {
           background-color: #ffffff !important;
           border-bottom: 4px solid #009440 !important;
         }
-        
+
         nav a {
           color: #000000 !important;
         }
-        
+
         nav a:hover {
           color: #009440 !important;
+        }
+
+        /* Mejorar formulario en modo claro */
+        #contactForm input,
+        #contactForm select,
+        #contactForm textarea {
+          background-color: rgba(0, 0, 0, 0.08) !important;
+          border-color: rgba(0, 0, 0, 0.15) !important;
+          color: #ffffff !important;
+        }
+
+        #contactForm input::placeholder,
+        #contactForm textarea::placeholder {
+          color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        #contactForm input:focus,
+        #contactForm select:focus,
+        #contactForm textarea:focus {
+          background-color: rgba(255, 255, 255, 0.2) !important;
+          border-color: #ffd100 !important;
+          box-shadow: 0 0 15px rgba(255, 209, 0, 0.4) !important;
+        }
+
+        #contactForm select option {
+          background: #1a1a1a !important;
+          color: #ffffff !important;
         }
       }
 
@@ -325,6 +352,74 @@
         font-size: 240px;
         animation-delay: 24s;
         animation-duration: 39s;
+      }
+
+      /* Mejora de visibilidad y dinamismo para móviles y modos (claro/oscuro) */
+      @keyframes pulseWatermark {
+        0% {
+          transform: scale(1) translateZ(0);
+        }
+        50% {
+          transform: scale(1.04) translateZ(0);
+        }
+        100% {
+          transform: scale(1) translateZ(0);
+        }
+      }
+
+      /* Estado por defecto mejorado */
+      .watermark-item {
+        will-change: transform, opacity, filter;
+        transition: opacity 0.6s ease, filter 0.6s ease, text-shadow 0.6s ease;
+      }
+
+      /* Resaltar según modo detectado por JS (claro/oscuro) */
+      .dark-mode-detected .watermark-106-global .watermark-item {
+        color: var(--color-marca-agua-oscuro);
+        opacity: 0.32;
+        mix-blend-mode: screen;
+        text-shadow: 0 6px 18px rgba(0, 0, 0, 0.55),
+          0 0 24px rgba(255, 209, 0, 0.25);
+        -webkit-text-stroke: 0.8px rgba(0, 0, 0, 0.45);
+        animation-duration: 28s;
+      }
+
+      :not(.dark-mode-detected) .watermark-106-global .watermark-item {
+        color: var(--color-marca-agua-claro);
+        opacity: 0.28;
+        mix-blend-mode: multiply;
+        text-shadow: 0 4px 12px rgba(255, 255, 255, 0.35),
+          0 0 18px rgba(0, 148, 64, 0.15);
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.28);
+      }
+
+      /* Móvil: más presencia y sutil pulso para dar dinamismo sin tapar contenido */
+      @media (max-width: 767px) {
+        .watermark-106-global {
+          z-index: 0;
+          mix-blend-mode: normal;
+        }
+
+        .watermark-106-global .watermark-item {
+          opacity: 0.36 !important;
+          filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.45));
+          animation-name: floatWatermark, pulseWatermark;
+          animation-duration: 28s, 6s;
+          animation-timing-function: linear, ease-in-out;
+          animation-iteration-count: infinite, infinite;
+          animation-delay: 0s, 1s;
+          pointer-events: none;
+        }
+
+        /* Aumentar tamaños en pantallas muy pequeñas para visibilidad */
+        .watermark-106-global .watermark-item {
+          font-size: clamp(90px, 12vw, 240px) !important;
+        }
+      }
+
+      /* Evitar que marque de agua compita con elementos interactivos */
+      .watermark-106-global * {
+        pointer-events: none;
       }
       .watermark-106-global .watermark-item:nth-child(10) {
         top: 85%;
@@ -834,6 +929,21 @@
         background-position: right 16px center;
         background-size: 20px;
         padding-right: 50px !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      /* Mejorar apariencia del select */
+      select option {
+        background: #1a1a1a;
+        color: #ffffff;
+        padding: 10px;
+        margin: 5px 0;
+      }
+
+      select:hover {
+        border-color: #00d97e !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
       }
 
       select:focus,
@@ -842,6 +952,7 @@
         outline: none !important;
         border-color: #ffd100 !important;
         box-shadow: 0 0 15px rgba(255, 209, 0, 0.6) !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
       }
 
       /* ===== CORRECCIÓN ESPECÍFICA PARA EL CORTE EN MÓVIL ===== */
@@ -946,7 +1057,7 @@
             padding-top: max(80px, env(safe-area-inset-top)) !important;
             padding-bottom: env(safe-area-inset-bottom) !important;
           }
-          
+
           .container {
             padding-left: max(16px, env(safe-area-inset-left)) !important;
             padding-right: max(16px, env(safe-area-inset-right)) !important;
@@ -962,7 +1073,7 @@
         h2 {
           font-size: 1.6rem !important;
         }
-        
+
         .ley-badge {
           top: 12px;
           right: 12px;
@@ -970,15 +1081,15 @@
           font-size: 12px;
           min-width: 110px;
         }
-        
+
         .contenido-propuesta {
           padding-top: 60px !important;
         }
-        
+
         .propuesta-card .bg-white {
           padding: 1rem !important;
         }
-        
+
         button,
         .btn,
         .ley-btn {
@@ -987,7 +1098,7 @@
           padding: 12px 18px !important;
           font-size: 14px !important;
         }
-        
+
         /* Texto más grande para mejor legibilidad en móviles pequeños */
         .propuesta-card p,
         .propuesta-card li {
@@ -1001,11 +1112,11 @@
         .reel-card {
           width: clamp(300px, 45vw, 400px);
         }
-        
+
         .hero-section {
           height: 90vh !important;
         }
-        
+
         .propuesta-card {
           margin-left: 0 !important;
           margin-right: 0 !important;
@@ -1073,6 +1184,33 @@
           background-color: #333333 !important;
           color: #00a74a !important;
         }
+
+        /* Mejorar formulario en modo oscuro */
+        #contactForm input,
+        #contactForm select,
+        #contactForm textarea {
+          background-color: rgba(255, 255, 255, 0.12) !important;
+          border-color: rgba(255, 255, 255, 0.2) !important;
+          color: #ffffff !important;
+        }
+
+        #contactForm input::placeholder,
+        #contactForm textarea::placeholder {
+          color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        #contactForm input:focus,
+        #contactForm select:focus,
+        #contactForm textarea:focus {
+          background-color: rgba(255, 255, 255, 0.15) !important;
+          border-color: #00a74a !important;
+          box-shadow: 0 0 15px rgba(0, 167, 74, 0.4) !important;
+        }
+
+        #contactForm select option {
+          background: #1a1a1a !important;
+          color: #ffffff !important;
+        }
       }
 
       /* ===== UTILIDADES ===== */
@@ -1103,7 +1241,7 @@
       .force-bg-black {
         background-color: #000000 !important;
       }
-      
+
       /* Clase para forzar contraste solo en las cards de propuestas en desktop */
       .desktop-force-card-contrast {
         background-color: #ffffff !important;
@@ -1111,11 +1249,11 @@
         border: 1px solid rgba(0, 0, 0, 0.1) !important;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
       }
-      
+
       .desktop-force-card-contrast *:not(.ley-badge, .ley-badge *, i.fa-solid) {
         color: #000000 !important;
       }
-      
+
       /* Asegurar que los fondos de las cards sean opacos */
       .bg-opaque {
         background-color: #ffffff !important;
@@ -3150,12 +3288,46 @@
                 <option value="" class="text-negro">
                   Selecciona tu Localidad
                 </option>
-                <option value="Suba" class="text-negro">Suba</option>
-                <option value="Kennedy" class="text-negro">Kennedy</option>
-                <option value="Engativá" class="text-negro">Engativá</option>
-                <option value="Bosa" class="text-negro">Bosa</option>
                 <option value="Usaquén" class="text-negro">Usaquén</option>
-                <option value="Otra" class="text-negro">Otra</option>
+                <option value="Chapinero" class="text-negro">Chapinero</option>
+                <option value="Santa Fe" class="text-negro">Santa Fe</option>
+                <option value="San Cristóbal" class="text-negro">
+                  San Cristóbal
+                </option>
+                <option value="Usme" class="text-negro">Usme</option>
+                <option value="Tunjuelito" class="text-negro">
+                  Tunjuelito
+                </option>
+                <option value="Bosa" class="text-negro">Bosa</option>
+                <option value="Kennedy" class="text-negro">Kennedy</option>
+                <option value="Fontibón" class="text-negro">Fontibón</option>
+                <option value="Engativá" class="text-negro">Engativá</option>
+                <option value="Suba" class="text-negro">Suba</option>
+                <option value="Barrios Unidos" class="text-negro">
+                  Barrios Unidos
+                </option>
+                <option value="Teusaquillo" class="text-negro">
+                  Teusaquillo
+                </option>
+                <option value="Los Mártires" class="text-negro">
+                  Los Mártires
+                </option>
+                <option value="Antonio Nariño" class="text-negro">
+                  Antonio Nariño
+                </option>
+                <option value="Puente Aranda" class="text-negro">
+                  Puente Aranda
+                </option>
+                <option value="La Candelaria" class="text-negro">
+                  La Candelaria
+                </option>
+                <option value="Rafael Uribe Uribe" class="text-negro">
+                  Rafael Uribe Uribe
+                </option>
+                <option value="Ciudad Bolívar" class="text-negro">
+                  Ciudad Bolívar
+                </option>
+                <option value="Sumapaz" class="text-negro">Sumapaz</option>
               </select>
             </div>
 
@@ -3174,6 +3346,7 @@
               <option value="Testigo" class="text-negro">
                 Testigo Electoral
               </option>
+              <option value="Donación" class="text-negro">Donación</option>
               <option value="Votante" class="text-negro">
                 Solo quiero votar por ti
               </option>
@@ -3181,13 +3354,15 @@
 
             <button
               type="submit"
-              class="w-full bg-gradient-to-r from-verde to-girasol text-negro font-black text-xl py-5 rounded-xl shadow-lg hover:scale-[1.02] transition transform touch-target"
+              class="w-full bg-gradient-to-r from-verde to-girasol text-negro font-black text-xl py-5 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition transform touch-target duration-300"
             >
-              REGISTRARME AHORA <i class="fa-solid fa-paper-plane ml-2"></i>
+              <i class="fa-solid fa-rocket mr-2"></i>REGISTRARME AHORA<i
+                class="fa-solid fa-arrow-right ml-2"
+              ></i>
             </button>
-            <p class="text-center text-gray-400 text-xs mt-4">
-              <i class="fa-solid fa-lock"></i> Tus datos están seguros con
-              nosotros.
+            <p class="text-center text-gray-300 text-xs mt-4">
+              <i class="fa-solid fa-shield-halved text-girasol mr-1"></i> Tus
+              datos están 100% protegidos y seguros con nosotros.
             </p>
           </form>
         </div>
@@ -3655,7 +3830,7 @@
           // Calcular altura disponible
           const vh = window.innerHeight * 0.01;
           document.documentElement.style.setProperty("--vh", `${vh}px`);
-          
+
           heroSection.style.height = "calc(var(--vh, 1vh) * 100)";
           heroSection.style.minHeight = "-webkit-fill-available";
 
@@ -3716,8 +3891,8 @@
       function forceCardContrastForDesktop() {
         if (isDesktop) {
           // Solo aplicar contraste forzado a las cards de propuestas
-          document.querySelectorAll('.propuesta-card').forEach(card => {
-            card.classList.add('desktop-force-card-contrast');
+          document.querySelectorAll(".propuesta-card").forEach((card) => {
+            card.classList.add("desktop-force-card-contrast");
           });
         }
       }
@@ -3837,6 +4012,32 @@
           document.body.style.webkitOverflowScrolling = "touch";
         }
       }
+
+      // Expandir el select de localidades en escritorio para mostrar más opciones
+      (function enhanceLocalidadSelect() {
+        const localidadSelect = document.getElementById("localidad");
+        if (!localidadSelect) return;
+
+        localidadSelect.addEventListener("focus", function () {
+          if (!isMobileDevice) {
+            this.dataset.originalSize = this.size || 1;
+            this.size = Math.min(this.options.length, 12);
+          }
+        });
+
+        localidadSelect.addEventListener("blur", function () {
+          if (!isMobileDevice) {
+            this.size = this.dataset.originalSize || 1;
+          }
+        });
+
+        // Cerrar la lista cuando el usuario selecciona una opción (desktop)
+        localidadSelect.addEventListener("change", function () {
+          if (!isMobileDevice) {
+            this.size = this.dataset.originalSize || 1;
+          }
+        });
+      })();
 
       // === DETECCIÓN DE MODO OSCURO/CLARO ===
       function detectColorScheme() {
